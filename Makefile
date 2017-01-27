@@ -1,4 +1,4 @@
-NAME=spriterweb
+NAME=dreampuff
 ifeq ($(shell uname -s),Darwin)
 $(info Building for Mac OSX)
 PLATFORM=MacOSX

@@ -11,14 +11,14 @@ extern "C" {
 
 #if CNO_HAVE_GETOPT
 #include "getopt.h"
-typedef static struct option CNO_Option_type;
+typedef struct option CNO_Option_type;
 
-CNO_Option_type CNO_Options[] = {
+static CNO_Option_type CNO_Options[] = {
 		{"version", no_argument, 0, 'V'},
 		{"help", no_argument, 0, 'h'},
 		{"verbose", optional_argument, 0, 'v'},
 		{"config", required_argument, 0, 'c'},
-		{"actions", required_argument, 0, 'a'},
+		//{"actions", required_argument, 0, 'a'},
 		{0,0,0,0}
 };
 
@@ -27,7 +27,7 @@ typedef enum CNO_Option_Flag_enum{
 	CNO_Option_Help,
 	CNO_Option_Verbose,
 	CNO_Option_Config,
-	CNO_Option_Actions,
+	//CNO_Option_Actions,
 	Number_of_CNO_Options
 } CNO_Option_Flag_type;
 
@@ -36,6 +36,10 @@ typedef struct CNO_Option_Plus_struct{
 	cno_u8_type hint[8];
 	cno_u8_type description[512];
 } CNO_Option_Plus_type;
+
+cno_u8_type CNO_Options_Argument_Verbose;
+cno_u8_type CNO_Options_Argument_Config[64];
+//cno_cstring_type CNO_Options_Argument_Actions;
 
 CNO_Option_Plus_type CNO_Options_Plus[Number_of_CNO_Options];
 

@@ -11,6 +11,24 @@ extern "C" {
 
 cno_u8_type CNO_Build_String[256];
 
+/*
+water //slow
+fire //burn
+ice //freeze
+rock //effective against heavy
+holy //effective against light
+dark //poison
+bio //effective against medium
+
+attack, element1 element2, DMG, stun, speed, super cost, super DMG, super stun, range (long medium short)
+medium and long are weaker against heavy enemies
+combos: start, hits, finish; low DMG high stun attacks start combo, high DMG low stun attacks finish combos
+knockback is derived from damage
+speed and stun are related
+
+enemy, element1 element2, HP, class, EXP, gold
+*/
+
 cno_u8_type CNO_Build_Info_Init();
 
 #ifdef __cplusplus

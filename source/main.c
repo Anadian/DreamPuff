@@ -1,16 +1,13 @@
 #include <stdlib.h> //exit, atexit
 #include <stdio.h>
-#include <string.h>
-#include <getopt.h> //getopt_long
-
-#if USE_GLFW3
-#include <GLFW/glfw3.h> //GLFW3
-#elif USE_ALLEGRO5
-#include <allegro5/allegro.h> //Allegro5
-#endif
+/*#include <string.h>
+#include <getopt.h> //getopt_long*/
 
 #include "cno.h"
-#include "test.h"
+#include "cno_options.h"
+#include "cno_config.h"
+#include "dreampuff.h"
+/*#include "test.h"
 #include "configuration.h"
 #include "delog.h"
 #include "actions.h"
@@ -20,72 +17,17 @@
 #include "kairos.h"
 #include "input.h"
 #include "video.h"
-#include "logic_main.h"
+#include "logic_main.h"*/
 
 
 int main(int argc, char *argv[]){
-	/*static struct option long_options[] = {
-		{"help", no_argument, 0, 'h'},
-		{"verbose", optional_argument, 0, 'v'},
-		{"config", required_argument, 0, 'c'},
-		{"actions", required_argument, 0, 'a'},
-		{"version", no_argument, 0, 'V'},
-		{0,0,0,0}};
-	
-	//Process shell arguments
-	char configfilename[64] = "CONFIG/config.current.ini";
-	char actionsfilename[64] = "CONFIG/input.current.ini";
-	printf("%d arguments:\n",argc);
-	char c;
-	int long_option_index;
-	long_option_index = 0;
-	while( ((c = getopt_long(argc,argv,"hVc:a:v::", long_options, &long_option_index)) != -1) && (c != 255)){
-		printf("%c %d\n", c, c);
-		switch(c){
-			case 'h':
-printf("Available options:\n\
-	-h, --help\t Display this help message.\n\
-	-v [uint], --verbose [uint]\t Set verbosity to unsigned integer uint; 0 is equivalent to silent.\n\
-	-V, --version\t Display version information.\n\
-	-c [file], --config [file]\t Use file for config file; defaults to ./CONFIG/config.current.ini.\n\
-	-a [file], --actions [file]\t Use file for actions file; defaults to ./CONFIG/input.current.ini.\n");
-				break;
-			case 'V': 
-				printf("v%d.%d %s: built on %s at %s\n", VERSION_MAJOR, VERSION_MINOR, BUILD_NAME, BUILD_DATE, BUILD_TIME);
-				break;
-			case 'v': break;
-			case 'c':
-				strcpy(configfilename,optarg);
-				break;
-			case 'a':
-				strcpy(actionsfilename,optarg);
-			default:
-				break;
-		}
-	}
-	printf("testval: %d sizeof float: %d sizeof double: %d\n", testval, sizeof(float), sizeof(double));
-	
-	//Load configuration
-	if(LoadConfiguration(configfilename)){
-		if(LoadConfiguration("CONFIG/config.current.ini")){
-			CreateNewConfiguration("CONFIG/config.default.ini");
-			LoadConfiguration("CONFIG/config.default.ini");
-			SaveConfiguration("CONFIG/config.current.ini");
-		}
-	}
-	//Load actions
-	if(LoadActions(actionsfilename)){
-		if(LoadActions("CONFIG/input.current.ini")){
-			CreateNewActions("CONFIG/input.default.ini");
-			LoadActions("CONFIG/input.default.ini");
-			SaveActions("CONFIG/input.current.ini");
-		}
-	}*/
 	CNO_Init();
 	CNO_Options_GetOpt(argc, argv);
+	CNO_LowLevelConfig_Init();
+	DreamPuff_Init();
 	
 	
-	int i;
+	/*int i;
 	for(i = 0; i < Numberofmutexes; i++){
 		CreateMutex(i)
 	}
@@ -162,7 +104,7 @@ printf("Available options:\n\
 		DestroyMutex(i)
 	}
 	
-	CriticalVariables.MainThread = 2;
+	CriticalVariables.MainThread = 2;*/
 	printf("Main thread terminating\n");
 	
 	exit(EXIT_SUCCESS);

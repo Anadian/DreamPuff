@@ -17,10 +17,19 @@
 #endif //CNO_HAVE_STDLIB
 
 cno_s8_type CNO_Options_GetOpt(int argc, char *argv[]){
-#if CNO_HAVE_STRING && CNO_HAVE_GETOPT
-	strcpy(CNO_Options_Plus[CNO_Option_Version].hint,NULL);
+#if CNO_ALLOW_PRINTF
+	cno_u8_type j;
+	for(j = 0; j < argc; j++){
+		printf("%d: %s\n", j, argv[j]);
+	}
+#endif //CNO_ALLOW_PRINTF
+	CNO_Options_Argument_Verbose = 0;
+#if CNO_HAVE_STRING
+	CNO_strcpy(CNO_Options_Argument_Config,"\0");
+#if CNO_HAVE_GETOPT
+	strcpy(CNO_Options_Plus[CNO_Option_Version].hint,"\0");
 	strcpy(CNO_Options_Plus[CNO_Option_Version].description,"Prints version information and exits.");
-	strcpy(CNO_Options_Plus[CNO_Option_Help].hint,NULL);
+	strcpy(CNO_Options_Plus[CNO_Option_Help].hint,"\0");
 	strcpy(CNO_Options_Plus[CNO_Option_Help].description,"Prints this help text and exits.");
 	CNO_Options_Plus[CNO_Option_Verbose].flag = 0;
 	strcpy(CNO_Options_Plus[CNO_Option_Verbose].hint,"(UINT)");
@@ -28,9 +37,9 @@ cno_s8_type CNO_Options_GetOpt(int argc, char *argv[]){
 	CNO_Options_Plus[CNO_Option_Config].flag = 0;
 	strcpy(CNO_Options_Plus[CNO_Option_Config].hint,"[FILE]");
 	strcpy(CNO_Options_Plus[CNO_Option_Config].description,"Uses FILE for configuration instead of searching for config.ini in the directories listed above.");
-	CNO_Options_Plus[CNO_Option_Actions].flag = 0;
+	/*CNO_Options_Plus[CNO_Option_Actions].flag = 0;
 	strcpy(CNO_Options_Plus[CNO_Option_Actions].hint,"[FILE]");
-	strcpy(CNO_Options_Plus[CNO_Option_Actions].description,NULL);
+	strcpy(CNO_Options_Plus[CNO_Option_Actions].description,"\0");*/
 
 	char c;
 	int long_option_index;
@@ -53,10 +62,10 @@ cno_s8_type CNO_Options_GetOpt(int argc, char *argv[]){
 				break;
 			case 'h':
 #if CNO_ALLOW_PRINTF
-				printf("Basic Usage:\n\t %s [OPTIONS]\nOptions:\t Note: (argument) means the argument(s) is/are optional while [argument] means the argument is required.\n", CNO_BUILD_NAME);
+				printf("Basic Usage:\n  %s [OPTIONS]\nOptions:  Note: (argument) means the argument(s) is/are optional while [argument] means the argument is required.\n", CNO_BUILD_NAME);
 				int i;
-				for(i = 0; i < Number_of_CNO_Options; i++){
-					printf("\t%c %s %s: %s\n", CNO_Options[i][3], CNO_Options[i][0], CNO_Options_Plus[i].hint, CNO_Options_Plus[i].description);
+				for(i = 0; i < (Number_of_CNO_Options); i++){
+					CNO_printf("  %c, %s %s: %s\n", CNO_Options[i].val, CNO_Options[i].name, CNO_Options_Plus[i].hint, CNO_Options_Plus[i].description);
 				}
 #endif //CNO_ALLOW_PRINTF
 #if CNO_ALLOW_EXIT
@@ -77,10 +86,10 @@ cno_s8_type CNO_Options_GetOpt(int argc, char *argv[]){
 #endif //CNO_ALLOW_EXIT
 				} else{
 					CNO_Options_Plus[CNO_Option_Config].flag = 1;
-					CNO_Options_Argument_Config = optarg;
+					strcpy(CNO_Options_Argument_Config,optarg);
 				}
 				break;
-			case 'a':
+			/*case 'a':
 				if(optarg == NULL){
 #if CNO_ALLOW_PRINTF
 					printf("Error '-a' invoked without an argument\n");
@@ -92,10 +101,18 @@ cno_s8_type CNO_Options_GetOpt(int argc, char *argv[]){
 					CNO_Options_Plus[CNO_Option_Actions].flag = 1;
 					CNO_Options_Argument_Actions = optarg;
 				}
-				break;
+				break;*/
+			default:
+#if CNO_ALLOW_PRINTF
+				printf("Error %c not recognised as an option.", c);
+#endif //CNO_ALLOW_PRINTF
+#if CNO_ALLOW_EXIT
+				exit(EXIT_FAILURE);
+#endif //CNO_ALLOW_EXIT
 		}
 	}
 	return 1;
-#endif //CNO_HAVE_STRING && CNO_HAVE_GETOPT
+#endif //CNO_HAVE_GETOPT
+#endif //CNO_HAVE_STRING
 	return 0;
 }

@@ -7,13 +7,15 @@
 extern "C"{
 #endif //__cplusplus
 
+#include "cno_build.h"
+
 typedef struct CNO_Environment_struct {
-	cno_u8_type username[32];
-	cno_u8_type hostname[32];
-	cnu_u8_type pwd[256];
+	cno_u8_type username[256];
+	cno_u8_type hostname[256];
+	cno_u8_type pwd[256];
 	cno_u8_type home[256];
 	cno_u8_type whereami[256];
-	cno_u8_type ipaddress[32];
+	cno_u8_type ipaddress[256];
 } CNO_Environment_type;
 CNO_Environment_type CNO_Environment;
 

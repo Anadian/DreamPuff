@@ -7,17 +7,18 @@
 extern "C" {
 #endif //__cplusplus
 
+#include "cno_build.h"
+
 #if CNO_HAVE_TIME
 #include <time.h>
-
-typedef time_t CNO_Time_type;
-
+typedef time_t cno_time_type;
+typedef struct tm cno_calendartime_type;
 #endif //CNO_HAVE_TIME
 
-CNO_Time_type CNO_Time_Unix();
+cno_time_type CNO_Time_Unix();
 cno_u8_type CNO_Time_Calendar(cno_u8_type *buffer);
 cno_u8_type CNO_Time_Concise(cno_u8_type *buffer);
-cno_u8_type CNO_Time_Full(cno_u8_type *buffer);
+cno_u8_type CNO_Time_Full(cno_cstring_type buffer);
 
 #ifdef __cplusplus
 }
