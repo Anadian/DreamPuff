@@ -6,9 +6,9 @@
 #include "cno_log.h"
 
 cno_u8_type DreamPuff_Init(){
-	if(CNO_LowLevelConfig.debug != 0){
+	if(CNO_LowLevelConfig.debug.enabled){
 		CNO_NewGlobalLog();
-		//cno_log(1, "Test %d %c %s %f", 234, 'a', "yo", 0.112);
+		cno_log(1, "Test %d %c %s %f", 234, 'a', "yo", 0.112);
 	}
 	if(CNO_LowLevelConfig.sdl2 > 0){
 		

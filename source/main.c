@@ -105,7 +105,7 @@ int main(int argc, char *argv[]){
 	}
 	
 	CriticalVariables.MainThread = 2;*/
-	printf("Main thread terminating\n");
+	C\printf("Main thread terminating\n");
 	
 	exit(EXIT_SUCCESS);
 }

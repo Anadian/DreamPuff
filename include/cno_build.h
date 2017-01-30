@@ -75,6 +75,22 @@
 #define CNO_OS 4
 #endif
 
+#ifndef CNO_DS
+#if CNO_OS == 1
+#define CNO_DS "\\"
+#else
+#define CNO_DS "/"
+#endif //CNO_OS == 1
+#endif //CNO_DS
+
+#ifndef CNO_ROOT
+#if CNO_OS == 1
+#define CNO_ROOT "C:\\"
+#else
+#define CNO_ROOT "/"
+#endif //CNO_OS == 1
+#endif //CNO_ROOT 
+
 //Static Dependencies
 #define CNO_HAVE_STDIO 1
 #define CNO_HAVE_STDLIB 1

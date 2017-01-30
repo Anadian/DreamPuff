@@ -42,9 +42,9 @@ cno_u8_type CNO_Time_Full(cno_cstring_type buffer){
 	cno_u8_type timebuffer[16];
 	cno_u8_type finalbuffer[32];
 	CNO_strftime(datebuffer, sizeof(datebuffer), "%Y-%m-%d", calendartime);
-	CNO_printf("%s\n", datebuffer);
+	//CNO_printf("%s\n", datebuffer);
 	CNO_strftime(timebuffer, sizeof(timebuffer), "%H:%M:%S", calendartime);
-	CNO_printf("%s\n", timebuffer);
+	//CNO_printf("%s\n", timebuffer);
 	CNO_strcpy(finalbuffer, datebuffer);
 	CNO_strcat(finalbuffer, "T");
 	CNO_strcat(finalbuffer, timebuffer);
