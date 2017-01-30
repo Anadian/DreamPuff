@@ -35,6 +35,9 @@ typedef struct CNO_LowLevelConfig_struct {
 	} debug;
 	cno_u8_type dialogs;
 	cno_u8_type environment;
+	struct joysticks_struct{
+		cno_u8_type enabled;
+	} joysticks;
 	cno_u8_type net;
 	cno_u8_type sdl2;
 	struct threads_struct{

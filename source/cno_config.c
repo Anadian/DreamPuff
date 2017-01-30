@@ -33,6 +33,8 @@ static int handler(void* user, const char* section, const char* name, const char
 		else if(CNO_strcmp(name,"stdout") == 0) pconfig->debug.stdout = CNO_atoi(value);
 		else if(CNO_strcmp(name,"file") == 0) pconfig->debug.file = CNO_atoi(value);
 		else if(CNO_strcmp(name,"filename") == 0) CNO_strcpy((pconfig->debug.filename),value);
+	} else if(CNO_strcmp(section,"joysticks") == 0){
+		if(CNO_strcmp(name,"enabled") == 0) pconfig->joysticks.enabled = CNO_atoi(value);
 	} else if(CNO_strcmp(section,"threads") == 0){
 		if(CNO_strcmp(name,"enabled") == 0) pconfig->threads.enabled = CNO_atoi(value);
 		else if(CNO_strcmp(name,"maxthreads") == 0) pconfig->threads.maxthreads = CNO_atoi(value);
@@ -102,6 +104,7 @@ cno_u8_type CNO_LowLevelConfig_LoadDefaults(){
 	CNO_strcpy(&(CNO_LowLevelConfig.debug.filename),"CAX.log");
 	CNO_LowLevelConfig.dialogs = 1;
 	CNO_LowLevelConfig.environment = 1;
+	CNO_LowLevelConfig.joysticks.enabled = 1;
 	CNO_LowLevelConfig.net = 1;
 	CNO_LowLevelConfig.sdl2 = 1;
 	CNO_LowLevelConfig.threads.enabled = 1;
@@ -139,6 +142,14 @@ cno_u8_type CNO_LowLevelConfig_Save(cno_cstring_type filename){
 		cno_u8_type buffer[256];
 		CNO_sprintf(buffer, ";%s DreamPuff config file\n", filename);
 		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "dialogs=%d\n", CNO_LowLevelConfig.dialogs);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "environment=%d\n", CNO_LowLevelConfig.environment);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "net=%d\n", CNO_LowLevelConfig.net);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "sdl2=%d\n", CNO_LowLevelConfig.sdl2);
+		CNO_fputs(buffer, configfile);
 		CNO_sprintf(buffer, "[audio]\n");
 		CNO_fputs(buffer, configfile);
 		CNO_sprintf(buffer, "enabled=%d\n", CNO_LowLevelConfig.audio.enabled);
@@ -159,13 +170,9 @@ cno_u8_type CNO_LowLevelConfig_Save(cno_cstring_type filename){
 		CNO_fputs(buffer, configfile);
 		CNO_sprintf(buffer, "filename=%s\n", CNO_LowLevelConfig.debug.filename);
 		CNO_fputs(buffer, configfile);
-		CNO_sprintf(buffer, "dialogs=%d\n", CNO_LowLevelConfig.dialogs);
+		CNO_sprintf(buffer, "[joysticks]\n");
 		CNO_fputs(buffer, configfile);
-		CNO_sprintf(buffer, "environment=%d\n", CNO_LowLevelConfig.environment);
-		CNO_fputs(buffer, configfile);
-		CNO_sprintf(buffer, "net=%d\n", CNO_LowLevelConfig.net);
-		CNO_fputs(buffer, configfile);
-		CNO_sprintf(buffer, "sdl2=%d\n", CNO_LowLevelConfig.sdl2);
+		CNO_sprintf(buffer, "enabled=%d\n", CNO_LowLevelConfig.joysticks.enabled);
 		CNO_fputs(buffer, configfile);
 		CNO_sprintf(buffer, "[threads]\n");
 		CNO_fputs(buffer, configfile);

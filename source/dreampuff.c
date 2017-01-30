@@ -5,6 +5,10 @@
 #include "cno_config.h"
 #include "cno_log.h"
 
+#if CNO_HAVE_SDL2
+#include <SDL2/SDL.h>
+#endif //CNO_HAVE_SDL2
+
 cno_u8_type DreamPuff_Init(){
 	if(CNO_LowLevelConfig.debug.enabled){
 		CNO_NewGlobalLog();

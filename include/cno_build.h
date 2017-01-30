@@ -119,6 +119,9 @@
 
 #if CNO_HAVE_SDL2
 #include <SDL2/SDL_version.h>
+#define CNO_HAVE_SDL2_IMAGE 1
+#define CNO_HAVE_SDL2_MIXER 1
+#define CNO_HAVE_SDL2_TTF 1
 #endif //CNO_HAVE_SDL2
 
 #define CNO_ALLOW_WINDOW 1
