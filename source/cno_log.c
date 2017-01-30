@@ -103,6 +103,7 @@ cno_u8_type CNO_NewGlobalLog(){
 		CNO_fputs(buffer, globallog);
 		CNO_fputs("\n", globallog);
 		CNO_fclose(globallog);
+		CNO_printf("Hello?");
 		return 1;
 	}
 	else{

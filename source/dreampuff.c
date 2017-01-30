@@ -12,6 +12,7 @@ cno_u8_type DreamPuff_Init(){
 	}
 	if(CNO_LowLevelConfig.sdl2 > 0){
 		
+	}
 	return 0;
 }
 	

@@ -8,7 +8,7 @@ $(info Building for Android)
 PLATFORM=Android
 else ifeq ($(shell uname -o),Cygwin)
 $(info Building for Windows)
-PLATFORM=WINDOWS
+PLATFORM=Windows
 else ifeq ($(shell uname -s),Linux)
 $(info Building for Linux)
 PLATFORM=Linux
