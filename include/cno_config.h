@@ -46,6 +46,7 @@ typedef struct CNO_LowLevelConfig_struct {
 	} threads;
 	struct video_struct{
 		cno_u8_type enabled;
+		cno_u8_type screensaver;
 	} video;
 	struct directories_struct{
 		cno_u8_type unixstyle;

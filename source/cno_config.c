@@ -40,6 +40,7 @@ static int handler(void* user, const char* section, const char* name, const char
 		else if(CNO_strcmp(name,"maxthreads") == 0) pconfig->threads.maxthreads = CNO_atoi(value);
 	} else if(CNO_strcmp(section,"video") == 0){
 		if(CNO_strcmp(name,"enabled") == 0) pconfig->video.enabled = CNO_atoi(value);
+		else if(CNO_strcmp(name,"screensaver") == 0) pconfig->video.screensaver = CNO_atoi(value);
 	} else if(CNO_strcmp(section,"directories") == 0){
 		if(CNO_strcmp(name,"unixstyle") == 0) pconfig->directories.unixstyle = CNO_atoi(value);
 		else if(CNO_strcmp(name,"enginedata") == 0) CNO_strcpy((pconfig->directories.enginedata),value);
@@ -110,6 +111,7 @@ cno_u8_type CNO_LowLevelConfig_LoadDefaults(){
 	CNO_LowLevelConfig.threads.enabled = 1;
 	CNO_LowLevelConfig.threads.maxthreads = 5;
 	CNO_LowLevelConfig.video.enabled = 1;
+	CNO_LowLevelConfig.video.screensaver = 1;
 	CNO_strcpy(&(CNO_LowLevelConfig.directories.enginedata),"enginedata");
 	CNO_strcat(&(CNO_LowLevelConfig.directories.enginedata), CNO_DS);
 #if CNO_OS == 1
@@ -183,6 +185,8 @@ cno_u8_type CNO_LowLevelConfig_Save(cno_cstring_type filename){
 		CNO_sprintf(buffer, "[video]\n");
 		CNO_fputs(buffer, configfile);
 		CNO_sprintf(buffer, "enabled=%d\n", CNO_LowLevelConfig.video.enabled);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "screensaver=%d\n", CNO_LowLevelConfig.video.screensaver);
 		CNO_fputs(buffer, configfile);
 		CNO_sprintf(buffer, "[directories]\n");
 		CNO_fputs(buffer, configfile);
