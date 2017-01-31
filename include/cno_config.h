@@ -29,7 +29,7 @@ typedef struct CNO_LowLevelConfig_struct {
 	struct debug_struct{
 		cno_u8_type enabled;
 		cno_s8_type verbosity;
-		cno_u8_type stdout;
+		cno_u8_type standardoutput;
 		cno_u8_type file;
 		cno_u8_type filename[64];
 	} debug;

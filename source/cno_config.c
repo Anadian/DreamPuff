@@ -30,7 +30,7 @@ static int handler(void* user, const char* section, const char* name, const char
 	} else if(CNO_strcmp(section,"debug") == 0){
 		if(CNO_strcmp(name,"enabled") == 0) pconfig->debug.enabled = CNO_atoi(value);
 		else if(CNO_strcmp(name,"verbosity") == 0) pconfig->debug.verbosity = CNO_atoi(value);
-		else if(CNO_strcmp(name,"stdout") == 0) pconfig->debug.stdout = CNO_atoi(value);
+		else if(CNO_strcmp(name,"standardoutput") == 0) pconfig->debug.standardoutput = CNO_atoi(value);
 		else if(CNO_strcmp(name,"file") == 0) pconfig->debug.file = CNO_atoi(value);
 		else if(CNO_strcmp(name,"filename") == 0) CNO_strcpy((pconfig->debug.filename),value);
 	} else if(CNO_strcmp(section,"joysticks") == 0){
@@ -99,7 +99,7 @@ cno_u8_type CNO_LowLevelConfig_LoadDefaults(){
 	CNO_LowLevelConfig.audio.samplerate = 48000;
 	CNO_LowLevelConfig.debug.enabled = 1;
 	CNO_LowLevelConfig.debug.verbosity = 5;
-	CNO_LowLevelConfig.debug.stdout = 1;
+	CNO_LowLevelConfig.debug.standardoutput = 1;
 	CNO_LowLevelConfig.debug.file = 1;
 	CNO_strcpy(&(CNO_LowLevelConfig.debug.filename),"CAX.log");
 	CNO_LowLevelConfig.dialogs = 1;
@@ -164,7 +164,7 @@ cno_u8_type CNO_LowLevelConfig_Save(cno_cstring_type filename){
 		CNO_fputs(buffer, configfile);
 		CNO_sprintf(buffer, "verbosity=%d\n", CNO_LowLevelConfig.debug.verbosity);
 		CNO_fputs(buffer, configfile);
-		CNO_sprintf(buffer, "stdout=%d\n", CNO_LowLevelConfig.debug.stdout);
+		CNO_sprintf(buffer, "standardoutput=%d\n", CNO_LowLevelConfig.debug.standardoutput);
 		CNO_fputs(buffer, configfile);
 		CNO_sprintf(buffer, "file=%d\n", CNO_LowLevelConfig.debug.file);
 		CNO_fputs(buffer, configfile);

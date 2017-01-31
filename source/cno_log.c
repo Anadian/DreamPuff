@@ -71,7 +71,7 @@ cno_u8_type CNO_GlobalLog(cno_cstring_type function, cno_cstring_type format, ..
 			i++;
 		}
 		CNO_va_end(args);
-		if(CNO_LowLevelConfig.debug.stdout) CNO_printf("%s\n", buffer);
+		if(CNO_LowLevelConfig.debug.standardoutput) CNO_printf("%s\n", buffer);
 		CNO_strcat(buffer, "\n");
 #if CNO_HAVE_STDIO
 		if(CNO_LowLevelConfig.debug.file){
