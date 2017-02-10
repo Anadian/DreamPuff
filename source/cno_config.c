@@ -23,7 +23,7 @@
 static int handler(void* user, const char* section, const char* name, const char* value){
 #if CNO_HAVE_STDLIB && CNO_HAVE_STRING
     CNO_LowLevelConfig_type *pconfig = (CNO_LowLevelConfig_type*)user;
-	if(CNO_strcmp(section,"audio") == 0){
+	if(CNO_strcmp(section,"audio") == 0){ //llcnm
 		if(CNO_strcmp(name,"enabled") == 0) pconfig->audio.enabled = CNO_atoi(value);
 		else if(CNO_strcmp(name,"channels") == 0) pconfig->audio.channels = CNO_atoi(value);
 		else if(CNO_strcmp(name,"samplerate") == 0) pconfig->audio.samplerate = CNO_atoi(value);
@@ -33,14 +33,48 @@ static int handler(void* user, const char* section, const char* name, const char
 		else if(CNO_strcmp(name,"standardoutput") == 0) pconfig->debug.standardoutput = CNO_atoi(value);
 		else if(CNO_strcmp(name,"file") == 0) pconfig->debug.file = CNO_atoi(value);
 		else if(CNO_strcmp(name,"filename") == 0) CNO_strcpy((pconfig->debug.filename),value);
+		else if(CNO_strcmp(name,"logmessagebuffersize") == 0) pconfig->debug.logmessagebuffersize = CNO_atoi(value);
+		else if(CNO_strcmp(name,"logmessageargumentbuffersize") == 0) pconfig->debug.logmessageargumentbuffersize = CNO_atoi(value);
 	} else if(CNO_strcmp(section,"joysticks") == 0){
 		if(CNO_strcmp(name,"enabled") == 0) pconfig->joysticks.enabled = CNO_atoi(value);
+	} else if(CNO_strcmp(section,"sdl2") == 0){
+		if(CNO_strcmp(name,"sdl2enabled") == 0) pconfig->sdl2.sdl2enabled = CNO_atoi(value);
+		else if(CNO_strcmp(name,"sdl2ttfenabled") == 0) pconfig->sdl2.sdl2ttfenabled = CNO_atoi(value);
+	} else if(CNO_strcmp(section,"sdl2image") == 0){
+		if(CNO_strcmp(name,"jpg") == 0) pconfig->sdl2image.jpg = CNO_atoi(value);
+		else if(CNO_strcmp(name,"png") == 0) pconfig->sdl2image.png = CNO_atoi(value);
+		else if(CNO_strcmp(name,"tif") == 0) pconfig->sdl2image.tif = CNO_atoi(value);
+	} else if(CNO_strcmp(section,"sdl2mixer") == 0){
+		if(CNO_strcmp(name,"enabled") == 0) pconfig->sdl2mixer.enabled = CNO_atoi(value);
+		else if(CNO_strcmp(name,"flac") == 0) pconfig->sdl2mixer.flac = CNO_atoi(value);
+		else if(CNO_strcmp(name,"mod") == 0) pconfig->sdl2mixer.mod = CNO_atoi(value);
+		else if(CNO_strcmp(name,"mp3") == 0) pconfig->sdl2mixer.mp3 = CNO_atoi(value);
+		else if(CNO_strcmp(name,"ogg") == 0) pconfig->sdl2mixer.ogg = CNO_atoi(value);
 	} else if(CNO_strcmp(section,"threads") == 0){
 		if(CNO_strcmp(name,"enabled") == 0) pconfig->threads.enabled = CNO_atoi(value);
 		else if(CNO_strcmp(name,"maxthreads") == 0) pconfig->threads.maxthreads = CNO_atoi(value);
+		else if(CNO_strcmp(name,"sdl2") == 0) pconfig->threads.sdl2 = CNO_atoi(value);
+		else if(CNO_strcmp(name,"logic") == 0) pconfig->threads.logic = CNO_atoi(value);
+		else if(CNO_strcmp(name,"fileio") == 0) pconfig->threads.fileio = CNO_atoi(value);
+		else if(CNO_strcmp(name,"network") == 0) pconfig->threads.network = CNO_atoi(value);
 	} else if(CNO_strcmp(section,"video") == 0){
 		if(CNO_strcmp(name,"enabled") == 0) pconfig->video.enabled = CNO_atoi(value);
 		else if(CNO_strcmp(name,"screensaver") == 0) pconfig->video.screensaver = CNO_atoi(value);
+		else if(CNO_strcmp(name,"savescreenshotbmp") == 0) pconfig->video.savescreenshotbmp = CNO_atoi(value);
+		else if(CNO_strcmp(name,"savescreenshotpng") == 0) pconfig->video.savescreenshotpng = CNO_atoi(value);
+		else if(CNO_strcmp(name,"maxwindows") == 0) pconfig->video.maxwindows = CNO_atoi(value);
+		else if(CNO_strcmp(name,"driver") == 0) pconfig->video.driver = CNO_atoi(value);
+		else if(CNO_strcmp(name,"display") == 0) pconfig->video.display = CNO_atoi(value);
+		else if(CNO_strcmp(name,"displaymode") == 0) pconfig->video.displaymode = CNO_atoi(value);
+		else if(CNO_strcmp(name,"xoffset") == 0) pconfig->video.xoffset = CNO_atoi(value);
+		else if(CNO_strcmp(name,"yoffset") == 0) pconfig->video.yoffset = CNO_atoi(value);
+		else if(CNO_strcmp(name,"width") == 0) pconfig->video.width = CNO_atoi(value);
+		else if(CNO_strcmp(name,"height") == 0) pconfig->video.height = CNO_atoi(value);
+		else if(CNO_strcmp(name,"bitsperpixel") == 0) pconfig->video.bitsperpixel = CNO_atoi(value);
+		else if(CNO_strcmp(name,"exclusivefullscreen") == 0) pconfig->video.exclusivefullscreen = CNO_atoi(value);
+		else if(CNO_strcmp(name,"framerate") == 0) pconfig->video.framerate = CNO_atoi(value);
+		else if(CNO_strcmp(name,"resizable") == 0) pconfig->video.resizable = CNO_atoi(value);
+		else if(CNO_strcmp(name,"borderless") == 0) pconfig->video.borderless = CNO_atoi(value);
 	} else if(CNO_strcmp(section,"directories") == 0){
 		if(CNO_strcmp(name,"unixstyle") == 0) pconfig->directories.unixstyle = CNO_atoi(value);
 		else if(CNO_strcmp(name,"enginedata") == 0) CNO_strcpy((pconfig->directories.enginedata),value);
@@ -50,7 +84,6 @@ static int handler(void* user, const char* section, const char* name, const char
 		if(CNO_strcmp(name,"dialogs") == 0) pconfig->dialogs = CNO_atoi(value);
 		else if(CNO_strcmp(name,"environment") == 0) pconfig->environment = CNO_atoi(value);
 		else if(CNO_strcmp(name,"net") == 0) pconfig->net = CNO_atoi(value);
-		else if(CNO_strcmp(name,"sdl2") == 0) pconfig->sdl2 = CNO_atoi(value);
 		else{
 #if CNO_ALLOW_PRINTF
 			CNO_printf("Ini parse error: unrecognised key/value pair: section %s, name %s, value %s\n", section, name, value);
@@ -103,15 +136,46 @@ cno_u8_type CNO_LowLevelConfig_LoadDefaults(){
 	CNO_LowLevelConfig.debug.standardoutput = 1;
 	CNO_LowLevelConfig.debug.file = 1;
 	CNO_strcpy(&(CNO_LowLevelConfig.debug.filename),"CAX.log");
+	CNO_LowLevelConfig.debug.logmessagebuffersize = 4096;
+	CNO_LowLevelConfig.debug.logmessageargumentbuffersize = 1024;
 	CNO_LowLevelConfig.dialogs = 1;
 	CNO_LowLevelConfig.environment = 1;
 	CNO_LowLevelConfig.joysticks.enabled = 1;
 	CNO_LowLevelConfig.net = 1;
-	CNO_LowLevelConfig.sdl2 = 1;
+	CNO_LowLevelConfig.sdl2.sdl2enabled = 1;
+	CNO_LowLevelConfig.sdl2.sdl2ttfenabled = 1;
+	CNO_LowLevelConfig.sdl2image.enabled = 1;
+	CNO_LowLevelConfig.sdl2image.jpg = 0;
+	CNO_LowLevelConfig.sdl2image.png = 1;
+	CNO_LowLevelConfig.sdl2image.tif = 0;
+	CNO_LowLevelConfig.sdl2mixer.enabled = 1;
+	CNO_LowLevelConfig.sdl2mixer.flac = 0;
+	CNO_LowLevelConfig.sdl2mixer.mod = 0;
+	CNO_LowLevelConfig.sdl2mixer.mp3 = 1;
+	CNO_LowLevelConfig.sdl2mixer.ogg = 0;
 	CNO_LowLevelConfig.threads.enabled = 1;
 	CNO_LowLevelConfig.threads.maxthreads = 5;
+	CNO_LowLevelConfig.threads.sdl2 = 1;
+	CNO_LowLevelConfig.threads.logic = 1;
+	CNO_LowLevelConfig.threads.fileio = 0;
+	CNO_LowLevelConfig.threads.network = 0;
 	CNO_LowLevelConfig.video.enabled = 1;
 	CNO_LowLevelConfig.video.screensaver = 1;
+	CNO_LowLevelConfig.video.savescreenshotpng = 1;
+	CNO_LowLevelConfig.video.savescreenshotbmp = 0;
+	CNO_LowLevelConfig.video.maxwindows = 8;
+	CNO_LowLevelConfig.video.driver = -1;
+	CNO_LowLevelConfig.video.display = -1;
+	CNO_LowLevelConfig.video.displaymode = -1;
+	CNO_LowLevelConfig.video.xoffset = 0;
+	CNO_LowLevelConfig.video.yoffset = 0;
+	CNO_LowLevelConfig.video.width = 640;
+	CNO_LowLevelConfig.video.height = 480;
+	CNO_LowLevelConfig.video.bitsperpixel = 32;
+	CNO_LowLevelConfig.video.exclusivefullscreen = 0;
+	CNO_LowLevelConfig.video.framerate = 60;
+	CNO_LowLevelConfig.video.resizable = 0;
+	CNO_LowLevelConfig.video.borderless = 0;
 	CNO_strcpy(&(CNO_LowLevelConfig.directories.enginedata),"enginedata");
 	CNO_strcat(&(CNO_LowLevelConfig.directories.enginedata), CNO_DS);
 #if CNO_OS == 1
@@ -142,15 +206,13 @@ cno_u8_type CNO_LowLevelConfig_Save(cno_cstring_type filename){
 	configfile = CNO_fopen(filename, "w");
 	if(configfile != NULL){
 		cno_u8_type buffer[256];
-		CNO_sprintf(buffer, ";%s DreamPuff config file\n", filename);
+		CNO_sprintf(buffer, ";%s DreamPuff config file\n", filename); //llcvm
 		CNO_fputs(buffer, configfile);
 		CNO_sprintf(buffer, "dialogs=%d\n", CNO_LowLevelConfig.dialogs);
 		CNO_fputs(buffer, configfile);
 		CNO_sprintf(buffer, "environment=%d\n", CNO_LowLevelConfig.environment);
 		CNO_fputs(buffer, configfile);
 		CNO_sprintf(buffer, "net=%d\n", CNO_LowLevelConfig.net);
-		CNO_fputs(buffer, configfile);
-		CNO_sprintf(buffer, "sdl2=%d\n", CNO_LowLevelConfig.sdl2);
 		CNO_fputs(buffer, configfile);
 		CNO_sprintf(buffer, "[audio]\n");
 		CNO_fputs(buffer, configfile);
@@ -172,9 +234,41 @@ cno_u8_type CNO_LowLevelConfig_Save(cno_cstring_type filename){
 		CNO_fputs(buffer, configfile);
 		CNO_sprintf(buffer, "filename=%s\n", CNO_LowLevelConfig.debug.filename);
 		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "logmessagebuffersize=%d\n", CNO_LowLevelConfig.debug.logmessagebuffersize);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "logmessageargumentbuffersize=%d\n", CNO_LowLevelConfig.debug.logmessageargumentbuffersize);
+		CNO_fputs(buffer, configfile);
 		CNO_sprintf(buffer, "[joysticks]\n");
 		CNO_fputs(buffer, configfile);
 		CNO_sprintf(buffer, "enabled=%d\n", CNO_LowLevelConfig.joysticks.enabled);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "[sdl2]\n");
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "sdl2enabled=%d\n", CNO_LowLevelConfig.sdl2.sdl2enabled);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "sdl2ttfenabled=%d\n", CNO_LowLevelConfig.sdl2.sdl2ttfenabled);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "[sdl2image]\n");
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "enabled=%d\n", CNO_LowLevelConfig.sdl2image.enabled);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "jpg=%d\n", CNO_LowLevelConfig.sdl2image.jpg);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "png=%d\n", CNO_LowLevelConfig.sdl2image.png);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "tif=%d\n", CNO_LowLevelConfig.sdl2image.tif);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "[sdl2mixer]\n");
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "enabled=%d\n", CNO_LowLevelConfig.sdl2mixer.enabled);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "flac=%d\n", CNO_LowLevelConfig.sdl2mixer.flac);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "mod=%d\n", CNO_LowLevelConfig.sdl2mixer.mod);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "mp3=%d\n", CNO_LowLevelConfig.sdl2mixer.mp3);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "ogg=%d\n", CNO_LowLevelConfig.sdl2mixer.ogg);
 		CNO_fputs(buffer, configfile);
 		CNO_sprintf(buffer, "[threads]\n");
 		CNO_fputs(buffer, configfile);
@@ -182,11 +276,49 @@ cno_u8_type CNO_LowLevelConfig_Save(cno_cstring_type filename){
 		CNO_fputs(buffer, configfile);
 		CNO_sprintf(buffer, "maxthreads=%d\n", CNO_LowLevelConfig.threads.maxthreads);
 		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "sdl2=%d\n", CNO_LowLevelConfig.threads.sdl2);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "logic=%d\n", CNO_LowLevelConfig.threads.logic);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "fileio=%d\n", CNO_LowLevelConfig.threads.fileio);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "network=%d\n", CNO_LowLevelConfig.threads.network);
+		CNO_fputs(buffer, configfile);
 		CNO_sprintf(buffer, "[video]\n");
 		CNO_fputs(buffer, configfile);
 		CNO_sprintf(buffer, "enabled=%d\n", CNO_LowLevelConfig.video.enabled);
 		CNO_fputs(buffer, configfile);
 		CNO_sprintf(buffer, "screensaver=%d\n", CNO_LowLevelConfig.video.screensaver);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "savescreenshotbmp=%d\n", CNO_LowLevelConfig.SECTION.savescreenshotbmp);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "savescreenshotpng=%d\n", CNO_LowLevelConfig.SECTION.savescreenshotpng);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "maxwindows=%d\n", CNO_LowLevelConfig.video.maxwindows);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "driver=%d\n", CNO_LowLevelConfig.video.driver);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "display=%d\n", CNO_LowLevelConfig.video.display);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "displaymode=%d\n", CNO_LowLevelConfig.video.displaymode);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "xoffset=%d\n", CNO_LowLevelConfig.video.xoffset);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "yoffset=%d\n", CNO_LowLevelConfig.video.yoffset);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "width=%d\n", CNO_LowLevelConfig.video.width);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "height=%d\n", CNO_LowLevelConfig.video.height);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "bitsperpixel=%d\n", CNO_LowLevelConfig.SECTION.bitsperpixel);
+		CNO_fputs(buffer, configfile);;
+		CNO_sprintf(buffer, "exclusivefullscreen=%d\n", CNO_LowLevelConfig.video.exclusivefullscreen);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "framerate=%d\n", CNO_LowLevelConfig.video.framerate);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "resizable=%d\n", CNO_LowLevelConfig.video.resizable);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "borderless=%d\n", CNO_LowLevelConfig.video.borderless);
 		CNO_fputs(buffer, configfile);
 		CNO_sprintf(buffer, "[directories]\n");
 		CNO_fputs(buffer, configfile);

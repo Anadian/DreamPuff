@@ -44,7 +44,7 @@ endif
 ifeq ($(PLATFORM),MacOSX)
 ifeq ($(BACKEND),SDL2)
 $(info Using SDL2)
-MOREFLAGS=$(BASEFLAGS),-lsdl2,-lsdl2_image,-lsdl2_ttf
+MOREFLAGS=$(BASEFLAGS) -Wl,-lSDL2,-lSDL2_image,-lSDL2_mixer,-lSDL2_ttf
 else ifeq ($(BACKEND),GLFW3)
 $(info Using GLFW3)
 MOREFLAGS=$(BASEFLAGS),-lglfw3,-lIL,-lILU -framework Cocoa -framework CoreVideo -framework IOKit -framework OpenGL
@@ -60,7 +60,7 @@ endif
 endif
 
 ifeq ($(VERBOSE),1)
-FINALFLAGS=$(MOREFLAGS) -v
+FINALFLAGS=$(MOREFLAGS) -v -print-search-dirs -w -H
 else
 FINALFLAGS=$(MOREFLAGS)
 endif

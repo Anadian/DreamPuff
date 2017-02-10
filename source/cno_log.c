@@ -21,12 +21,12 @@ cno_u8_type CNO_GlobalLog(cno_cstring_type function, cno_cstring_type format, ..
 	if(CNO_LowLevelConfig.debug.enabled){
 		cno_va_list_type args;
 		CNO_va_start(args, format);
-		cno_u8_type buffer[256];
+		cno_u8_type buffer[CNO_LowLevelConfig.debug.logmessagebuffersize];
 		CNO_strcpy(buffer, function);
 		//CNO_printf("%s, %s\n", buffer, function);
 		CNO_strcat(buffer, ": ");
-		cno_u8_type subbuffer[32];
-		cno_u8_type i;
+		cno_u8_type subbuffer[CNO_LowLevelConfig.debug.logmessageargumentbuffersize];
+		cno_u16_type i;
 		i = 0;
 		while(format[i] != '\0'){
 			//CNO_printf("%c \n", format[i]);
@@ -104,7 +104,7 @@ cno_u8_type CNO_NewGlobalLog(){
 		if(globallog != NULL){
 			CNO_fputs(CNO_Build_String, globallog);
 			CNO_fputs("\n", globallog);
-			cno_u8_type buffer[32];
+			cno_u8_type buffer[64];
 			CNO_Time_Full(buffer);
 			CNO_fputs(buffer, globallog);
 			CNO_fputs("\n", globallog);

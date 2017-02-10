@@ -14,7 +14,7 @@ extern "C" {
 typedef va_list cno_va_list_type;
 #endif //CNO_HAVE_STDARG
 
-#define cno_log(priority, ...) (priority < CNO_LowLevelConfig.debug.verbosity)?(CNO_GlobalLog(__func__, __VA_ARGS__)):(CNO_noop)
+#define cno_log(priority, ...) (priority <= CNO_LowLevelConfig.debug.verbosity)?(CNO_GlobalLog(__func__, __VA_ARGS__)):(CNO_noop)
 
 cno_u8_type CNO_GlobalLog(cno_cstring_type function, cno_cstring_type format, ...);
 cno_u8_type CNO_SpecificLog(cno_cstring_type filename, cno_cstring_type function, cno_cstring_type format, ...);

@@ -101,12 +101,14 @@
 #define CNO_HAVE_UNISTD 1
 #define CNO_HAVE_ERRNO 1
 #define CNO_HAVE_GETOPT 1
+#define CNO_HAVE_UUID 1
 #define CNO_HAVE_INIH 1
 #define CNO_HAVE_WHEREAMI 1
 #define CNO_HAVE_STRETCHYBUFFER 1
-#define CNO_HAVE_TINYDIR 1
+#define CNO_HAVE_TINYFILES 1
 #define CNO_HAVE_TINYFILEDIALOGS 1
 #define CNO_HAVE_PARSON 1
+#define CNO_HAVE_UTF8 1
 #define CNO_HAVE_SDL2 1
 
 #if CNO_HAVE_STDIO
@@ -117,17 +119,32 @@
 #define CNO_ALLOW_EXIT 1
 #endif //CNO_HAVE_STDLIB
 
+#if CNO_HAVE_PARSON
+#define cno_value_type JSON_Value*
+#define cno_object_type JSON_Object*
+#define cno_array_type JSON_Array*
+#endif //CNO_HAVE_PARSON
+
+#if CNO_HAVE_TINYFILES
+#define cno_directory_type tfDIR
+#define cno_tinyfile_type tfFILE
+#endif //CNO_HAVE_TINYFILES
+
 #if CNO_HAVE_SDL2
 #include <SDL2/SDL_version.h>
+#ifndef CNO_ALLOW_SDL2_THREADS
+#define CNO_ALLOW_SDL2_THREADS 1
+#endif //CNO_ALLOW_SDL2_THREADS
 #define CNO_HAVE_SDL2_IMAGE 1
 #define CNO_HAVE_SDL2_MIXER 1
 #define CNO_HAVE_SDL2_TTF 1
 #endif //CNO_HAVE_SDL2
 
-#define CNO_ALLOW_WINDOW 1
-#define CNO_ALLOW_AUDIO 1
+#if CNO_ALLOW_SDL2_THREADS || CNO_ALLOW_POSIX_THREADS
 #define CNO_ALLOW_THREADS 1
-#define CNO_ALLOW_OBJECTS 1
+#else
+#define CNO_ALLOW_THREADS 0
+#endif //CNO_ALLOW_SDL2_THREADS || CNO_ALLOW_POSIX_THREADS
 
 #define DESKTOP_BUILD 1
 #define MOBILE_BUILD 0
@@ -149,6 +166,7 @@ typedef signed long long cno_s64_type;
 typedef float cno_f32_type;
 typedef double cno_f64_type;
 typedef unsigned char* cno_cstring_type;
+typedef void* cno_utf8_type;
 
 #ifndef CNO_noop
 #define CNO_noop ((void)0)
@@ -408,6 +426,17 @@ typedef unsigned char* cno_cstring_type;
 #define CNO_va_end(...) CNO_noop
 #endif //CNO_HAVE_STDARG
 #endif //CNO_va_end
+
+#ifndef CNO_uuid_generate
+#if CNO_HAVE_UUID
+#define CNO_uuid_generate(...) uuid_generate(__VA_ARGS__)
+#else
+#define CNO_HAVE_UUID CNO_noop
+#endif //CNO_uuid_UUID
+#endif //CNO_uuid_generate
+#ifndef cno_uuid_type
+#define cno_uuid_type uuid_t
+#endif //cno_uuid_type
 
 //Shortcuts
 

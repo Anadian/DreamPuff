@@ -7,10 +7,9 @@
 extern "C" {
 #endif //__cplusplus
 
-#include "cno_build.h"
-
-cno_u8_type DreamPuff_Init();
-cno_u8_type DreamPuff_Quit();
+#include "dreampuff_core.h"
+#include "dreampuff_video.h"
+#include "dreampuff_input.h"
 
 #ifdef __cplusplus
 }
