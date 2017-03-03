@@ -9,7 +9,15 @@ extern "C"{
 
 #include "cno_build.h"
 
-cno_u8_type DreamPuff_Input_SDL();
+typedef struct DreamPuff_Event_struct{
+	cno_u8_type code[8];
+	cno_s16_type value;
+	cno_u32_type time;
+} DreamPuff_Event_type;
+DreamPuff_Event_type *DreamPuff_Events;
+
+cno_u8_type DreamPuff_Input_Real();
+//cno_u8_type DreamPuff_Input_SDL();
 
 #ifdef __cplusplus
 }

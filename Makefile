@@ -18,15 +18,15 @@ $(info Platform unkown; using defaults)
 PLATFORM=Unkown
 endif
 $(info Using $(CC))
-SOURCEDIR=./SOURCE
+SOURCEDIR=./source
 SOURCE=$(wildcard $(SOURCEDIR)/*.c)
 OBJECTSDIR=./OBJECTS
 ifeq ($(wildcard $(OBJECTSDIR)/*),)
 $(shell mkdir $(OBJECTSDIR))
 endif
-TMPOBJECTS=$(subst SOURCE/,OBJECTS/,$(SOURCE))
+TMPOBJECTS=$(subst source/,OBJECTS/,$(SOURCE))
 OBJECTS=$(subst .c,.o,$(TMPOBJECTS))
-INCLUDEDIR=./INCLUDE
+INCLUDEDIR=./include
 BINDIR=./BIN
 ifeq ($(wildcard $(BINDIR)/*),)
 $(shell mkdir $(BINDIR))

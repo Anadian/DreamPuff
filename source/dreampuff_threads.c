@@ -11,12 +11,12 @@
 #if CNO_HAVE_SDL2 && CNO_ALLOW_SDL2_THREADS
 DreamPuff_Thread_type DreamPuff_LogicThread;
 DreamPuff_ThreadFunction_type DreamPuff_LogicThread_function(void *ptr){
-	cno_log(3,"DreamPuff Logic Thread Initialised.");
+	dp_log(3,"DreamPuff Logic Thread Initialised.");
 	while(DreamPuff_Engine_IsRunning()){
 		//dp_log(1,"Yo from logic thread");
 		//Logic_Real()
 	}
-	cno_log(3, "DreamPuff Logic Thread Terminating.");
+	dp_log(3, "DreamPuff Logic Thread Terminating.");
 	return 0;
 }
 #endif //CNO_HAVE_SDL2 && CNO_ALLOW_SDL2_THREADS

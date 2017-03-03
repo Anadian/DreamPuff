@@ -91,6 +91,10 @@
 #endif //CNO_OS == 1
 #endif //CNO_ROOT 
 
+#ifndef CNO_Filename_Size
+#define CNO_Filename_Size 1024
+#endif //CNO_Filename_Size
+
 //Static Dependencies
 #define CNO_HAVE_STDIO 1
 #define CNO_HAVE_STDLIB 1
@@ -105,6 +109,8 @@
 #define CNO_HAVE_INIH 1
 #define CNO_HAVE_WHEREAMI 1
 #define CNO_HAVE_STRETCHYBUFFER 1
+//#define CNO_HAVE_UTHASH 1
+//#define CNO_HAVE_KHASH 1
 #define CNO_HAVE_TINYFILES 1
 #define CNO_HAVE_TINYFILEDIALOGS 1
 #define CNO_HAVE_PARSON 1
@@ -129,6 +135,10 @@
 #define cno_directory_type tfDIR
 #define cno_tinyfile_type tfFILE
 #endif //CNO_HAVE_TINYFILES
+
+#if CNO_HAVE_UTHASH
+#define cno_hashhandle UT_hash_handle hh
+#endif //CNO_HAVE_UTHASH
 
 #if CNO_HAVE_SDL2
 #include <SDL2/SDL_version.h>

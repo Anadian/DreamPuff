@@ -290,9 +290,9 @@ cno_u8_type CNO_LowLevelConfig_Save(cno_cstring_type filename){
 		CNO_fputs(buffer, configfile);
 		CNO_sprintf(buffer, "screensaver=%d\n", CNO_LowLevelConfig.video.screensaver);
 		CNO_fputs(buffer, configfile);
-		CNO_sprintf(buffer, "savescreenshotbmp=%d\n", CNO_LowLevelConfig.SECTION.savescreenshotbmp);
+		CNO_sprintf(buffer, "savescreenshotbmp=%d\n", CNO_LowLevelConfig.video.savescreenshotbmp);
 		CNO_fputs(buffer, configfile);
-		CNO_sprintf(buffer, "savescreenshotpng=%d\n", CNO_LowLevelConfig.SECTION.savescreenshotpng);
+		CNO_sprintf(buffer, "savescreenshotpng=%d\n", CNO_LowLevelConfig.video.savescreenshotpng);
 		CNO_fputs(buffer, configfile);
 		CNO_sprintf(buffer, "maxwindows=%d\n", CNO_LowLevelConfig.video.maxwindows);
 		CNO_fputs(buffer, configfile);
@@ -310,7 +310,7 @@ cno_u8_type CNO_LowLevelConfig_Save(cno_cstring_type filename){
 		CNO_fputs(buffer, configfile);
 		CNO_sprintf(buffer, "height=%d\n", CNO_LowLevelConfig.video.height);
 		CNO_fputs(buffer, configfile);
-		CNO_sprintf(buffer, "bitsperpixel=%d\n", CNO_LowLevelConfig.SECTION.bitsperpixel);
+		CNO_sprintf(buffer, "bitsperpixel=%d\n", CNO_LowLevelConfig.video.bitsperpixel);
 		CNO_fputs(buffer, configfile);;
 		CNO_sprintf(buffer, "exclusivefullscreen=%d\n", CNO_LowLevelConfig.video.exclusivefullscreen);
 		CNO_fputs(buffer, configfile);

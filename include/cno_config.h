@@ -31,7 +31,7 @@ typedef struct CNO_LowLevelConfig_struct {
 		cno_s8_type verbosity;
 		cno_u8_type standardoutput;
 		cno_u8_type file;
-		cno_u8_type filename[64];
+		cno_u8_type filename[CNO_Filename_Size];
 		cno_u16_type logmessagebuffersize;
 		cno_u16_type logmessageargumentbuffersize;
 	} debug;
@@ -87,8 +87,8 @@ typedef struct CNO_LowLevelConfig_struct {
 	} video;
 	struct directories_struct{
 		cno_u8_type unixstyle;
-		cno_u8_type enginedata[128];
-		cno_u8_type userdata[128];
+		cno_u8_type enginedata[CNO_Filename_Size];
+		cno_u8_type userdata[CNO_Filename_Size];
 	} directories;
 } CNO_LowLevelConfig_type;
 

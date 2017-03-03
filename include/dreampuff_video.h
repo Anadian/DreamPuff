@@ -10,9 +10,23 @@ extern "C"{
 #include "cno_build.h"
 
 #include "dreampuff_json.h"
+#if CNO_HAVE_UTF8
+#include "utf8.h"
+#endif //CNO_HAVE_UTF8
 
+typedef enum DreamPuff_Colours_Name_enum{
+	DreamPuff_Colour_Black=0,
+	DreamPuff_Colour_Red,
+	DreamPuff_Colour_Green,
+	DreamPuff_Colour_Yellow,
+	DreamPuff_Colour_Blue,
+	DreamPuff_Colour_Purple,
+	DreamPuff_Colour_Cyan,
+	DreamPuff_Colour_White,
+	NumberofDreamPuff_Colour
+} DreamPuff_Colour_Name_type;
 
-DreamPuff_Object_type RenderList;
+cno_object_type RenderList;
 /*{"layer":{1,
 	"blits":[
 		{"type": point/line/rect/image,
@@ -22,6 +36,7 @@ DreamPuff_Object_type RenderList;
 		"x2": w
 		"y2": h
 		if(texture)
+		"clip":
 		"rotation": rot
 		"scale": 
 		"reversed": 
@@ -30,7 +45,8 @@ DreamPuff_Object_type RenderList;
 
 cno_u8_type DreamPuff_Video_Init();
 cno_u8_type DreamPuff_Video_LoadTexture(cno_cstring_type filename);
-cno_u8_type DreamPuff_Video_LoadFont(cno_cstring_type filename, cno_u16\t size);
+//cno_u8_type DreamPuff_Video_LoadFont(cno_cstring_type filename, cno_u16_type size);
+cno_u8_type DreamPuff_Video_Render();
 cno_u8_type DreamPuff_Video_SaveScreenshot();
 cno_u8_type DreamPuff_Video_Quit();
 

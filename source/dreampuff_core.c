@@ -12,7 +12,7 @@
 #include "dreampuff_mutex.h"
 
 #if 0 //filetest
-#define DreamPuff_FILESTEST
+#define DreamPuff_FILESTEST 1
 #include "dreampuff_files.h"
 #include "parson.h"
 #endif 
@@ -62,6 +62,7 @@ cno_u8_type DreamPuff_Init(){
 	DreamPuff_Engine.sleeping = 0;
 	DreamPuff_Engine.mode = DreamPuff_Mode_Menu;
 	DreamPuff_Threads_Init();
+	DreamPuff_Actions_Init();
 #ifdef DreamPuff_FILESTEST
 	cno_value_type listvalue = json_value_init_object();
 	cno_object_type list = json_value_get_object(listvalue);
@@ -70,7 +71,7 @@ cno_u8_type DreamPuff_Init(){
 	return 0;
 }
 cno_u8_type DreamPuff_Input(){
-	return DreamPuff_Input_SDL();
+	return DreamPuff_Input_Real();
 }
 cno_u8_type DreamPuff_Net(){
 	return 0;
@@ -83,6 +84,9 @@ cno_u8_type DreamPuff_FileIO(){
 	return 0;
 }
 cno_u8_type DreamPuff_Video(){
+	if(CNO_LowLevelConfig.video.enabled){
+		DreamPuff_Video_Render();
+	}
 	return 0;
 }
 cno_u8_type DreamPuff_Audio(){

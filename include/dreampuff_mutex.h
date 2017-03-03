@@ -23,6 +23,8 @@ typedef void DreamPuff_Mutex_type;
 typedef enum DreamPuff_Mutex_Name_enum{
 	DreamPuff_Engine_Mutex=0,
 	DreamPuff_Log_Mutex,
+	DreamPuff_Actions_Mutex,
+	DreamPuff_Render_Mutex,
 	NumberofDreamPuff_Mutex
 } DreamPuff_Mutex_Name_type;
 
