@@ -1,0 +1,19 @@
+//example.dreampuffactionpad
+{
+	"filename": metaascii,
+	"name": utf8,
+	"actions": [
+		{
+			"actionname": string,
+			"primary": string,
+			"primaryenabled": bool,
+			"secondary": string,
+			"secondaryenabled": bool,
+			"tertiary": string
+			"tertiaryenabled": bool,
+		},
+		{
+			/*...*/
+		}
+	]
+}

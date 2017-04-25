@@ -33,9 +33,9 @@ typedef struct DreamPuff_Profile_struct{
 
 DreamPuff_Profile_type DreamPuff_Profile;
 
-cno_u8_type DreamPuff_Profile_Load(cno_cstring_type filename);
-cno_u8_type DreamPuff_Profile_Save(cno_cstring_type filename);
-cno_u8_type DreamPuff_Profile_New(cno_utf8_type name);
+cno_u8_type DreamPuff_Profile_Default(DreamPuff_Profile_type *profile);
+cno_u8_type DreamPuff_Profile_Save(DreamPuff_Profile_type *profile, cno_cstring_type filename);
+cno_u8_type DreamPuff_Profile_Load(DreamPuff_Profile_type *profile, cno_cstring_type filename);2
 
 #ifdef __cplusplus
 }

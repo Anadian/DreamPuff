@@ -29,7 +29,7 @@ cno_u8_type DreamPuff_Files_ListFiles(cno_object_type *list, cno_cstring_type di
 		cno_log(5,"p: %s n: %s e: %s s: %d", file.path, file.name, file.ext, file.size);
 		json_object_set_string(fileobject,"path",file.path);
 		json_object_set_string(fileobject,"name",file.name);
-		json_object_set_string(fileobject,"ext",file.ext);
+		json_object_set_string(fileobject,"extension",file.ext);
 		json_object_set_boolean(fileobject,"is_regular",file.is_reg);
 		json_object_set_boolean(fileobject,"is_directory",file.is_dir);
 		json_object_set_number(fileobject,"size",file.size);

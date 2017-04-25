@@ -1,0 +1,18 @@
+//example.dreampuffreplay
+{
+	"_id": metaascii(0-9A-Za-z_),
+	"name": utf8,
+	"uuid": hexadecimal,
+	"creator": string,
+	"creationtime": unixtime,
+	/*"writers": [string, string, string],
+	"writes": number,
+	"lastwritetime": unixtime,*/
+	"readers": [string, string, string],
+	"reads": number,
+	"lastreadtime": unixtime,
+	"basesavegame": {
+		/*...*/
+	},
+	"replaydata": [frame, frame, frame]
+}

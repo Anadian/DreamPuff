@@ -1,0 +1,22 @@
+//acionpads.dreampuffrc
+{
+	"_id":
+	"actionpadscreated": number,
+	"actionpadsavailable": number,
+	"availableactionpads": [
+		{
+			"id": string,
+			"name": string,
+			"uuid": string,
+			"creator": string,
+			"creationtime": unixtime,
+			"contributors": [string, string, string],
+			"lastmodificationtime": unixtime,
+			"users": [string, string, string],
+			"lastusetime": unixtime
+		},
+	],
+	"lastcreated": string,
+	"lastmodied": string,
+	"lastused": string
+}

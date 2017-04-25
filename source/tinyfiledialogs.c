@@ -911,7 +911,7 @@ static char const * inputBoxWinGui(
 <html>\n\
 <head>\n\
 <title>%s</title>\n\
-<HTA:APPLICATION\n\
+<HTA:APPLICATIOption_Name_n\
 ID = 'tinyfdHTA'\n\
 APPLICATIONNAME = 'tinyfd_inputBox'\n\
 MINIMIZEBUTTON = 'no'\n\

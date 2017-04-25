@@ -105,7 +105,7 @@ cno_u8_type DreamPuff_Video_LoadFonts(){
 		for(i = 0; i < json_array_get_count(array); i++){
 			cno_object_type fileobject;
 			fileobject = json_array_get_object(array, i);
-			if(CNO_strcmp(json_object_get_string(fileobject,"ext"),"ttf") == 0){
+			if(CNO_strcmp(json_object_get_string(fileobject,"extension"),"ttf") == 0){
 				cno_u8_type filepath[256];
 				CNO_strcpy(filepath, json_object_get_string(fileobject, "path"));
 				cno_log(4, "Attempting to load font %s", filepath);

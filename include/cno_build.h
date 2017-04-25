@@ -16,32 +16,67 @@
 #endif //__STDC_VERSION__ >= 199901L
 #endif //__STDC_VERSION__
 
+#define CNO_COMPILER_UNSUPPORTED 0
+#define CNO_COMPILER_CLANG 1
+#define CNO_COMPILER_GCC 2
+#if !defined(CNO_COMPILER) || !defined(CNO_COMPILER_NAME)
 #ifdef __clang__
-#define CNO_COMPILER "clang"
+#define CNO_COMPILER_NAME "clang"
+#define CNO_COMPILER CNO_COMPILER_CLANG
 #define CNO_COMPILER_VERSION __clang_version__
 #elif __GNUC__
-#define CNO_COMPILER "gcc"
+#define CNO_COMPILER_NAME "gcc"
+#define CNO_COMPILER CNO_COMPILER_GCC
+#else
+#define CNO_COMPILER_NAME "Non-clang/gcc compiler"
+#define CNO_COMPILER CNO_COMPILER_UNSUPPORTED
 #endif
+#endif //!defined(CNO_COMPILER) || !defined(CNO_COMPILER_NAME)
 
 #define CNO_BYTE_SIZE __CHAR_BIT__
 #define CNO_ENDIAN __BYTE_ORDER__
 
+//CDM(test,"testval")
+#if !defined(test) //p
+#define test "testval" //p
+#endif //!defined(test) //p
+
+//PMT_ARCHITECTURE(X86_64,1,"x86_64",__x86_64__ || __amd64__)
+#define CNO_ARCHITECTURE_UNSUPPORTED 0
+#define CNO_ARCHITECTURE_X86_64 1
+#define CNO_ARCHITECTURE_I386 2
+#define CNO_ARCHITECTURE_ARM 3
+#define CNO_ARCHITECTURE_POWERPC 4
+#define CNO_ARCHITECTURE_MIPS 5
+#define CNO_ARCHITECTURE_M68K 6
+#if !defined(CNO_ARCHITECTURE) || !defined(CNO_ARCHITECTURE_NAME)
 #if __x86_64__ || __amd64__
-#define CNO_ARCHITECTURE "x86_64"
+#define CNO_ARCHITECTURE_NAME "x86_64"
+#define CNO_ARCHITECTURE CNO_ARCHITECTURE_X86_64
 #define CNO_CPU_BIT_TYPE 64
+//PMT_ARCHITECTURE(I386,2,"i386",__i386__)
 #elif __i386__
-#define CNO_ARCHITECTURE "i386"
+#define CNO_ARCHITECTURE_NAME "i386"
+#define CNO_ARCHITECTURE CNO_ARCHITECTURE_I386
 #define CNO_CPU_BIT_TYPE 32
 #elif __powerpc__
-#define CNO_ARCHITECTURE "PowerPC"
+#define CNO_ARCHITECTURE_NAME "PowerPC"
+#define CNO_ARCHITECTURE CNO_ARCHITECTURE_POWERPC
 #elif __mips__
-#define CNO_ARCHITECTURE "Mips"
+#define CNO_ARCHITECTURE_NAME "Mips"
+#define CNO_ARCHITECTURE CNO_ARCHITECTURE_MIPS
 #elif __m68k__
-#define CNO_ARCHITECTURE "Motorola68k"
+#define CNO_ARCHITECTURE_NAME "Motorola68k"
+#define CNO_ARCHITECTURE CNO_ARCHITECTURE_M68K
 #elif __arm__
-#define CNO_ARCHITECTURE "ARM"
+#define CNO_ARCHITECTURE_NAME "ARM"
+#define CNO_ARCHITECTURE CNO_ARCHITECTURE_ARM
 #define CNO_CPU_BIT_TYPE 32
+#else
+#define CNO_ARCHITECTURE_NAME "Unsupported Architecture"
+#define CNO_ARCHITECTURE CNO_ARCHITECTURE_UNSUPPORTED
 #endif
+#endif //!defined(CNO_ARCHITECTURE) || !defined(CNO_ARCHITECTURE_NAME)
 
 #define CNO_BUILD_FOR_BINARY 1
 #define CNO_BUILD_FOR_LIBRARY 0
@@ -61,19 +96,25 @@
 #endif //__GNU__
 
 //OS
+#define CNO_OS_WINDOWS 1
+#define CNO_OS_APPLE 2
+#define CNO_OS_LINUX 3
+#define CNO_OS_UNKNOWN 4
+#if !defined(CNO_OS) || !defined(CNO_OS_NAME)
 #ifdef __APPLE__
 #define CNO_OS_NAME "MacOSX"
-#define CNO_OS 2
+#define CNO_OS CNO_OS_APPLE
 #elif __gnu_linux__
 #define CNO_OS_NAME "Linux"
-#define CNO_OS 3
+#define CNO_OS CNO_OS_LINUX
 #elif __CYGWIN__ || __WIN32
 #define CNO_OS_NAME "Windows"
-#define CNO_OS 1
+#define CNO_OS CNO_OS_WINDOWS
 #else
 #define CNO_OS_NAME "Unknown"
-#define CNO_OS 4
+#define CNO_OS CNO_OS_UNKNOWN
 #endif
+#endif //!defined(CNO_OS) || !defined(CNO_OS_NAME)
 
 #ifndef CNO_DS
 #if CNO_OS == 1
@@ -91,9 +132,9 @@
 #endif //CNO_OS == 1
 #endif //CNO_ROOT 
 
-#ifndef CNO_Filename_Size
-#define CNO_Filename_Size 1024
-#endif //CNO_Filename_Size
+#ifndef CNO_BUFFER_MAXSIZE
+#define CNO_BUFFER_MAXSIZE 1024
+#endif //CNO_BUFFER_MAXSIZE
 
 //Static Dependencies
 #define CNO_HAVE_STDIO 1
@@ -105,6 +146,7 @@
 #define CNO_HAVE_UNISTD 1
 #define CNO_HAVE_ERRNO 1
 #define CNO_HAVE_GETOPT 1
+#define CNO_HAVE_ARGP 1
 #define CNO_HAVE_UUID 1
 #define CNO_HAVE_INIH 1
 #define CNO_HAVE_WHEREAMI 1
@@ -124,6 +166,10 @@
 #if CNO_HAVE_STDLIB
 #define CNO_ALLOW_EXIT 1
 #endif //CNO_HAVE_STDLIB
+
+#if CNO_HAVE_GETOPT || CNO_HAVE_ARGP
+#define CNO_ALLOW_OPTIONS 1
+#define 
 
 #if CNO_HAVE_PARSON
 #define cno_value_type JSON_Value*
@@ -447,6 +493,9 @@ typedef void* cno_utf8_type;
 #ifndef cno_uuid_type
 #define cno_uuid_type uuid_t
 #endif //cno_uuid_type
+
+//Configurables
+
 
 //Shortcuts
 

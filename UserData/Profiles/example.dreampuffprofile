@@ -1,0 +1,19 @@
+//example.dreampuffprofile
+{
+	"name": string,
+	"uuid": string,
+	"creationtime" unixtime,
+	"reads": number,
+	"lastreadtime": unixtime,
+	"writes": number,
+	"lastwritetime": unixtime,
+	"settings": {
+		/*...*/
+	},
+	"statistics": {
+		/*...*/
+	},
+	"account": {
+		/*...*/
+	}
+}

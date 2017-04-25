@@ -9,7 +9,7 @@ extern "C" {
 
 #include "cno_build.h"
 
-cno_u8_type CNO_Build_String[256];
+cno_u8_type CNO_Build_String[CNO_BUFFER_MAXSIZE];
 
 /*
 water //slow

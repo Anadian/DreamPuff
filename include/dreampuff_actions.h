@@ -9,6 +9,12 @@ extern "C"{
 
 #include "cno_build.h"
 
+typedef enum DreamPuff_InputSource_enum{
+	DreamPuff_InputSource_Local=0,
+	DreamPuff_InputSource_Replay,
+	DreamPuff_InputSource_Online,
+	NumberofDreamPuff_InputSources
+} DreamPuff_InputSource_type;
 typedef enum DreamPuff_Action_Name_enum{
 	DreamPuff_Action_Menu_Up=0, //static
 	DreamPuff_Action_Menu_Down, //static
@@ -25,11 +31,10 @@ typedef enum DreamPuff_Action_Name_enum{
 	DreamPuff_Action_Gameplay_Right,
 	DreamPuff_Action_Gameplay_Interact,
 	DreamPuff_Action_Gameplay_Jump,
-	DreamPuff_Action_Gameplay_Attack1,
-	DreamPuff_Action_Gameplay_Attack2,
+	DreamPuff_Action_Gameplay_Attack,
 	DreamPuff_Action_Gameplay_Special,
 	DreamPuff_Action_Gameplay_Guard,
-	DreamPuff_Action_Gameplay_Alt,
+	DreamPuff_Action_Gameplay_Modifier,
 	DreamPuff_Action_Gameplay_GameplayMenu,
 	DreamPuff_Action_Gameplay_Inventory,
 	DreamPuff_Action_Gameplay_Map,
@@ -44,6 +49,10 @@ typedef enum DreamPuff_Action_Name_enum{
 	DreamPuff_Action_System_QuickLoad,
 	DreamPuff_Action_System_Fullscreen,
 	DreamPuff_Action_System_Screenshot,
+	DreamPuff_Action_Modifier_Control,
+	DreamPuff_Action_Modifier_Alt,
+	DreamPuff_Action_Modifier_Meta,
+	DreamPuff_Action_Modifier_Shift,
 	NumberofDreamPuff_Actions
 } DreamPuff_Action_Name_type;
 typedef struct DreamPuff_Action_Code_struct{
@@ -57,11 +66,13 @@ typedef struct DreamPuff_Action_Code_struct{
 } DreamPuff_Action_Code_type;
 
 typedef struct DreamPuff_ActionPad_struct{
+	cno_u8_type enabled;
+	DreamPuff_InputSource_type inputsource;
 	DreamPuff_Action_Code_type actioncodes[NumberofDreamPuff_Actions];
 	cno_s32_type actionstates[NumberofDreamPuff_Actions];
 } DreamPuff_ActionPad_type;
 
-DreamPuff_ActionPad_type *DreamPuff_ActionPads;
+DreamPuff_ActionPad_type DreamPuff_ActionPads[4];
 
 //DreamPuff_Replay_Record();
 //DreamPuff_Replay_Pause();
@@ -72,11 +83,10 @@ DreamPuff_ActionPad_type *DreamPuff_ActionPads;
 //DreamPuff_Playback_Unpause();
 //DreamPuff_Playback_End();
 
-c\u8\ty DP\ActionPad_Init();
-cno_u8_type DreamPuff_ActionPad_Add(c\cstring\ty filename);
-cno_u8_type DreamPuff_ActionPad_Configure(cno_u8_type actionpad, cno_cstring_type filename);
-cno_u8_type DreamPuff_ActionPad_Clear();
-c\u8\ty DP\ActionPad_Quit();
+cno_u8_type DreamPuff_ActionPad_Default(cno_u8_type actionpad);
+cno_u8_type DreamPuff_ActionPad_Save(cno_u8_type actionpad, cno_cstring_type filename);
+cno_u8_type DreamPuff_ActionPad_Load(cno_u8_type actionpad, cno_cstring_type filename);
+
 cno_u8_type DreamPuff_Actions_Update();
 cno_s32_type DreamPuff_Actions_GetState(cno_u8_type actionpad, DreamPuff_Action_Name_type actionname);
 cno_u16_type DreamPuff_Actions_GetPrompt(cno_u8_type actionpad, DreamPuff_Action_Name_type actionname);
