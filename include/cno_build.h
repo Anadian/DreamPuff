@@ -30,7 +30,7 @@
 #else
 #define CNO_COMPILER_NAME "Non-clang/gcc compiler"
 #define CNO_COMPILER CNO_COMPILER_UNSUPPORTED
-#endif
+#endif //[COMPILER]
 #endif //!defined(CNO_COMPILER) || !defined(CNO_COMPILER_NAME)
 
 #define CNO_BYTE_SIZE __CHAR_BIT__
@@ -75,7 +75,7 @@
 #else
 #define CNO_ARCHITECTURE_NAME "Unsupported Architecture"
 #define CNO_ARCHITECTURE CNO_ARCHITECTURE_UNSUPPORTED
-#endif
+#endif //[ARCHITECTURE]
 #endif //!defined(CNO_ARCHITECTURE) || !defined(CNO_ARCHITECTURE_NAME)
 
 #define CNO_BUILD_FOR_BINARY 1
@@ -96,10 +96,10 @@
 #endif //__GNU__
 
 //OS
+#define CNO_OS_UNKNOWN 0
 #define CNO_OS_WINDOWS 1
 #define CNO_OS_APPLE 2
 #define CNO_OS_LINUX 3
-#define CNO_OS_UNKNOWN 4
 #if !defined(CNO_OS) || !defined(CNO_OS_NAME)
 #ifdef __APPLE__
 #define CNO_OS_NAME "MacOSX"
@@ -113,28 +113,28 @@
 #else
 #define CNO_OS_NAME "Unknown"
 #define CNO_OS CNO_OS_UNKNOWN
-#endif
+#endif //[OS]
 #endif //!defined(CNO_OS) || !defined(CNO_OS_NAME)
 
-#ifndef CNO_DS
-#if CNO_OS == 1
+#if !defined(CNO_DS)
+#if CNO_OS == CNO_OS_WINDOWS
 #define CNO_DS "\\"
 #else
 #define CNO_DS "/"
-#endif //CNO_OS == 1
-#endif //CNO_DS
+#endif //CNO_OS == CNO_OS_WINDOWS
+#endif //!defined(CNO_DS)
 
-#ifndef CNO_ROOT
-#if CNO_OS == 1
+#if !defined(CNO_ROOT)
+#if CNO_OS == CNO_OS_WINDOWS
 #define CNO_ROOT "C:\\"
 #else
 #define CNO_ROOT "/"
-#endif //CNO_OS == 1
-#endif //CNO_ROOT 
+#endif //CNO_OS == CNO_OS_WINDOWS
+#endif //!defined(CNO_ROOT)
 
-#ifndef CNO_BUFFER_MAXSIZE
+#if !defined(CNO_BUFFER_MAXSIZE)
 #define CNO_BUFFER_MAXSIZE 1024
-#endif //CNO_BUFFER_MAXSIZE
+#endif //!defined(CNO_BUFFER_MAXSIZE)
 
 //Static Dependencies
 #define CNO_HAVE_STDIO 1
@@ -157,6 +157,7 @@
 #define CNO_HAVE_TINYFILEDIALOGS 1
 #define CNO_HAVE_PARSON 1
 #define CNO_HAVE_UTF8 1
+#define CNO_HAVE_PTHREAD 1
 #define CNO_HAVE_SDL2 1
 
 #if CNO_HAVE_STDIO
@@ -167,9 +168,18 @@
 #define CNO_ALLOW_EXIT 1
 #endif //CNO_HAVE_STDLIB
 
-#if CNO_HAVE_GETOPT || CNO_HAVE_ARGP
-#define CNO_ALLOW_OPTIONS 1
-#define 
+#define CNO_OPTIONS_NONE 0
+#define CNO_OPTIONS_GETOPT 1
+#define CNO_OPTIONS_ARGP 2
+#if !defined(CNO_OPTIONS)
+#if CNO_HAVE_ARGP
+#define CNO_OPTIONS CNO_OPTIONS_ARGP
+#elif CNO_HAVE_GETOPT
+#define CNO_OPTIONS CNO_OPTIONS_GETOPT
+#else
+#define CNO_OPTIONS CNO_OPTIONS_NONE
+#endif //CNO_HAVE_[OPTIONS_ENGINE]
+#endif //!defined(CNO_OPTIONS)
 
 #if CNO_HAVE_PARSON
 #define cno_value_type JSON_Value*
@@ -188,28 +198,32 @@
 
 #if CNO_HAVE_SDL2
 #include <SDL2/SDL_version.h>
-#ifndef CNO_ALLOW_SDL2_THREADS
-#define CNO_ALLOW_SDL2_THREADS 1
-#endif //CNO_ALLOW_SDL2_THREADS
 #define CNO_HAVE_SDL2_IMAGE 1
 #define CNO_HAVE_SDL2_MIXER 1
 #define CNO_HAVE_SDL2_TTF 1
 #endif //CNO_HAVE_SDL2
 
-#if CNO_ALLOW_SDL2_THREADS || CNO_ALLOW_POSIX_THREADS
-#define CNO_ALLOW_THREADS 1
+#define CNO_THREADS_NONE
+#define CNO_THREADS_SDL2 1
+#define CNO_THREADS_PTHREAD 2
+#if !defined(CNO_THREADS)
+#if CNO_HAVE_SDL2
+#define CNO_THREADS CNO_THREADS_SDL2
+#elif CNO_HAVE_PTHREAD
+#define CNO_THREADS CNO_THREADS_PTHREAD
 #else
-#define CNO_ALLOW_THREADS 0
-#endif //CNO_ALLOW_SDL2_THREADS || CNO_ALLOW_POSIX_THREADS
+#define CNO_THREADS CNO_THREADS_NONE
+#endif //CNO_HAVE_[THREADS_ENGINE]
+#endif //!defined(CNO_THREADS)
 
-#define DESKTOP_BUILD 1
-#define MOBILE_BUILD 0
-
-#if DESKTOP_BUILD && !MOBILE_BUILD
-#define CNO_DEVICE_TYPE 1
-#elif MOBILE_BUILD && !DESKTOP_BUILD
-#define CNO_DEVICE_TYPE 2
-#endif //DESKTOP_BUILD && MOBILE_BUILD
+#define CNO_DEVICE_UNKNOWN 0
+#define CNO_DEVICE_DESKTOP 1
+#define CNO_DEVICE_MIXED 2
+#define CNO_DEVICE_MOBILE 3
+#define CNO_DEVICE_CLOSEDSYSTEM 4
+#if !defined(CNO_DEVICE)
+#define CNO_DEVICE CNO_DEVICE_DESKTOP
+#endif //!defined(CNO_DEVICE)
 
 typedef unsigned char cno_u8_type;
 typedef signed char cno_s8_type;
@@ -224,9 +238,9 @@ typedef double cno_f64_type;
 typedef unsigned char* cno_cstring_type;
 typedef void* cno_utf8_type;
 
-#ifndef CNO_noop
+#if !defined(CNO_noop)
 #define CNO_noop ((void)0)
-#endif //CNO_noop
+#endif //!defined(CNO_noop)
 
 //CNO_Functions
 #ifndef CNO_printf

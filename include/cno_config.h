@@ -30,6 +30,7 @@ typedef struct CNO_LowLevelConfig_struct {
 		cno_u8_type enabled;
 		cno_s8_type verbosity;
 		cno_u8_type standardoutput;
+		cno_u8_type standarderror;
 		cno_u8_type file;
 		cno_u8_type filename[CNO_Filename_Size];
 		cno_u16_type logmessagebuffersize;
@@ -61,6 +62,7 @@ typedef struct CNO_LowLevelConfig_struct {
 	struct threads_struct{
 		cno_u8_type enabled;
 		cno_u8_type maxthreads;
+		cno_u8_type pthread;
 		cno_u8_type sdl2;
 		cno_u8_type logic;
 		cno_u8_type fileio;
@@ -86,7 +88,7 @@ typedef struct CNO_LowLevelConfig_struct {
 		cno_u8_type borderless;
 	} video;
 	struct directories_struct{
-		cno_u8_type unixstyle;
+		cno_u8_type portable;
 		cno_u8_type enginedata[CNO_Filename_Size];
 		cno_u8_type userdata[CNO_Filename_Size];
 	} directories;

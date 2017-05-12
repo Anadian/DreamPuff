@@ -33,8 +33,8 @@ $(shell mkdir $(BINDIR))
 endif
 BIN=$(BINDIR)/$(NAME).$(PLATFORM)
 
-BASEFLAGS=-L./LIB -L/usr/lib/x86_64-linux-gnu
-INCLUDES=-I$(INCLUDEDIR)
+BASEFLAGS=-L./LIB -L/usr/lib/x86_64-linux-gnu -L/usr/local/lib
+INCLUDES=-I$(INCLUDEDIR) -I/usr/local/include
 
 ifeq ($(BACKEND),)
 $(info No backend specified; using SDL2 by default)

@@ -31,6 +31,7 @@ static int handler(void* user, const char* section, const char* name, const char
 		if(CNO_strcmp(name,"enabled") == 0) pconfig->debug.enabled = CNO_atoi(value);
 		else if(CNO_strcmp(name,"verbosity") == 0) pconfig->debug.verbosity = CNO_atoi(value);
 		else if(CNO_strcmp(name,"standardoutput") == 0) pconfig->debug.standardoutput = CNO_atoi(value);
+		else if(CNO_strcmp(name,"standarderror") == 0) pconfig->debug.standarderror = CNO_atoi(value);
 		else if(CNO_strcmp(name,"file") == 0) pconfig->debug.file = CNO_atoi(value);
 		else if(CNO_strcmp(name,"filename") == 0) CNO_strcpy((pconfig->debug.filename),value);
 		else if(CNO_strcmp(name,"logmessagebuffersize") == 0) pconfig->debug.logmessagebuffersize = CNO_atoi(value);
@@ -76,7 +77,7 @@ static int handler(void* user, const char* section, const char* name, const char
 		else if(CNO_strcmp(name,"resizable") == 0) pconfig->video.resizable = CNO_atoi(value);
 		else if(CNO_strcmp(name,"borderless") == 0) pconfig->video.borderless = CNO_atoi(value);
 	} else if(CNO_strcmp(section,"directories") == 0){
-		if(CNO_strcmp(name,"unixstyle") == 0) pconfig->directories.unixstyle = CNO_atoi(value);
+		if(CNO_strcmp(name,"portable") == 0) pconfig->directories.portable = CNO_atoi(value);
 		else if(CNO_strcmp(name,"enginedata") == 0) CNO_strcpy((pconfig->directories.enginedata),value);
 		else if(CNO_strcmp(name,"userdata") == 0) CNO_strcpy((pconfig->directories.userdata),value);
 	} 
@@ -134,6 +135,7 @@ cno_u8_type CNO_LowLevelConfig_LoadDefaults(){
 	CNO_LowLevelConfig.debug.enabled = 1;
 	CNO_LowLevelConfig.debug.verbosity = 5;
 	CNO_LowLevelConfig.debug.standardoutput = 1;
+	CNO_LowLevelConfig.debug.standarderror = 1;
 	CNO_LowLevelConfig.debug.file = 1;
 	CNO_strcpy(&(CNO_LowLevelConfig.debug.filename),"CAX.log");
 	CNO_LowLevelConfig.debug.logmessagebuffersize = 4096;
@@ -179,10 +181,10 @@ cno_u8_type CNO_LowLevelConfig_LoadDefaults(){
 	CNO_strcpy(&(CNO_LowLevelConfig.directories.enginedata),"enginedata");
 	CNO_strcat(&(CNO_LowLevelConfig.directories.enginedata), CNO_DS);
 #if CNO_OS == 1
-	CNO_LowLevelConfig.directories.unixstyle = 0;
+	CNO_LowLevelConfig.directories.portable = 1;
 	CNO_strcpy(&(CNO_LowLevelConfig.directories.userdata),"savedata\\");
 #else
-	CNO_LowLevelConfig.directories.unixstyle = 1;
+	CNO_LowLevelConfig.directories.portable = 0;
 	CNO_strcpy(&(CNO_LowLevelConfig.directories.userdata),"~/DreamPuff/");
 #endif //CNO_OS
 	return 1;
@@ -229,6 +231,8 @@ cno_u8_type CNO_LowLevelConfig_Save(cno_cstring_type filename){
 		CNO_sprintf(buffer, "verbosity=%d\n", CNO_LowLevelConfig.debug.verbosity);
 		CNO_fputs(buffer, configfile);
 		CNO_sprintf(buffer, "standardoutput=%d\n", CNO_LowLevelConfig.debug.standardoutput);
+		CNO_fputs(buffer, configfile);
+		CNO_sprintf(buffer, "stanarderror=%d\n", CNO_LowLevelConfig.SECTION.stanarderror);
 		CNO_fputs(buffer, configfile);
 		CNO_sprintf(buffer, "file=%d\n", CNO_LowLevelConfig.debug.file);
 		CNO_fputs(buffer, configfile);
@@ -322,7 +326,7 @@ cno_u8_type CNO_LowLevelConfig_Save(cno_cstring_type filename){
 		CNO_fputs(buffer, configfile);
 		CNO_sprintf(buffer, "[directories]\n");
 		CNO_fputs(buffer, configfile);
-		CNO_sprintf(buffer, "unixstyle=%d\n", CNO_LowLevelConfig.directories.unixstyle);
+		CNO_sprintf(buffer, "portable=%d\n", CNO_LowLevelConfig.directories.portable);
 		CNO_fputs(buffer, configfile);
 		CNO_sprintf(buffer, "enginedata=%s\n", CNO_LowLevelConfig.directories.enginedata);
 		CNO_fputs(buffer, configfile);
