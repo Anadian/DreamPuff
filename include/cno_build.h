@@ -2,11 +2,19 @@
 #define CNO_BUILD_H
 
 #define CNO_BUILD_NAME "DreamPuff"
-#define CNO_BUILD_DATE __DATE__
-#define CNO_BUILD_TIME __TIME__
-#define CNO_BUILD_VERSION_MAJOR 1
+
+#define CNO_BUILD_VERSION_MAJOR 2
 #define CNO_BUILD_VERSION_MINOR 0
 
+#if !defined(CNO_BUILD_DATE)
+#define CNO_BUILD_DATE __DATE__
+#endif //!defined(CNO_BUILD_DATE)
+
+#if !defined(CNO_BUILD_TIME)
+#define CNO_BUILD_TIME __TIME__
+#endif //!defined(CNO_BUILD_TIME)
+
+#if !defined(CNO_IS_C99) 
 #ifdef __STDC_VERSION__
 #if __STDC_VERSION__ >= 199901L
 #define CNO_IS_C99 1
@@ -15,12 +23,13 @@
 #error "Not C99"
 #endif //__STDC_VERSION__ >= 199901L
 #endif //__STDC_VERSION__
+#endif //!defined(CNO_IS_C99) 
 
 #define CNO_COMPILER_UNSUPPORTED 0
 #define CNO_COMPILER_CLANG 1
 #define CNO_COMPILER_GCC 2
 #if !defined(CNO_COMPILER) || !defined(CNO_COMPILER_NAME)
-#ifdef __clang__
+#if defined(__clang__)
 #define CNO_COMPILER_NAME "clang"
 #define CNO_COMPILER CNO_COMPILER_CLANG
 #define CNO_COMPILER_VERSION __clang_version__
@@ -33,13 +42,13 @@
 #endif //[COMPILER]
 #endif //!defined(CNO_COMPILER) || !defined(CNO_COMPILER_NAME)
 
+#if !defined(CNO_BYTE_SIZE) && defined(__CHAR_BIT__)
 #define CNO_BYTE_SIZE __CHAR_BIT__
-#define CNO_ENDIAN __BYTE_ORDER__
+#endif //!defined(CNO_BYTE_SIZE) && defined(__CHAR_BIT__)
 
-//CDM(test,"testval")
-#if !defined(test) //p
-#define test "testval" //p
-#endif //!defined(test) //p
+#if !defined(CNO_ENDIAN) && defined(__BYTE_ORDER__)
+#define CNO_ENDIAN __BYTE_ORDER__
+#endif //!defined(CNO_ENDIAN)
 
 //PMT_ARCHITECTURE(X86_64,1,"x86_64",__x86_64__ || __amd64__)
 #define CNO_ARCHITECTURE_UNSUPPORTED 0
@@ -136,6 +145,25 @@
 #define CNO_BUFFER_MAXSIZE 1024
 #endif //!defined(CNO_BUFFER_MAXSIZE)
 
+#if !defined(CNO_TYPEDEFS_SET)
+typedef unsigned char cno_u8_type;
+typedef signed char cno_s8_type;
+typedef unsigned short cno_u16_type;
+typedef signed short cno_s16_type;
+typedef unsigned long cno_u32_type;
+typedef signed long cno_s32_type;
+typedef unsigned long long cno_u64_type;
+typedef signed long long cno_s64_type;
+typedef float cno_f32_type;
+typedef double cno_f64_type;
+typedef unsigned char* cno_cstring_type;
+typedef void* cno_utf8_type;
+#if !defined(CNO_noop)
+#define CNO_noop ((void)0)
+#endif //!defined(CNO_noop)
+#define CNO_TYPEDEFS_SET 1
+#endif //!defined(CNO_TYPEDEFS_SET)
+
 //Static Dependencies
 #define CNO_HAVE_STDIO 1
 #define CNO_HAVE_STDLIB 1
@@ -160,13 +188,14 @@
 #define CNO_HAVE_PTHREAD 1
 #define CNO_HAVE_SDL2 1
 
-#if CNO_HAVE_STDIO
-#define CNO_ALLOW_PRINTF 1
-#endif //CNO_HAVE_STDIO
-
-#if CNO_HAVE_STDLIB
-#define CNO_ALLOW_EXIT 1
-#endif //CNO_HAVE_STDLIB
+#define CNO_DEVICE_UNKNOWN 0
+#define CNO_DEVICE_DESKTOP 1
+#define CNO_DEVICE_MIXED 2
+#define CNO_DEVICE_MOBILE 3
+#define CNO_DEVICE_CLOSEDSYSTEM 4
+#if !defined(CNO_DEVICE)
+#define CNO_DEVICE CNO_DEVICE_DESKTOP
+#endif //!defined(CNO_DEVICE)
 
 #define CNO_OPTIONS_NONE 0
 #define CNO_OPTIONS_GETOPT 1
@@ -180,6 +209,38 @@
 #define CNO_OPTIONS CNO_OPTIONS_NONE
 #endif //CNO_HAVE_[OPTIONS_ENGINE]
 #endif //!defined(CNO_OPTIONS)
+
+#define CNO_CONFIG_NONE 0
+#define CNO_CONFIG_INIH 1
+#define CNO_CONFIG_PARSON 2
+#if !defined(CNO_CONFIG)
+#if CNO_HAVE_INIH
+#define CNO_CONFIG CNO_CONFIG_INIH
+#else
+#define CNO_CONFIG CNO_CONFIG_NONE
+#endif //CNO_HAVE_INIH
+#endif //!defined(CNO_CONFIG)
+
+#define CNO_THREADS_NONE
+#define CNO_THREADS_SDL2 1
+#define CNO_THREADS_PTHREAD 2
+#if !defined(CNO_THREADS)
+#if CNO_HAVE_SDL2
+#define CNO_THREADS CNO_THREADS_SDL2
+#elif CNO_HAVE_PTHREAD
+#define CNO_THREADS CNO_THREADS_PTHREAD
+#else
+#define CNO_THREADS CNO_THREADS_NONE
+#endif //CNO_HAVE_[THREADS_ENGINE]
+#endif //!defined(CNO_THREADS)
+
+#if CNO_HAVE_STDIO
+#define CNO_ALLOW_PRINTF 1
+#endif //CNO_HAVE_STDIO
+
+#if CNO_HAVE_STDLIB
+#define CNO_ALLOW_EXIT 1
+#endif //CNO_HAVE_STDLIB
 
 #if CNO_HAVE_PARSON
 #define cno_value_type JSON_Value*
@@ -202,45 +263,6 @@
 #define CNO_HAVE_SDL2_MIXER 1
 #define CNO_HAVE_SDL2_TTF 1
 #endif //CNO_HAVE_SDL2
-
-#define CNO_THREADS_NONE
-#define CNO_THREADS_SDL2 1
-#define CNO_THREADS_PTHREAD 2
-#if !defined(CNO_THREADS)
-#if CNO_HAVE_SDL2
-#define CNO_THREADS CNO_THREADS_SDL2
-#elif CNO_HAVE_PTHREAD
-#define CNO_THREADS CNO_THREADS_PTHREAD
-#else
-#define CNO_THREADS CNO_THREADS_NONE
-#endif //CNO_HAVE_[THREADS_ENGINE]
-#endif //!defined(CNO_THREADS)
-
-#define CNO_DEVICE_UNKNOWN 0
-#define CNO_DEVICE_DESKTOP 1
-#define CNO_DEVICE_MIXED 2
-#define CNO_DEVICE_MOBILE 3
-#define CNO_DEVICE_CLOSEDSYSTEM 4
-#if !defined(CNO_DEVICE)
-#define CNO_DEVICE CNO_DEVICE_DESKTOP
-#endif //!defined(CNO_DEVICE)
-
-typedef unsigned char cno_u8_type;
-typedef signed char cno_s8_type;
-typedef unsigned short cno_u16_type;
-typedef signed short cno_s16_type;
-typedef unsigned long cno_u32_type;
-typedef signed long cno_s32_type;
-typedef unsigned long long cno_u64_type;
-typedef signed long long cno_s64_type;
-typedef float cno_f32_type;
-typedef double cno_f64_type;
-typedef unsigned char* cno_cstring_type;
-typedef void* cno_utf8_type;
-
-#if !defined(CNO_noop)
-#define CNO_noop ((void)0)
-#endif //!defined(CNO_noop)
 
 //CNO_Functions
 #ifndef CNO_printf
@@ -507,21 +529,5 @@ typedef void* cno_utf8_type;
 #ifndef cno_uuid_type
 #define cno_uuid_type uuid_t
 #endif //cno_uuid_type
-
-//Configurables
-
-
-//Shortcuts
-
-/*#if CNO_ALLOW_PRINTF
-#define cno_printf(...) CNO_printf(__VA_ARGS__)
-#else
-#define cno_printf(...) CNO_noop
-#endif //CNO_ALLOW_PRINTF
-#if CNO_ALLOW_EXIT
-#define cno_exit(...) CNO_exit(__VA_ARGS__)
-#else
-#define cno_exit(...) CNO_noop
-#endif //CNO_ALLOW_EXIT*/
 
 #endif //CNO_BUILD_H

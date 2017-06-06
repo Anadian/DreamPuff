@@ -13,12 +13,14 @@
 #if CNO_HAVE_STRING
 #include <string.h> //strcmp, strcat, strcpy
 #endif //CNO_HAVE_STRING
-#if CNO_HAVE_INIH
-#include "ini.h" //ini_parse
-#endif //CNO_HAVE_INIH
 #if CNO_HAVE_ERRNO
 #include <errno.h>
 #endif //CNO_HAVE_ERRNO
+
+#if CNO_HAVE_INIH && (CNO_CONFIG == CNO_CONFIG_INIH)
+#define INI_ALLOW_MULTILINE 0
+#define INI_MAX_LINE CNO_BUFFER_MAXSIZE
+#include "ini.h" //ini_parse
 
 static int handler(void* user, const char* section, const char* name, const char* value){
 #if CNO_HAVE_STDLIB && CNO_HAVE_STRING
@@ -34,36 +36,43 @@ static int handler(void* user, const char* section, const char* name, const char
 		else if(CNO_strcmp(name,"standarderror") == 0) pconfig->debug.standarderror = CNO_atoi(value);
 		else if(CNO_strcmp(name,"file") == 0) pconfig->debug.file = CNO_atoi(value);
 		else if(CNO_strcmp(name,"filename") == 0) CNO_strcpy((pconfig->debug.filename),value);
-		else if(CNO_strcmp(name,"logmessagebuffersize") == 0) pconfig->debug.logmessagebuffersize = CNO_atoi(value);
-		else if(CNO_strcmp(name,"logmessageargumentbuffersize") == 0) pconfig->debug.logmessageargumentbuffersize = CNO_atoi(value);
-	} else if(CNO_strcmp(section,"joysticks") == 0){
-		if(CNO_strcmp(name,"enabled") == 0) pconfig->joysticks.enabled = CNO_atoi(value);
+	} else if(CNO_strcmp(section,"input") == 0){
+		if(CNO_strcmp(name,"keyboard_mode") == 0) pconfig->input.keyboard_mode = CNO_atoi(value);
+		if(CNO_strcmp(name,"test_mode") == 0) pconfig->input.test_mode = CNO_atoi(value);
+		if(CNO_strcmp(name,"mouse_relative_motion") == 0) pconfig->input.mouse_relative_motion = CNO_atoi(value);
+		if(CNO_strcmp(name,"mouse_buttons") == 0) pconfig->input.mouse_buttons = CNO_atoi(value);
+		if(CNO_strcmp(name,"mouse_wheel") == 0) pconfig->input.mouse_wheel = CNO_atoi(value);
+		if(CNO_strcmp(name,"controller_engine") == 0) pconfig->input.controller_engine = CNO_atoi(value);
+		if(CNO_strcmp(name,"joystick_buttons") == 0) pconfig->input.joystick_buttons = CNO_atoi(value);
+		if(CNO_strcmp(name,"joystick_axis") == 0) pconfig->input.joystick_axis = CNO_atoi(value);
+		if(CNO_strcmp(name,"joystick_hat") == 0) pconfig->input.joystick_hat = CNO_atoi(value);
+		if(CNO_strcmp(name,"joystick_ball") == 0) pconfig->input.joystick_ball = CNO_atoi(value);
+		if(CNO_strcmp(name,"joystick_axis_deadzone") == 0) pconfig->input.joystick_axis_deadzone = CNO_atoi(value);
+		if(CNO_strcmp(name,"joystick_axis_peak") == 0) pconfig->input.joystick_axis_peak = CNO_atoi(value);
+		if(CNO_strcmp(name,"touch_mode") == 0) pconfig->input.touch_mode = CNO_atoi(value);
 	} else if(CNO_strcmp(section,"sdl2") == 0){
 		if(CNO_strcmp(name,"sdl2enabled") == 0) pconfig->sdl2.sdl2enabled = CNO_atoi(value);
 		else if(CNO_strcmp(name,"sdl2ttfenabled") == 0) pconfig->sdl2.sdl2ttfenabled = CNO_atoi(value);
-	} else if(CNO_strcmp(section,"sdl2image") == 0){
-		if(CNO_strcmp(name,"jpg") == 0) pconfig->sdl2image.jpg = CNO_atoi(value);
-		else if(CNO_strcmp(name,"png") == 0) pconfig->sdl2image.png = CNO_atoi(value);
-		else if(CNO_strcmp(name,"tif") == 0) pconfig->sdl2image.tif = CNO_atoi(value);
-	} else if(CNO_strcmp(section,"sdl2mixer") == 0){
-		if(CNO_strcmp(name,"enabled") == 0) pconfig->sdl2mixer.enabled = CNO_atoi(value);
-		else if(CNO_strcmp(name,"flac") == 0) pconfig->sdl2mixer.flac = CNO_atoi(value);
-		else if(CNO_strcmp(name,"mod") == 0) pconfig->sdl2mixer.mod = CNO_atoi(value);
-		else if(CNO_strcmp(name,"mp3") == 0) pconfig->sdl2mixer.mp3 = CNO_atoi(value);
-		else if(CNO_strcmp(name,"ogg") == 0) pconfig->sdl2mixer.ogg = CNO_atoi(value);
+	} else if(CNO_strcmp(section,"sdl2_image") == 0){
+		if(CNO_strcmp(name,"jpg") == 0) pconfig->sdl2_image.jpg = CNO_atoi(value);
+		else if(CNO_strcmp(name,"png") == 0) pconfig->sdl2_image.png = CNO_atoi(value);
+		else if(CNO_strcmp(name,"tif") == 0) pconfig->sdl2_image.tif = CNO_atoi(value);
+	} else if(CNO_strcmp(section,"sdl2_mixer") == 0){
+		if(CNO_strcmp(name,"enabled") == 0) pconfig->sdl2_mixer.enabled = CNO_atoi(value);
+		else if(CNO_strcmp(name,"flac") == 0) pconfig->sdl2_mixer.flac = CNO_atoi(value);
+		else if(CNO_strcmp(name,"mod") == 0) pconfig->sdl2_mixer.mod = CNO_atoi(value);
+		else if(CNO_strcmp(name,"mp3") == 0) pconfig->sdl2_mixer.mp3 = CNO_atoi(value);
+		else if(CNO_strcmp(name,"ogg") == 0) pconfig->sdl2_mixer.ogg = CNO_atoi(value);
 	} else if(CNO_strcmp(section,"threads") == 0){
 		if(CNO_strcmp(name,"enabled") == 0) pconfig->threads.enabled = CNO_atoi(value);
-		else if(CNO_strcmp(name,"maxthreads") == 0) pconfig->threads.maxthreads = CNO_atoi(value);
 		else if(CNO_strcmp(name,"sdl2") == 0) pconfig->threads.sdl2 = CNO_atoi(value);
 		else if(CNO_strcmp(name,"logic") == 0) pconfig->threads.logic = CNO_atoi(value);
 		else if(CNO_strcmp(name,"fileio") == 0) pconfig->threads.fileio = CNO_atoi(value);
 		else if(CNO_strcmp(name,"network") == 0) pconfig->threads.network = CNO_atoi(value);
 	} else if(CNO_strcmp(section,"video") == 0){
 		if(CNO_strcmp(name,"enabled") == 0) pconfig->video.enabled = CNO_atoi(value);
-		else if(CNO_strcmp(name,"screensaver") == 0) pconfig->video.screensaver = CNO_atoi(value);
 		else if(CNO_strcmp(name,"savescreenshotbmp") == 0) pconfig->video.savescreenshotbmp = CNO_atoi(value);
 		else if(CNO_strcmp(name,"savescreenshotpng") == 0) pconfig->video.savescreenshotpng = CNO_atoi(value);
-		else if(CNO_strcmp(name,"maxwindows") == 0) pconfig->video.maxwindows = CNO_atoi(value);
 		else if(CNO_strcmp(name,"driver") == 0) pconfig->video.driver = CNO_atoi(value);
 		else if(CNO_strcmp(name,"display") == 0) pconfig->video.display = CNO_atoi(value);
 		else if(CNO_strcmp(name,"displaymode") == 0) pconfig->video.displaymode = CNO_atoi(value);
@@ -146,15 +155,15 @@ cno_u8_type CNO_LowLevelConfig_LoadDefaults(){
 	CNO_LowLevelConfig.net = 1;
 	CNO_LowLevelConfig.sdl2.sdl2enabled = 1;
 	CNO_LowLevelConfig.sdl2.sdl2ttfenabled = 1;
-	CNO_LowLevelConfig.sdl2image.enabled = 1;
-	CNO_LowLevelConfig.sdl2image.jpg = 0;
-	CNO_LowLevelConfig.sdl2image.png = 1;
-	CNO_LowLevelConfig.sdl2image.tif = 0;
-	CNO_LowLevelConfig.sdl2mixer.enabled = 1;
-	CNO_LowLevelConfig.sdl2mixer.flac = 0;
-	CNO_LowLevelConfig.sdl2mixer.mod = 0;
-	CNO_LowLevelConfig.sdl2mixer.mp3 = 1;
-	CNO_LowLevelConfig.sdl2mixer.ogg = 0;
+	CNO_LowLevelConfig.sdl2_image.enabled = 1;
+	CNO_LowLevelConfig.sdl2_image.jpg = 0;
+	CNO_LowLevelConfig.sdl2_image.png = 1;
+	CNO_LowLevelConfig.sdl2_image.tif = 0;
+	CNO_LowLevelConfig.sdl2_mixer.enabled = 1;
+	CNO_LowLevelConfig.sdl2_mixer.flac = 0;
+	CNO_LowLevelConfig.sdl2_mixer.mod = 0;
+	CNO_LowLevelConfig.sdl2_mixer.mp3 = 1;
+	CNO_LowLevelConfig.sdl2_mixer.ogg = 0;
 	CNO_LowLevelConfig.threads.enabled = 1;
 	CNO_LowLevelConfig.threads.maxthreads = 5;
 	CNO_LowLevelConfig.threads.sdl2 = 1;
@@ -232,7 +241,7 @@ cno_u8_type CNO_LowLevelConfig_Save(cno_cstring_type filename){
 		CNO_fputs(buffer, configfile);
 		CNO_sprintf(buffer, "standardoutput=%d\n", CNO_LowLevelConfig.debug.standardoutput);
 		CNO_fputs(buffer, configfile);
-		CNO_sprintf(buffer, "stanarderror=%d\n", CNO_LowLevelConfig.SECTION.stanarderror);
+		CNO_sprintf(buffer, "stanarderror=%d\n", CNO_LowLevelConfig.debug.stanarderror);
 		CNO_fputs(buffer, configfile);
 		CNO_sprintf(buffer, "file=%d\n", CNO_LowLevelConfig.debug.file);
 		CNO_fputs(buffer, configfile);
@@ -252,27 +261,27 @@ cno_u8_type CNO_LowLevelConfig_Save(cno_cstring_type filename){
 		CNO_fputs(buffer, configfile);
 		CNO_sprintf(buffer, "sdl2ttfenabled=%d\n", CNO_LowLevelConfig.sdl2.sdl2ttfenabled);
 		CNO_fputs(buffer, configfile);
-		CNO_sprintf(buffer, "[sdl2image]\n");
+		CNO_sprintf(buffer, "[sdl2_image]\n");
 		CNO_fputs(buffer, configfile);
-		CNO_sprintf(buffer, "enabled=%d\n", CNO_LowLevelConfig.sdl2image.enabled);
+		CNO_sprintf(buffer, "enabled=%d\n", CNO_LowLevelConfig.sdl2_image.enabled);
 		CNO_fputs(buffer, configfile);
-		CNO_sprintf(buffer, "jpg=%d\n", CNO_LowLevelConfig.sdl2image.jpg);
+		CNO_sprintf(buffer, "jpg=%d\n", CNO_LowLevelConfig.sdl2_image.jpg);
 		CNO_fputs(buffer, configfile);
-		CNO_sprintf(buffer, "png=%d\n", CNO_LowLevelConfig.sdl2image.png);
+		CNO_sprintf(buffer, "png=%d\n", CNO_LowLevelConfig.sdl2_image.png);
 		CNO_fputs(buffer, configfile);
-		CNO_sprintf(buffer, "tif=%d\n", CNO_LowLevelConfig.sdl2image.tif);
+		CNO_sprintf(buffer, "tif=%d\n", CNO_LowLevelConfig.sdl2_image.tif);
 		CNO_fputs(buffer, configfile);
-		CNO_sprintf(buffer, "[sdl2mixer]\n");
+		CNO_sprintf(buffer, "[sdl2_mixer]\n");
 		CNO_fputs(buffer, configfile);
-		CNO_sprintf(buffer, "enabled=%d\n", CNO_LowLevelConfig.sdl2mixer.enabled);
+		CNO_sprintf(buffer, "enabled=%d\n", CNO_LowLevelConfig.sdl2_mixer.enabled);
 		CNO_fputs(buffer, configfile);
-		CNO_sprintf(buffer, "flac=%d\n", CNO_LowLevelConfig.sdl2mixer.flac);
+		CNO_sprintf(buffer, "flac=%d\n", CNO_LowLevelConfig.sdl2_mixer.flac);
 		CNO_fputs(buffer, configfile);
-		CNO_sprintf(buffer, "mod=%d\n", CNO_LowLevelConfig.sdl2mixer.mod);
+		CNO_sprintf(buffer, "mod=%d\n", CNO_LowLevelConfig.sdl2_mixer.mod);
 		CNO_fputs(buffer, configfile);
-		CNO_sprintf(buffer, "mp3=%d\n", CNO_LowLevelConfig.sdl2mixer.mp3);
+		CNO_sprintf(buffer, "mp3=%d\n", CNO_LowLevelConfig.sdl2_mixer.mp3);
 		CNO_fputs(buffer, configfile);
-		CNO_sprintf(buffer, "ogg=%d\n", CNO_LowLevelConfig.sdl2mixer.ogg);
+		CNO_sprintf(buffer, "ogg=%d\n", CNO_LowLevelConfig.sdl2_mixer.ogg);
 		CNO_fputs(buffer, configfile);
 		CNO_sprintf(buffer, "[threads]\n");
 		CNO_fputs(buffer, configfile);
