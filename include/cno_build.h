@@ -25,105 +25,19 @@
 #endif //__STDC_VERSION__
 #endif //!defined(CNO_IS_C99) 
 
-#define CNO_COMPILER_UNSUPPORTED 0
-#define CNO_COMPILER_CLANG 1
-#define CNO_COMPILER_GCC 2
-#if !defined(CNO_COMPILER) || !defined(CNO_COMPILER_NAME)
-#if defined(__clang__)
-#define CNO_COMPILER_NAME "clang"
-#define CNO_COMPILER CNO_COMPILER_CLANG
-#define CNO_COMPILER_VERSION __clang_version__
-#elif __GNUC__
-#define CNO_COMPILER_NAME "gcc"
-#define CNO_COMPILER CNO_COMPILER_GCC
+#define CNO_BUILD_GOAL_BINARY 1
+#define CNO_BUILD_GOAL_LIBRARY 2
+#if !defined(CNO_BUILD_GOAL)
+#define CNO_BUILD_GOAL CNO_BUILD_GOAL_BINARY
+#endif //!defined(CNO_BUILD_GOAL)
+
+#if !defined(CNO_DEBUG)
+#if defined(NDEBUG)
+#define CNO_DEBUG 0
 #else
-#define CNO_COMPILER_NAME "Non-clang/gcc compiler"
-#define CNO_COMPILER CNO_COMPILER_UNSUPPORTED
-#endif //[COMPILER]
-#endif //!defined(CNO_COMPILER) || !defined(CNO_COMPILER_NAME)
-
-#if !defined(CNO_BYTE_SIZE) && defined(__CHAR_BIT__)
-#define CNO_BYTE_SIZE __CHAR_BIT__
-#endif //!defined(CNO_BYTE_SIZE) && defined(__CHAR_BIT__)
-
-#if !defined(CNO_ENDIAN) && defined(__BYTE_ORDER__)
-#define CNO_ENDIAN __BYTE_ORDER__
-#endif //!defined(CNO_ENDIAN)
-
-//PMT_ARCHITECTURE(X86_64,1,"x86_64",__x86_64__ || __amd64__)
-#define CNO_ARCHITECTURE_UNSUPPORTED 0
-#define CNO_ARCHITECTURE_X86_64 1
-#define CNO_ARCHITECTURE_I386 2
-#define CNO_ARCHITECTURE_ARM 3
-#define CNO_ARCHITECTURE_POWERPC 4
-#define CNO_ARCHITECTURE_MIPS 5
-#define CNO_ARCHITECTURE_M68K 6
-#if !defined(CNO_ARCHITECTURE) || !defined(CNO_ARCHITECTURE_NAME)
-#if __x86_64__ || __amd64__
-#define CNO_ARCHITECTURE_NAME "x86_64"
-#define CNO_ARCHITECTURE CNO_ARCHITECTURE_X86_64
-#define CNO_CPU_BIT_TYPE 64
-//PMT_ARCHITECTURE(I386,2,"i386",__i386__)
-#elif __i386__
-#define CNO_ARCHITECTURE_NAME "i386"
-#define CNO_ARCHITECTURE CNO_ARCHITECTURE_I386
-#define CNO_CPU_BIT_TYPE 32
-#elif __powerpc__
-#define CNO_ARCHITECTURE_NAME "PowerPC"
-#define CNO_ARCHITECTURE CNO_ARCHITECTURE_POWERPC
-#elif __mips__
-#define CNO_ARCHITECTURE_NAME "Mips"
-#define CNO_ARCHITECTURE CNO_ARCHITECTURE_MIPS
-#elif __m68k__
-#define CNO_ARCHITECTURE_NAME "Motorola68k"
-#define CNO_ARCHITECTURE CNO_ARCHITECTURE_M68K
-#elif __arm__
-#define CNO_ARCHITECTURE_NAME "ARM"
-#define CNO_ARCHITECTURE CNO_ARCHITECTURE_ARM
-#define CNO_CPU_BIT_TYPE 32
-#else
-#define CNO_ARCHITECTURE_NAME "Unsupported Architecture"
-#define CNO_ARCHITECTURE CNO_ARCHITECTURE_UNSUPPORTED
-#endif //[ARCHITECTURE]
-#endif //!defined(CNO_ARCHITECTURE) || !defined(CNO_ARCHITECTURE_NAME)
-
-#define CNO_BUILD_FOR_BINARY 1
-#define CNO_BUILD_FOR_LIBRARY 0
-
-#ifdef __unix__
-#define CNO_IS_UNIX __unix__
-#endif //__unix__
-#ifdef __POSIX_VERSION
-#define CNO_IS_POSIX __POSIX_VERSION
-#endif //__POSIX_VERSION
-#define CNO_C_VERSION __STDC_VERSION__
-#ifdef BSD
-#define CNO_IS_BSD BSD
-#endif //BSD
-#ifdef __GNU__
-#define CNO_IS_GNU __GNU__
-#endif //__GNU__
-
-//OS
-#define CNO_OS_UNKNOWN 0
-#define CNO_OS_WINDOWS 1
-#define CNO_OS_APPLE 2
-#define CNO_OS_LINUX 3
-#if !defined(CNO_OS) || !defined(CNO_OS_NAME)
-#ifdef __APPLE__
-#define CNO_OS_NAME "MacOSX"
-#define CNO_OS CNO_OS_APPLE
-#elif __gnu_linux__
-#define CNO_OS_NAME "Linux"
-#define CNO_OS CNO_OS_LINUX
-#elif __CYGWIN__ || __WIN32
-#define CNO_OS_NAME "Windows"
-#define CNO_OS CNO_OS_WINDOWS
-#else
-#define CNO_OS_NAME "Unknown"
-#define CNO_OS CNO_OS_UNKNOWN
-#endif //[OS]
-#endif //!defined(CNO_OS) || !defined(CNO_OS_NAME)
+#define CNO_DEBUG 1
+#endif //defined(NDEBUG)
+#endif //!defined(CNO_DEBUG)
 
 #if !defined(CNO_DS)
 #if CNO_OS == CNO_OS_WINDOWS
@@ -172,19 +86,22 @@ typedef void* cno_utf8_type;
 #define CNO_HAVE_TIME 1
 #define CNO_HAVE_STDARG 1
 #define CNO_HAVE_UNISTD 1
+#define CNO_HAVE_REGEX 1
+#define CNO_HAVE_PCRE 0
 #define CNO_HAVE_ERRNO 1
-#define CNO_HAVE_GETOPT 1
-#define CNO_HAVE_ARGP 1
 #define CNO_HAVE_UUID 1
-#define CNO_HAVE_INIH 1
 #define CNO_HAVE_WHEREAMI 1
-#define CNO_HAVE_STRETCHYBUFFER 1
-//#define CNO_HAVE_UTHASH 1
-//#define CNO_HAVE_KHASH 1
 #define CNO_HAVE_TINYFILES 1
 #define CNO_HAVE_TINYFILEDIALOGS 1
-#define CNO_HAVE_PARSON 1
+#define CNO_HAVE_STRETCHYBUFFER 1
+#define CNO_HAVE_SDS 1
 #define CNO_HAVE_UTF8 1
+#define CNO_HAVE_LOGH 0
+#define CNO_HAVE_CLOGGED 1
+#define CNO_HAVE_INIH 1
+#define CNO_HAVE_PARSON 1
+#define CNO_HAVE_GETOPT 1
+#define CNO_HAVE_ARGP 1
 #define CNO_HAVE_PTHREAD 1
 #define CNO_HAVE_SDL2 1
 
@@ -197,42 +114,28 @@ typedef void* cno_utf8_type;
 #define CNO_DEVICE CNO_DEVICE_DESKTOP
 #endif //!defined(CNO_DEVICE)
 
-#define CNO_OPTIONS_NONE 0
-#define CNO_OPTIONS_GETOPT 1
-#define CNO_OPTIONS_ARGP 2
-#if !defined(CNO_OPTIONS)
-#if CNO_HAVE_ARGP
-#define CNO_OPTIONS CNO_OPTIONS_ARGP
-#elif CNO_HAVE_GETOPT
-#define CNO_OPTIONS CNO_OPTIONS_GETOPT
-#else
-#define CNO_OPTIONS CNO_OPTIONS_NONE
-#endif //CNO_HAVE_[OPTIONS_ENGINE]
-#endif //!defined(CNO_OPTIONS)
+//cno_log
+#define CNO_LOG_ENGINE_NONE 0
+#define CNO_LOG_ENGINE_OTHER 1
+#define CNO_LOG_ENGINE_STDIO 2
+#define CNO_LOG_ENGINE_LOGH 3
+#define CNO_LOG_ENGINE_CLOGGED 4
+#define CNO_LOG_ENGINE_SDL2 5
+#define CNO_LOG_ENGINE_ORIGINAL 6
+#if !defined(CNO_LOG_ENGINE)
+#define CNO_LOG_ENGINE CNO_LOG_ENGINE_LOGH
+#endif //!defined(CNO_LOG_ENGINE)
 
-#define CNO_CONFIG_NONE 0
-#define CNO_CONFIG_INIH 1
-#define CNO_CONFIG_PARSON 2
-#if !defined(CNO_CONFIG)
-#if CNO_HAVE_INIH
-#define CNO_CONFIG CNO_CONFIG_INIH
-#else
-#define CNO_CONFIG CNO_CONFIG_NONE
-#endif //CNO_HAVE_INIH
-#endif //!defined(CNO_CONFIG)
+//cno_settings
 
-#define CNO_THREADS_NONE
-#define CNO_THREADS_SDL2 1
-#define CNO_THREADS_PTHREAD 2
-#if !defined(CNO_THREADS)
-#if CNO_HAVE_SDL2
-#define CNO_THREADS CNO_THREADS_SDL2
-#elif CNO_HAVE_PTHREAD
-#define CNO_THREADS CNO_THREADS_PTHREAD
-#else
-#define CNO_THREADS CNO_THREADS_NONE
-#endif //CNO_HAVE_[THREADS_ENGINE]
-#endif //!defined(CNO_THREADS)
+#define CNO_MIDDLEWARE_NONE 0
+#define CNO_MIDDLEWARE_OTHER 1
+#define CNO_MIDDLEWARE_SDL2 2
+
+#define CNO_THREAD_ENGINE_NONE 0
+#define CNO_THREAD_ENGINE_OTHER 1
+#define CNO_THREAD_ENGINE_PTHREAD 2
+#define CNO_THREAD_ENGINE_SDL2 3
 
 #if CNO_HAVE_STDIO
 #define CNO_ALLOW_PRINTF 1

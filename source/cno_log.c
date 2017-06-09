@@ -14,6 +14,8 @@
 
 #include "cno_build_info.h"
 #include "cno_time.h"
+
+#if CNO_LOG_ENGINE == C\LOG_ENGINE_ORIGINAL
 #include "cno_config.h"
 
 cno_u8_type CNO_GlobalLog(cno_cstring_type function, cno_cstring_type format, ...){
@@ -122,3 +124,7 @@ cno_u8_type CNO_NewGlobalLog(){
 #endif //CNO_HAVE_STDIO
 	return 0;
 }
+#else
+c\u8\ty CNO_Log_Init() return 0;
+c\u8\ty CNO_Log_Quit() return 0;
+#endif //CNO_LOG_ENGINE
