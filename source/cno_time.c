@@ -13,7 +13,7 @@
 #include <time.h> //time, gmtime, strftime
 #endif //CNO_HAVE_TIME
 
-cno_time_type CNO_Time_Unix(){
+cno_unixtime_type CNO_Time_Unix(){
 #if CNO_HAVE_TIME
 	return CNO_time(NULL);
 #endif //CNO_HAVE_TIME
@@ -36,7 +36,7 @@ cno_u8_type CNO_Time_Concise(cno_u8_type *buffer){
 
 cno_u8_type CNO_Time_Full(cno_cstring_type buffer){
 #if CNO_HAVE_TIME && CNO_HAVE_STRING
-	cno_time_type unixtime = CNO_time(NULL);
+	cno_unixtime_type unixtime = CNO_time(NULL);
 	cno_calendartime_type *calendartime = CNO_gmtime(&unixtime);
 	cno_u8_type datebuffer[16];
 	cno_u8_type timebuffer[16];

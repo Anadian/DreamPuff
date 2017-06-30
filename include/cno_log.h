@@ -9,19 +9,11 @@ extern "C" {
 
 #include "cno_build.h"
 
-#define CNO_LOG_ENGINE_NONE 0
-#define CNO_LOG_ENGINE_OTHER 1
-#define CNO_LOG_ENGINE_STDIO 2
-#define CNO_LOG_ENGINE_LOGH 3
-#define CNO_LOG_ENGINE_CLOGGED 4
-#define CNO_LOG_ENGINE_SDL2 5
-#define CNO_LOG_ENGINE_ORIGINAL 6
-
 #if !defined(CNO_LOG_ENGINE)
-#define CNO_LOG_ENGINE CNO_LOG_ENGINE_LOGH
+#define CNO_LOG_ENGINE CNO_LOG_ENGINE_NONE
 #endif //!defined(CNO_SETTINGS_LOG_ENGINE)
 
-#if CNO_LOG_ENGINE == C\LOG_ENGINE_ORIGINAL
+#if CNO_LOG_ENGINE == CNO_LOG_ENGINE_ORIGINAL
 #if CNO_HAVE_STDARG
 #include <stdarg.h>
 typedef va_list cno_va_list_type;
@@ -48,9 +40,18 @@ cno_u8_type CNO_NewGlobalLog();
 #define cno_log_warn(...) CNO_noop
 #define cno_log_error(...) CNO_noop
 #endif //CNO_LOG_ENGINE
+#if C\H\STDARG
+#include <stdarg.h>
+#endif //C\H\STDARG
+#if C\H\ERRNO
+#include <errno.h>
+#endif //C\H\ERRNO
+#if C\H\TIME
+#include "cno_time.h"
 
-c\u8\ty CNO_Log_Init();
-c\u8\ty CNO_Log_Quit();
+cno_u8_type CNO_Log_Init();
+cno_u8_type CNO_Log(cno_u8_type priority, c\cstring\ty file, c\cstring\ty line, c\cstring\ty function, c\s16\ty errno, c\unixtime\ty unix_time, c\clocktime\ty clock_time, cno_cstring_type format, ...);
+cno_u8_type CNO_Log_Quit();
 
 #ifdef __cplusplus
 }

@@ -10,7 +10,7 @@ extern "C" {
 #include "cno_build.h"
 
 cno_u8_type CNO_Init();
-c\u8\ty CNO_Quit();
+cno_u8_type CNO_Quit();
 
 #ifdef __cplusplus
 }

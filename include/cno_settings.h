@@ -7,82 +7,27 @@
 extern "C"{
 #endif //__cplusplus
 
-#define CNO_SETTINGS_VERSION_MAJOR 1
-#define CNO_SETTINGS_VERSION_MINOR 0
+#if !defined(CNO_SETTINGS_MATCH_ENGINE)
+#define CNO_SETTINGS_MATCH_ENGINE CNO_SETTINGS_MATCH_ENGINE_NONE
+#endif //!defined(CNO_SETTINGS_MATCH_ENGINE)
 
-#include "c_predefined.h"
-
-#define CNO_SETTINGS_LOG_ENGINE_NONE 0
-#define CNO_SETTINGS_LOG_ENGINE_OTHER 1
-#define CNO_SETTINGS_LOG_ENGINE_STDIO 2
-#define CNO_SETTINGS_LOG_ENGINE_LOGH 3
-#define CNO_SETTINGS_LOG_ENGINE_CLOGGED 4
-#define CNO_LOG_ENGINE_SDL2 5
-#if !defined(CNO_SETTINGS_LOG_ENGINE)
-#define CNO_SETTINGS_LOG_ENGINE CNO_SETTINGS_LOG_ENGINE_CLOGGED
-typedef clg_logger_t* CNO_Log\ty;
-#define CNO_SETTINGS_LOG_LEVEL CGL_LOG_DEBUG
-#endif //!defined(CNO_SETTINGS_LOG_ENGINE)
-
-#define CNO_SETTINGS_MATCH_ENGINE_NONE 0
-#define CNO_SETTINGS_MATCH_ENGINE_OTHER 1
-#define CNO_SETTINGS_MATCH_ENGINE_STDLIB 2
-#define CNO_SETTINGS_MATCH_ENGINE_REGEX 3
-#define CNO_SETTINGS_MATCH_ENGINE_PCRE 4
-#if !defined(CNO_SETTINGS_MATCH_ENGINE) || !defined(CNO_SETTING_VALIDATION_REGEX) || !defined(CNO_SETTING_REGEX_NMATCH)
-#define CNO_SETTINGS_MATCH_ENGINE CNO_SETTINGS_MATCH_ENGINE_REGEX
-#define CNO_SETTING_VALIDATION_REGEX ":([-0-9A-Za-z_ ]*)?:([0-9A-Za-z_]+)?:(([-0-9A-Za-z]+)(=([0-9A-Za-z]))?)?:(0|(([NIRBWAUFDnirbwaufd])[^!?=;]*([!?])(=(((\|)|(([-0-9A-Za-z_.\/\\ ]+)([!?])?)))+)?));"
-#define CNO_SETTING_REGEX_NMATCH 18
-#endif //!defined(CNO_SETTINGS_MATCH_ENGINE) || !defined(CNO_SETTING_VALIDATION_REGEX) || !defined(CNO_SETTING_REGEX_NMATCH)
-
-#define CNO_SETTINGS_OPTIONS_ENGINE_NONE 0
-#define CNO_SETTINGS_OPTIONS_ENGINE_OTHER 1
-#define CNO_SETTINGS_OPTIONS_ENGINE_GETOPT 2
-#define CNO_SETTINGS_OPTIONS_ENGINE_ARGP 3
 #if !defined(CNO_SETTINGS_OPTIONS_ENGINE)
 #define CNO_SETTINGS_OPTIONS_ENGINE CNO_SETTINGS_OPTIONS_ENGINE_NONE
 #endif //!defined(CNO_SETTINGS_OPTIONS_ENGINE)
 
-#define CNO_SETTINGS_CONFIG_ENGINE_NONE 0
-#define CNO_SETTINGS_CONFIG_ENGINE_OTHER 1
-#define CNO_SETTINGS_CONFIG_ENGINE_INIH 2
-#define CNO_SETTINGS_CONFIG_ENGINE_PARSON 3
 #if !defined(CNO_SETTINGS_CONFIG_ENGINE)
 #define CNO_SETTINGS_CONFIG_ENGINE CNO_SETTINGS_CONFIG_ENGINE_NONE
 #endif //!defined(CNO_SETTINGS_CONFIG_ENGINE)
 
-#define CNO_SETTINGS_MIDDLEWARE_NONE 0
-#define CNO_SETTINGS_MIDDLEWARE_OTHER 1
-#define CNO_SETTINGS_MIDDLEWARE_SDL2 2
-
-#define CNO_SETTINGS_THREAD_ENGINE_NONE 0
-#define CNO_SETTINGS_THREAD_ENGINE_OTHER 1
-#define CNO_SETTINGS_THREAD_ENGINE_PTHREAD 2
-#define CNO_SETTINGS_THREAD_ENGINE_SDL2 3
-
-#if !defined(CNO_TYPEDEFS_SET)
-typedef unsigned char cno_u8_type;
-typedef signed char cno_s8_type;
-typedef unsigned short cno_u16_type;
-typedef signed short cno_s16_type;
-typedef unsigned long cno_u32_type;
-typedef signed long cno_s32_type;
-typedef unsigned long long cno_u64_type;
-typedef signed long long cno_s64_type;
-typedef float cno_f32_type;
-typedef double cno_f64_type;
-typedef unsigned char* cno_cstring_type;
-typedef void* cno_utf8_type;
-#if !defined(CNO_noop)
-#define CNO_noop ((void)0)
-#endif //!defined(CNO_noop)
-#define CNO_TYPEDEFS_SET 1
-#endif //!defined(CNO_TYPEDEFS_SET)
+#if (CNO_SETTINGS_MATCH_ENGINE == CNO_SETTINGS_MATCH_ENGINE_REGEX) && (!defined(CNO_SETTINGS_MATCH_VALIDATION_REGEX) || !defined(CNO_SETTINGS_MATCH_REGEX_NMATCH))
+#define CNO_SETTINGS_MATCH_VALIDATION_REGEX ":([-0-9A-Za-z_ ]*)?:([0-9A-Za-z_]+)?:(([-0-9A-Za-z]+)(=([0-9A-Za-z]))?)?:(0|(([NIRBWAUFDnirbwaufd])[^!?=;]*([!?])(=(((\|)|(([-0-9A-Za-z_.\/\\ ]+)([!?])?)))+)?));"
+#define CNO_SETTINGS_MATCH_REGEX_NMATCH 18
+#endif //(CNO_SETTINGS_MATCH_ENGINE == CNO_SETTINGS_MATCH_ENGINE_REGEX) && (!defined(CNO_SETTING_VALIDATION_REGEX) || !defined(CNO_SETTING_REGEX_NMATCH))
 
 typedef struct CNO_Setting_struct {
 	cno_cstring_type name;
 	cno_cstring_type help;
-	c\cstring\ty argument;
+	cno_cstring_type argument;
 	cno_u8_type hits;
 	void *pointer;
 } CNO_Setting_type; //system defaults => user config => options => -C if specified
@@ -125,15 +70,20 @@ debug:verbosity|verbose=v:N?=3!|5?|0-5
 {":::force=f:0;","Harness an energy which flows through the universe in order to do things without asking the user for permission."},
 {":::fail=F:0;","Don't take rejection so easily: exit at the first sign of something being wrong."},
 {":::gui=g:0;","Opens a window; good for letting the air out."},
+{":::global-colours=G:B!;","Use global terminal colour system."},
 {":::interactive=i:0;","Offloads all the hard decision making onto the user."},
 {":::input=I:F!;","File: Uses the given file instead of STDIN."},
 {":::stop-background=k:0;","Politely stop the background process (daemon)."},
 {":::kill-background=K:0;","Forcefully terminate the background process (daemon); in essence: kill it!"},
+{":::long=l:0;", ""},
+{":::link=L:F!;", "Link a dynamic (.so) library; continues even if linking is unsuccessful."},
 {":::newdefaults=N:0;","Create new default files."},
 {":::output=O:F!;","File: Tells the program to \"put out\" to the given file: whatever that means."},
 {":::preprocess=p:0;","But where's postprocess?"},
 {":::prefix=P:F!;","Directory: Adds the given directory to the list of directories which contain directories, each containing list of directories to be searched to find files which list where to find the directories containing the needed files."},
 {":::quiet=q:0;","... please."},
+{":::recursive=r:0;", "Search directories recursively."},
+{":::require=R:F!;", "Link a dynamic (.so) library; exits if linking is unsuccessful."},
 {":::silence=s:0;","Tells the software to shut up! Doubly redundant since \"-v 0\" and \"-q\" both get the same result."},
 {":::source=S:F!;","File:Reluctantly obeys the orders contained in the given file."},
 {":::test=t:0;","Run automated test."},
@@ -145,7 +95,7 @@ debug:verbosity|verbose=v:N?=3!|5?|0-5
 {":audio:enabled::B!=true!|false;","Boolean: Enable audio."},
 {":audio:channels::N!=2!|0-32;","Number: Max number of audio channels to use."},
 {":audio:samplerate::N!=48000!|0-160_000;","Number: The sample rate, specified in Hz, to use for audio playback. 8000, 11025, 16000, 22050, 32000, 441000, 48000, or 96000 recommended."},
-{":debug:enabled:debug=d::B?=true?|false!;","Boolean: Enable debugging."},
+{":debug:enabled:debug=d:B?=true?|false!;","Boolean: Enable debugging."},
 {":debug:verbosity:verbose=v:N?=3!|5?|0-5;""Number: Sets debug verbosity to the given unsigned integer: 0 being silent; 5 being maximum logging. Defaults to 3, if omitted, and 5, if specified without an argument."},
 {":debug:standard_output:stdout=o:F!=STDOUT!;","Stream: STDOUT, STDERR, FILE, or /dev/null: oh, so many choices."},
 {":debug:standard_error:error=e:F!=STDERR!;","Stream: Redirect stderr to the given stream; exempli gratia, STDOUT or a the name of a file."},
