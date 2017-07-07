@@ -13,6 +13,21 @@ cno_u8_type CNO_Build_String[CNO_BUFFER_MAXSIZE];
 
 /*
 
+HUD placement:
+status:
+name, level, state (if noteworthy)
+hp,
+ep,
+
+[element]: minimal, comprehensive, off
+scaleable radius
+12 slots
+fade: auto, toggle, off
+Status (TL), game time/location/direction/weather (TC), Navigation/Alert (TR) connectivity and wall time
+Mission info, , timers/splits
+Count, subtitles, weapon info
+Inventory/Command (BL), Contextual (BC), Enemy Info (BR)/picture-in-picture
+
 Display
 Graphics
 Sound
@@ -105,7 +120,7 @@ speed and stun are related
 enemy, element1 element2, HP, class, EXP, gold
 */
 
-DreamPuff-Competitive/Open-Server/Client-Deamon/NativeExecutable/Embedded-Console/Electron/etc binary-x86_64-macOS-clang-2017-06-27-commit
+DreamPuff-Competitive/Open-Server/Client-Deamon/NativeExecutable/Embedded-Console/Electron/etc binary-x86_64-macOS-clang-date-commit
 
 cno_u8_type CNO_Build_Info_Init();
 

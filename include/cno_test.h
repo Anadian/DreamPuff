@@ -7,7 +7,7 @@
 extern "C"{
 #endif //__cplusplus
 
-
+#include "cno_build.h"
 
 #ifdef __cplusplus
 }
