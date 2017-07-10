@@ -120,7 +120,7 @@ speed and stun are related
 enemy, element1 element2, HP, class, EXP, gold
 */
 
-DreamPuff-Competitive/Open-Server/Client-Deamon/NativeExecutable/Embedded-Console/Electron/etc binary-x86_64-macOS-clang-date-commit
+//DreamPuff-Competitive/Open-Server/Client-Deamon/NativeExecutable/Embedded-Console/Electron/etc binary-x86_64-macOS-clang-date-commit
 
 cno_u8_type CNO_Build_Info_Init();
 
