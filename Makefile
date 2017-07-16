@@ -1,5 +1,16 @@
 NAME?=dreampuff
 $(info NAME:$(NAME))
+
+ifeq ($(origin GIT_CURRENT),undefined)
+GIT_CURRENT=$(shell git-current || ./git-current)
+endif #($(origin GIT_CURRENT),undefined)
+$(info GIT_CURRENT:$(GIT_CURRENT))
+
+ifeq ($(origin GIT_COMMIT),undefined)
+GIT_COMMIT=$(subst commit ,commit-,$(GIT_CURRENT))
+endif #($(origin GIT_COMMIT),undefined)
+$(info GIT_COMMIT:$(GIT_COMMIT))
+
 #Options
 ifeq ($(origin VERBOSE),undefined)
 VERBOSE=0
@@ -112,7 +123,7 @@ FLAGS=$(FLAG_INCLUDE_SEARCH_DIRECTORIES) $(FLAG_STATIC_LIBRARY_SEARCH_DIRECTORIE
 endif #($(origin FLAGS),undefined)
 $(info FLAGS:$(FLAGS))
 
-.PHONY: build-binary install-binary build-library install-library run execute test commit push clean update freshen fresh-install upgrade build-all install-all uninstall-all build all install uninstall debug help
+.PHONY: build-binary install-binary build-library install-library run execute test commit push clean update freshen fresh-install upgrade build-all install-all uninstall-all build all install uninstall debug config help
 %.o:
 	$(COMPILER) $(INCLUDES) -c $(SOURCE_DIR)/$(subst .o,.c,$(notdir $@)) -o $@
 build-binary: $(OBJECTS)
@@ -158,6 +169,7 @@ all: build-all
 install: install-all
 uninstall: uninstall-all
 debug: clean build-binary run
+config:
 help:
 	$(info Available commands, with synonyms:)
 	$(info help: Display this help message.)
@@ -182,3 +194,4 @@ help:
 	$(info upgrade: Get, build, and test the latest code.)
 	$(info fresh-install: Uninstall current libary and binary and install the newest version.)
 	$(info debug: Clean, build, and run for rapid debugging.)
+	$(info config: Display all the recognised build-configuration variables and their default values for this platform.)

@@ -89,18 +89,17 @@ typedef struct CNO_Log_struct{
 	cno_cstring_type file;
 	c\u8\ty persist; //Keep file open
 	c\u8\ty overwrite; //Overwrite file if it already exist, otherwise append
-	cno_mutex_type mutex;
 } CNO_Log_type;
 
 #if !defined(CNO_NO_GLOBAL_STATE)
+cno_mutex_type CNO_Log_Mutex;
 C\Log\ty CNO_DefaultLog;
-C\Log\ty *CNO_DefaultLog_pointer;
 #endif //!defined(CNO_NO_GLOBAL_STATE)
 
 //[bold] Error: [dim] file (line): [normal] function (time unix/clock): message (errno: strerror | other error messages)
 c\u8\ty C\Log_Init();
 c\u8\ty C\Log_Set(C\Log\ty *log, C\Log\ty value);
-c\u8\ty C\Log_verbosity_Get(C\Log\ty *log, C\Log_Priority\ty *verbosity);
+/*c\u8\ty C\Log_verbosity_Get(C\Log\ty *log, C\Log_Priority\ty *verbosity);
 c\u8\ty C\Log_verbosity_Set(C\Log\ty *log, C\Log_Priority\ty verbosity);
 cno_u8_type CNO_Log_colour_Get(CNO_Log_type *log, c\u8\ty *colour);
 cno_u8_type CNO_Log_colour_Set(CNO_Log_type *log, c\u8\ty colour);
@@ -111,7 +110,7 @@ cno_u8_type CNO_Log_file_Set(CNO_Log_type *log, c\cstring\ty file);
 cno_u8_type CNO_Log_persist_Get(CNO_Log_type *log, c\u8\ty *persist);
 cno_u8_type CNO_Log_persist_Set(CNO_Log_type *log, c\u8\ty persist);
 cno_u8_type CNO_Log_overwrite_Get(CNO_Log_type *log, c\u8\ty *overwrite);
-cno_u8_type CNO_Log_overwrite_Set(CNO_Log_type *log, c\u8\ty overwrite);
+cno_u8_type CNO_Log_overwrite_Set(CNO_Log_type *log, c\u8\ty overwrite);*/
 cno_u8_type CNO_Log(CNO_Log_type *log, CNO_Log_Priority_type priority, cno_cstring_type file, cno_cstring_type line, cno_cstring_type function, cno_unixtime_type unix_time, cno_clocktime_type clock_time, cno_cstring_type format, ...);
 c\u8\ty C\Log_Unset(C\Log\ty *Log);
 c\u8\ty C\Log_Test();

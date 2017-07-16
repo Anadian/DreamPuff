@@ -19,24 +19,149 @@ name, level, state (if noteworthy)
 hp,
 ep,
 
-[element]: minimal, comprehensive, off
+[element]:off, minimal, standard (only for the HUD itself), comprehensive, custom
 scaleable radius
 12 slots
 fade: auto, toggle, off
 Status (TL), game time/location/direction/weather (TC), Navigation/Alert (TR) connectivity and wall time
-Mission info, , timers/splits
-Count, subtitles, weapon info
+Mission info (tutorial hints),  (beacon), controller state
+count, reticle, timers/splits
+hotkey, subtitles, weapon info/equipment mapping
 Inventory/Command (BL), Contextual (BC), Enemy Info (BR)/picture-in-picture
+[OSC]???
+
+hint/tutorials: off, optional, automatic
+
+AI:
+Reaction 0-10
+Accuracy(skill) 0-10
+Knowledge 0-10 //2 points for mechanics, map, location, equipment, opponents
+Priority lazy, vengeance, equalizer
+Strategy methodical, oddball
+Attention precise, general
+Caution risky, safe	//stealth v aggression
 
 Display
-Graphics
 Sound
 Text
 Input
 Controls
+Camera
 Network
+Graphics
 System
 Game
+
+Display:
+driver
+display
+display mode
+exclusive fullscreen
+xoffset
+yoffset
+width
+height
+framerate
+vsync
+[borderless]
+[[resizable]]
+disable screensaver
+software-to-hardware scale
+scale-to-any-resolution, scale-to-nearest-aspect, no-scaling
+[viewport scale if any or nearest-aspect]
+
+Sound: (unless -A)
+master volume
+gameplay volume
+cutscene volume
+menu volume
+Event music
+diagestic music
+ui music
+ambience
+ui sound effects
+diagestic sound effects
+miscellaneous sound effects
+[categorical muting]
+voice language
+dialog voice
+barks and gameplay-relevant voice
+chitchat voice
+players voice
+game menu volume reduction
+channels
+samplerate
+3D sound (hardware accelerated)
+sound-modifying effects
+streaming preload
+mic sensitivity
+
+Text:
+text language
+speed
+scroll
+gameplay subtitles (lang)
+font-size
+format (colours)
+cutscene subtitles (lang)
+font-size
+format
+menu-text (lang)
+font-size
+format
+ui-text (lang)
+font-size
+format
+
+Input:
+source toggles
+key mode (scancode/keycode)
+disable keyboard/mouse while controller connected
+mouse mode (toggles for motion, buttons and wheels)
+mouse sensitivity
+mouse wheel inversion
+touch mode (mouse/finger)
+controller mode: 
+xinput
+joystick
+[joystick deadzone]
+[joystick peak]
+game-controller
+libusb
+libgamepad
+soft pause for lack of input
+devices
+
+Camera:
+disable mouse camera when controller connected
+TPS: x/y-invert, sensitivity, speed, correction (off, minimal, modest, zealous), wall clipping, targeting, distance?
+gallery: x/y-invert, sensitivity, speed, no-move-box width/height, move-box width/height
+OTS (over-the-shoulder): x/y-invert, sensitivity, speed
+FPS: x/y-invert, sensitivity, speed, correction, FOV
+ADS (aim-down-site): x/y-invert, sensitivity, speed, correction,
+
+//aim point
+//view point
+//rot point
+
+Network:
+Online
+Account
+Encrypt save data
+
+Graphics:
+Gamma correction
+Effects
+Quality
+Content
+HUD
+
+System:
+autosave 
+softpause on focus lost
+Loading-and-freeing/memory usage, preload-everything, preload everything and free as needed, load as needed but don't free until quit, high/medium/low memory usage
+Decompress game data
+Mods
 
 elements:
 water //slow / douse
@@ -89,10 +214,10 @@ strength/dexterity
 constitution/agility
 utility/mastery
 combat/stealth
-independent/social
-technical/humane
+independent/collaborative 
+technical/social
 lawful/populist
-idealism/realism
+idealist/realist
 analytical/intuitive
 stoical/emotional
 rational/altruistic
