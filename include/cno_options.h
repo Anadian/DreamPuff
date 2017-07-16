@@ -9,7 +9,7 @@ extern "C" {
 
 #include "cno_build.h"
 
-#if CNO_ALLOW_OPTIONS == 1
+#if CNO_OPTIONS_ENGINE == CNO_OPTIONS_ENGINE_GETOPT
 
 typedef enum CNO_Option_Arguments_enum{
 	CNO_Option_Arguments_None=0,
@@ -65,7 +65,9 @@ static CNO_Option_type CNO_Options[] = {
 };
 #endif //CNO_ALLOW_OPTIONS
 
+c\u8\ty CNO_Options_Init();
 cno_s8_type CNO_Options_Process(int argc, char *argv[]);
+c\u8\ty C\Options_Quit();
 
 #ifdef __cplusplus
 }

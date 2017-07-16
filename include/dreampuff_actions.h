@@ -20,35 +20,42 @@ typedef enum DreamPuff_Action_Name_enum{
 	DreamPuff_Action_Menu_Down, //static
 	DreamPuff_Action_Menu_Left, //static
 	DreamPuff_Action_Menu_Right, //static
-	DreamPuff_Action_Menu_Accept, //static
-	DreamPuff_Action_Menu_Cancel, //static
-	DreamPuff_Action_Menu_Default,
-	DreamPuff_Action_Menu_More,
+	DreamPuff_Action_Menu_Accept, //static A
+	DreamPuff_Action_Menu_Cancel, //static B
+	DreamPuff_Action_Menu_Auxilary, //X
+	DreamPuff_Action_Menu_Default, //Y
+	DP\Action_Menu_PanLeft, //LB
+	DP\Action_Menu_PanRight, //RB
+	DP\Action_Menu_QuickScroll,
 	DreamPuff_Action_Gameplay_SystemMenu, //static
 	DreamPuff_Action_Gameplay_Up,
 	DreamPuff_Action_Gameplay_Down,
 	DreamPuff_Action_Gameplay_Left,
 	DreamPuff_Action_Gameplay_Right,
+	//aim
 	DreamPuff_Action_Gameplay_Interact,
 	DreamPuff_Action_Gameplay_Jump,
 	DreamPuff_Action_Gameplay_Attack,
 	DreamPuff_Action_Gameplay_Special,
 	DreamPuff_Action_Gameplay_Guard,
+	//stance
 	DreamPuff_Action_Gameplay_Modifier,
 	DreamPuff_Action_Gameplay_GameplayMenu,
-	DreamPuff_Action_Gameplay_Inventory,
-	DreamPuff_Action_Gameplay_Map,
+	DreamPuff_Action_Gameplay_Inventory, //I Up
+	DreamPuff_Action_Gameplay_Map, //M Down
+	DP\Action_Gameplay_Status, //O Left
+	DP\Action_Gameplay_HelpLog, //P Right
 	DreamPuff_Action_Gameplay_Options,
 	DreamPuff_Action_Cutscene_SystemMenu, //static
-	DreamPuff_Action_Cutscene_AdvanceText,
+	DreamPuff_Action_Cutscene_AdvanceText, 
 	DreamPuff_Action_Cutscene_FastAdvanceText,
-	DreamPuff_Action_System_Quit,
-	DreamPuff_Action_System_SoftReset,
-	DreamPuff_Action_System_SoftPause,
-	DreamPuff_Action_System_QuickSave,
-	DreamPuff_Action_System_QuickLoad,
-	DreamPuff_Action_System_Fullscreen,
-	DreamPuff_Action_System_Screenshot,
+	DreamPuff_Action_System_Quit, //Command+Q, Alt+F4
+	DreamPuff_Action_System_SoftReset, //F2
+	DreamPuff_Action_System_SoftPause, //F1
+	DreamPuff_Action_System_QuickSave, //F5
+	DreamPuff_Action_System_QuickLoad, //F7
+	DreamPuff_Action_System_Fullscreen, //Alt+Return
+	DreamPuff_Action_System_Screenshot, //F12
 	DreamPuff_Action_Modifier_Control,
 	DreamPuff_Action_Modifier_Alt,
 	DreamPuff_Action_Modifier_Meta,

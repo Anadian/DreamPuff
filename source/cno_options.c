@@ -1,7 +1,7 @@
 //cno_options.c
 #include "cno_options.h"
 
-#if CNO_ALLOW_OPTIONS
+//#if CNO_ALLOW_OPTIONS
 
 #include "cno_build_info.h"
 
@@ -15,7 +15,7 @@
 #include <stdlib.h> //exit, atoi
 #endif //CNO_HAVE_STDLIB
 
-#if (CNO_OPTIONS == CNO_OPTIONS_GETOPT) && CNO_HAVE_GETOPT
+#if (CNO_OPTIONS_ENGINE == CNO_OPTIONS_ENGINE_GETOPT) && CNO_HAVE_GETOPT
 #include <getopt.h> //getopt_long
 
 cno_s8_type CNO_Options_GetOpt(int argc, char *argv[]){
@@ -78,7 +78,7 @@ cno_s8_type CNO_Options_GetOpt(int argc, char *argv[]){
 	}
 	return 0;
 }
-#elif CNO_HAVE_ARGP && (CNO_OPTIONS == CNO_OPTIONS_ARGP)
+#elif CNO_HAVE_ARGP && (CNO_OPTIONS_ENGINE == CNO_OPTIONS_ENGINE_ARGP)
 #include <argp.h> //argp_parse
 
 error_t CNO_ARGP_Parser(int key, char *arg, struct argp_state *state){
@@ -127,7 +127,54 @@ cno_u8_type CNO_Options_ARGP(int argc, char *argv[]){
 	CNO_ARGP.parser = CNO_ARGP_Parser;
 	return argp_parse(&CNO_ARGP, argc, argv, 0, 0, 0);
 }
-#endif //CNO_OPTIONS
+#elif C\H\COMMANDER && (C\OPTIONS_ENGINE == C\OPTIONS_ENGINE_COMMANDER)
+#include "commander.h"
+c\u8\ty C\Options_Commander(int argc, char *argv[]){
+	command_t commander;
+	command_init(&commander, CNO_BUILD_NAME, CNO_Build_String);
+	command_option(&commander,"-V","--version","Display version information.",NULL); //::0;
+	//command_option(&commander,"-h","--help","Display this help text.",NULL); //::0;
+	command_option(&commander,"-a","--all","Acknowledge invisible files",NULL); //::0;
+	command_option(&commander,"-A","--ansi [boolean]","Boolean: Use ANSI/xterm text colouring.",NULL); //debug:ANSI_Text_Colouring:B?=true?|false!;
+	command_option(&commander,"-b","--about-background","Display information about background process.",NULL); //::0;
+	command_option(&commander,"-B","--start-background","Start background process (daemon).",NULL); //::0;
+	command_option(&commander,"-c","--configuration","Print configuration information and exit.",NULL); //::0;
+	command_option(&commander,"-C","--configfile <file>","File: Use the given file for configuration.",NULL); //::F!;
+	command_option(&commander,"-D","--dryrun","Describe what this software would do, and what files it would change, without actually doing or changing anything.",NULL); //::0;
+	command_option(&commander,"-f","--force","Harness an energy which flows through the universe in order to do things without asking the user for permission.",NULL); //::0;
+	command_option(&commander,"-F","--fail","Don't take rejection so easily: exit at the first sign of something being wrong.",NULL); //::0;
+	command_option(&commander,"-g","--gui","Opens a window; good for letting the air out.",NULL); //::0;
+	command_option(&commander,"-G","--global-colours [boolean]","Use global terminal colour system.",NULL); //::B!;
+	command_option(&commander,"-i","--interactive","Offloads all the hard decision making onto the user.",NULL); //::0;
+	command_option(&commander,"-I","--input <file>","File: Uses the given file instead of STDIN.",NULL); //::F!;
+	command_option(&commander,"-k","--stop-background","Politely stop the background process (daemon).",NULL); //::0;
+	command_option(&commander,"-K","--kill-background","Forcefully terminate the background process (daemon); in essence: kill it!",NULL); //::0;
+	command_option(&commander,"-l","--long","",NULL); //::0;
+	command_option(&commander,"-L","--link <library>","Link a dynamic (.so) library; continues even if linking is unsuccessful.",NULL); //::F!;
+	command_option(&commander,"-N","--newdefaults","Create new default files.",NULL); //::0;
+	command_option(&commander,"-O","--output <file>","File: Tells the program to \'put out\' to the given file: whatever that means.",NULL); //::F!;
+	command_option(&commander,"-p","--preprocess","But where's postprocess?",NULL); //::0;
+	command_option(&commander,"-P","--prefix <directory>","Directory: Adds the given directory to the list of directories which contain directories, each containing list of directories to be searched to find files which list where to find the directories containing the needed files.",NULL); //::F!;
+	command_option(&commander,"-q","--quiet","... please.",NULL); //::0;
+	command_option(&commander,"-r","--recursive","Search directories recursively.",NULL); //::0;
+	command_option(&commander,"-R","--require <library>","Link a dynamic (.so) library; exits if linking is unsuccessful.",NULL); //::F!;
+	command_option(&commander,"-s","--silence","Tells the software to shut up! Doubly redundant since \'-v 0\' and \'-q\' both get the same result.",NULL); //::0;
+	command_option(&commander,"-S","--source <file>","File:Reluctantly obeys the orders contained in the given file.",NULL); //::F!;
+	command_option(&commander,"-t","--test","Run automated test.",NULL); //::0;
+	command_option(&commander,"-u","--user <username>","Username: Exempli gratia: local user -> \'luser\'.",NULL); //::W!;
+	command_option(&commander,"-U","--update","Breaks things.",NULL); //::0;
+	command_option(&commander,"-x","--execute <command>","Command: Kills the given commanding officer.",NULL); //::D!;
+	command_option(&commander,"-X","--exact <command>","Whaaaa?: Does something VERY specific: we just don't know what.",NULL); //::D!;
+	command_option(&commander,"-y","--yes","Impersonates Jim Carrey's character in the movie Yes Man.",NULL); //::0;
+	command_option(&commander,"-d","--debug [boolean]","Boolean: Enable debugging.",NULL); //debug:enabled:B?=true?|false!;
+	command_option(&commander,"-v","--verbose [value]","Number: Sets debug verbosity to the given unsigned integer: 0 being silent; 5 being maximum logging. Defaults to 3, if omitted, and 5, if specified without an argument.",NULL); //debug:verbosity:N?=3!|5?|0-5;
+	command_option(&commander,"-o","--stdout <file>","Stream: STDOUT, STDERR, FILE, or /dev/null: oh, so many choices.",NULL); //debug:standard_output:F!=STDOUT!;
+	command_option(&commander,"-e","--error <file>","Stream: Redirect stderr to the given stream; exempli gratia, STDOUT or a the name of a file.",NULL); //debug:standard_error:F!=STDERR!;
+	command_parse(&commander, argc, argv);
+	command_free(&commander);
+	return 0;
+}
+#endif //CNO_OPTIONS_ENGINE
 
 cno_u8_type CNO_Options_Process(int argc, char *argv[]){
 #if CNO_ALLOW_PRINTF
@@ -136,10 +183,12 @@ cno_u8_type CNO_Options_Process(int argc, char *argv[]){
 		CNO_printf("%d: %s\n", i, argv[i]);
 	}
 #endif //CNO_ALLOW_PRINTF
-#if CNO_HAVE_GETOPT && (CNO_OPTIONS == CNO_OPTIONS_GETOPT)
+#if CNO_HAVE_GETOPT && (CNO_OPTIONS_ENGINE == CNO_OPTIONS_ENGINE_GETOPT)
 	CNO_Options_GetOpt(argc, argv);
-#elif CNO_HAVE_ARGP && (CNO_OPTIONS == CNO_OPTIONS_ARGP)
+#elif CNO_HAVE_ARGP && (CNO_OPTIONS_ENGINE == CNO_OPTIONS_ENGINE_ARGP)
 	CNO_Options_ARGP(argc, argv);
+#elif C\H\COMMANDER && (CNO_OPTIONS_ENGINE == CNO_OPTIONS_ENGINE_COMMANDER)
+	CNO_Options_Commander(argc, argv);
 #else
 	return 0;
 #endif //CNO_OPTIONS
