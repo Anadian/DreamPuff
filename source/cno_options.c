@@ -127,9 +127,9 @@ cno_u8_type CNO_Options_ARGP(int argc, char *argv[]){
 	CNO_ARGP.parser = CNO_ARGP_Parser;
 	return argp_parse(&CNO_ARGP, argc, argv, 0, 0, 0);
 }
-#elif C\H\COMMANDER && (C\OPTIONS_ENGINE == C\OPTIONS_ENGINE_COMMANDER)
+#elif CNO_HAVE_COMMANDER && (CNO_OPTIONS_ENGINE == CNO_OPTIONS_ENGINE_COMMANDER)
 #include "commander.h"
-c\u8\ty C\Options_Commander(int argc, char *argv[]){
+cno_u8_type CNO_Options_Commander(int argc, char *argv[]){
 	command_t commander;
 	command_init(&commander, CNO_BUILD_NAME, CNO_Build_String);
 	command_option(&commander,"-V","--version","Display version information.",NULL); //::0;
@@ -187,7 +187,7 @@ cno_u8_type CNO_Options_Process(int argc, char *argv[]){
 	CNO_Options_GetOpt(argc, argv);
 #elif CNO_HAVE_ARGP && (CNO_OPTIONS_ENGINE == CNO_OPTIONS_ENGINE_ARGP)
 	CNO_Options_ARGP(argc, argv);
-#elif C\H\COMMANDER && (CNO_OPTIONS_ENGINE == CNO_OPTIONS_ENGINE_COMMANDER)
+#elif CNO_HAVE_COMMANDER && (CNO_OPTIONS_ENGINE == CNO_OPTIONS_ENGINE_COMMANDER)
 	CNO_Options_Commander(argc, argv);
 #else
 	return 0;

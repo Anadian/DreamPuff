@@ -24,9 +24,9 @@ typedef enum DreamPuff_Action_Name_enum{
 	DreamPuff_Action_Menu_Cancel, //static B
 	DreamPuff_Action_Menu_Auxilary, //X
 	DreamPuff_Action_Menu_Default, //Y
-	DP\Action_Menu_PanLeft, //LB
-	DP\Action_Menu_PanRight, //RB
-	DP\Action_Menu_QuickScroll,
+	DreamPuff_Action_Menu_PanLeft, //LB
+	DreamPuff_Action_Menu_PanRight, //RB
+	DreamPuff_Action_Menu_QuickScroll,
 	DreamPuff_Action_Gameplay_SystemMenu, //static
 	DreamPuff_Action_Gameplay_Up,
 	DreamPuff_Action_Gameplay_Down,
@@ -43,8 +43,8 @@ typedef enum DreamPuff_Action_Name_enum{
 	DreamPuff_Action_Gameplay_GameplayMenu,
 	DreamPuff_Action_Gameplay_Inventory, //I Up
 	DreamPuff_Action_Gameplay_Map, //M Down
-	DP\Action_Gameplay_Status, //O Left
-	DP\Action_Gameplay_HelpLog, //P Right
+	DreamPuff_Action_Gameplay_Status, //O Left
+	DreamPuff_Action_Gameplay_HelpLog, //P Right
 	DreamPuff_Action_Gameplay_Options,
 	DreamPuff_Action_Cutscene_SystemMenu, //static
 	DreamPuff_Action_Cutscene_AdvanceText, 

@@ -129,22 +129,23 @@
 // cno_u8_type CNO_Log_Quit() return 0;
 // #endif //CNO_LOG_ENGINE
 
-c\u8\ty CNO_Log_OpenFile_private(c\file\ty *filehandle, C\Log\ty *log);
-c\u8\ty CNO_Log_CloseFile_private(C\Log\ty *log);
+cno_u8_type CNO_Log_OpenFile_private(cno_file_type *filehandle, CNO_Log_type *log);
+cno_u8_type CNO_Log_CloseFile_private(CNO_Log_type *log);
 
-cno_u8_type CNO_Log_Init(/*CNO_Log_type *log, C\Log_Priority\ty verbosity, cno_u8_type colour, cno_u8_type stream, cno_cstring_type filename*/){
-	c\u8\ty _return;
+cno_u8_type CNO_Log_Init(/*CNO_Log_type *log, CNO_Log_Priority_type verbosity, cno_u8_type colour, cno_u8_type stream, cno_cstring_type filename*/){
+	cno_u8_type _return;
 #if CNO_LOG_ENGINE == CNO_LOG_ENGINE_STDIO && !defined(CNO_NO_GLOBAL_STATE)
 #if CNO_THREAD_ENGINE != CNO_THREAD_ENGINE_NONE
+	CNO_Mutex_Lock(&CNO_Log_Mutex);
+	CNO_GlobalLog = {verbosity = 5, colour = 1, stream = 2, file = NULL, persist = 0,  overwrite = 0};
 	
-	_return = CNO_Log_Set(&CNO_DefaultLog, {verbosity = 5, colour = 1, stream = 2, file = NULL, persist = 0,  overwrite = 0});
 #else
 	_return = 0;
 #endif //CNO_LOG_ENGINE == CNO_LOG_ENGINE_STDIO && !defined(CNO_NO_GLOBAL_STATE)
 	return _return;
 }
-c\u8\ty CNO_Log_Set(C\Log\ty *log, C\Log\ty value){
-	c\u8\ty _return;
+cno_u8_type CNO_Log_Set(CNO_Log_type *log, CNO_Log_type value){
+	cno_u8_type _return;
 #if CNO_LOG_ENGINE == CNO_LOG_ENGINE_STDIO
 	CNO_Mutex_Create*log
 	*log = value;

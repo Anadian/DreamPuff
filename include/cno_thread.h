@@ -9,16 +9,16 @@ extern "C"{
 
 #include "cno_build.h"
 
-#if (CNO_THREAD_ENGINE == CNO_THREAD_ENGINE_SDL2) && C\H\SDL2
+#if (CNO_THREAD_ENGINE == CNO_THREAD_ENGINE_SDL2) && CNO_HAVE_SDL2
 #include <SDL2/SDL_thread.h>
 
-typedef SDL_Thread* c\thread\ty;
-typedef int c\threadfunction\ty;
-#endif //(CNO_THREAD_ENGINE == CNO_THREAD_ENGINE_SDL2) && C\H\SDL2
+typedef SDL_Thread* cno_thread_type;
+typedef int cno_threadfunction_type;
+#endif //(CNO_THREAD_ENGINE == CNO_THREAD_ENGINE_SDL2) && CNO_HAVE_SDL2
 
-c\u8\ty CNO_Thread_Create(c\thread\ty thread, c\threadfunction\ty function, c\cstring\ty name);
-c\u8\ty CNO_Thread_Wait(c\thread\ty thread);
-//c\u8\ty CNO_Thread_Destroy(c\thread\ty thread);
+cno_u8_type CNO_Thread_Create(cno_thread_type thread, cno_threadfunction_type function, cno_cstring_type name);
+cno_u8_type CNO_Thread_Wait(cno_thread_type thread);
+//cno_u8_type CNO_Thread_Destroy(cno_thread_type thread);
 
 #ifdef __cplusplus
 }

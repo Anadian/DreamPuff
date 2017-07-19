@@ -41,7 +41,7 @@ void gopt_errors (const char *argv0, const struct option *options)
 
   if (options[bad_option_index].short_name)
   {
-    fprintf (stderr, "%s: unrecognised option -%c\n", argv0, options[bad_option_index].short_name);
+    fprintf (stderr, "%s: unrecognised option -%cno_n", argv0, options[bad_option_index].short_name);
     exit (EX_USAGE);
   }
 

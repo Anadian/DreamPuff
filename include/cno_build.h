@@ -64,6 +64,7 @@
 #if !defined(CNO_TYPEDEFS_SET)
 typedef unsigned char cno_u8_type;
 typedef signed char cno_s8_type;
+typedef size_t cno_size_type;
 typedef unsigned short cno_u16_type;
 typedef signed short cno_s16_type;
 typedef unsigned long cno_u32_type;
@@ -89,13 +90,14 @@ typedef void* cno_utf8_type;
 #define CNO_HAVE_STDARG 1
 #define CNO_HAVE_ERRNO 1
 #define CNO_HAVE_ASSERT 1
+
 #define CNO_HAVE_UNISTD 1
 #define CNO_HAVE_REGEX 1
 #define CNO_HAVE_PCRE 0
 #define CNO_HAVE_UUID 1
 #define CNO_HAVE_WHEREAMI 1
-#define C\H\GLOB 0
-#define C\H\DIRENT 0
+#define CNO_HAVE_GLOB 0
+#define CNO_HAVE_DIRENT 0
 #define CNO_HAVE_TINYFILES 1
 #define CNO_HAVE_TINYFILEDIALOGS 1
 #define CNO_HAVE_STRETCHYBUFFER 1
@@ -111,11 +113,12 @@ typedef void* cno_utf8_type;
 #define CNO_HAVE_ARCHIVE 1
 #define CNO_HAVE_GETOPT 0
 #define CNO_HAVE_ARGP 0
-#define CNO_HAVE_COMMANDER 1
+#define CNO_HAVE_COMMANDER 0
+#define CNO_HAVE_GOPT 1
 #define CNO_HAVE_PTHREAD 0
 #define CNO_HAVE_SDL2 1
-#define C\H\USB 0
-#define C\H\GAMEPAD
+#define CNO_HAVE_USB 0
+#define CNO_HAVE_GAMEPAD 0
 
 #define CNO_DEVICE_UNKNOWN 0
 #define CNO_DEVICE_DESKTOP 1
@@ -189,7 +192,7 @@ typedef void* cno_utf8_type;
 #define CNO_REGULAR_EXPRESSIONS_ENGINE_OTHER 1
 #define CNO_REGULAR_EXPRESSIONS_ENGINE_REGEX 2
 #define CNO_REGULAR_EXPRESSIONS_ENGINE_PCRE 3
-#define C\REGULAR_EXPRESSIONS_ENGINE_TINY_REGEX_C 4
+#define CNO_REGULAR_EXPRESSIONS_ENGINE_TINY_REGEX_C 4
 #if !defined(CNO_REGULAR_EXPRESSIONS_ENGINE)
 #if CNO_HAVE_REGEX
 #define CNO_REGULAR_EXPRESSIONS_ENGINE CNO_REGULAR_EXPRESSIONS_ENGINE_REGEX
