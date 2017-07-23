@@ -137,6 +137,7 @@ cno_u8_type CNO_Log_Init(/*CNO_Log_type *log, CNO_Log_Priority_type verbosity, c
 #if CNO_LOG_ENGINE == CNO_LOG_ENGINE_STDIO && !defined(CNO_NO_GLOBAL_STATE)
 #if CNO_THREAD_ENGINE != CNO_THREAD_ENGINE_NONE
 	CNO_Mutex_Lock(&CNO_Log_Mutex);
+#endif //CNO_THREAD_ENGINE != CNO_THREAD_ENGINE_NONE
 	CNO_GlobalLog = {verbosity = 5, colour = 1, stream = 2, file = NULL, persist = 0,  overwrite = 0};
 	
 #else

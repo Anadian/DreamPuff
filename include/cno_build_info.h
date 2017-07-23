@@ -15,14 +15,19 @@ cno_u8_type CNO_Build_String[CNO_BUFFER_MAXSIZE];
 
 HUD placement:
 status:
-name, level, state (if noteworthy)
-hp,
-ep,
+name, level/lives, state
+hp, bar-red, curent/max ±delta
+/mp, bar-green, current/max ±delta //not Kirby
+//ep, bar-blue, current/max ±delta //not Kirby
+
+EXP, purple-bar
+GP, gold, current
 
 [element]:off, minimal, standard (only for the HUD itself), comprehensive, custom
 scaleable radius
 12 slots
-fade: auto, toggle, off
+fade for HUD: auto, toggle, off
+fade for elemant: fast, medium, slow.
 Status (TL), game time/location/direction/weather (TC), Navigation/Alert (TR) connectivity and wall time
 Mission info (tutorial hints),  (beacon), controller state
 count, reticle, timers/splits
@@ -37,9 +42,28 @@ Reaction 0-10
 Accuracy(skill) 0-10
 Knowledge 0-10 //2 points for mechanics, map, location, equipment, opponents
 Priority lazy, vengeance, equalizer
-Strategy methodical, oddball
+Strategy methodical, statistical, oddball
 Attention precise, general
 Caution risky, safe	//stealth v aggression
+
+Map colours:
+player green
+allies blue
+neutrals yellow
+hostile red
+unlocked and visited doors blue
+unlocked and non-visited doors yellow
+locked doors red
+red exclamation mark primary objection
+yellow exclamation mark secondary objectives
+blue exclamation marks completed objects?
+yellow question mark secrets non found
+blue question marks secrets found
+lighter background = higher ground
+normal black
+water cyan
+lava red/pink
+buildings brown/grey
 
 Display
 Sound

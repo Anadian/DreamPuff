@@ -1,18 +1,18 @@
-//cno_mutex.c
+//CNO_Mutex.c
 
-#include "cno_mutex.h"
+#include "CNO_Mutex.h"
 
 #if CNO_HAVE_STDIO
 #include <stdio.h>
 #endif //CNO_HAVE_STDIO
 
-#if CNO_THREAD_ENGINE == CNO_THREAD_ENGINE_SDL2
+#if CNO_HAVE_SDL2
 #include <SDL2/SDL_error.h>
-#endif //CNO_THREAD_ENGINE == CNO_THREAD_ENGINE_SDL2
+#endif //CNO_HAVE_SDL2
 
-cno_u8_type CNO_Mutex_Create(cno_mutex_type *mutex){
+cno_u8_type CNO_Mutex_Create(CNO_Mutex_type *mutex){
 	cno_u8_type _return;
-#if CNO_THREAD_ENGINE == CNO_THREAD_ENGINE_SDL2
+#if CNO_ALLOW_THREADS && CNO_HAVE_SDL2
 	*mutex = SDL_CreateMutex();
 	if(*mutex != NULL) _return = 1;
 	else{
@@ -21,12 +21,12 @@ cno_u8_type CNO_Mutex_Create(cno_mutex_type *mutex){
 	}
 #else
 	_return = 0;
-#endif //CNO_THREAD_ENGINE == CNO_THREAD_ENGINE_SDL2
+#endif //CNO_ALLOW_THREADS && CNO_HAVE_SDL2
 	return _return;
 }
-cno_u8_type CNO_Mutex_Lock(cno_mutex_type *mutex){
+cno_u8_type CNO_Mutex_Lock(CNO_Mutex_type *mutex){
 	cno_u8_type _return;
-#if CNO_THREAD_ENGINE == CNO_THREAD_ENGINE_SDL2
+#if CNO_ALLOW_THREADS && CNO_HAVE_SDL2
 	if(SDL_LockMutex(*mutex) == 0) _return = 1;
 	else{
 		_return = 0;
@@ -34,12 +34,12 @@ cno_u8_type CNO_Mutex_Lock(cno_mutex_type *mutex){
 	}
 #else
 	_return = 0;
-#endif //
+#endif //CNO_ALLOW_THREADS && CNO_HAVE_SDL2
 	return _return;
 }
-cno_u8_type CNO_Mutex_Unlock(cno_mutex_type *mutex){
+cno_u8_type CNO_Mutex_Unlock(CNO_Mutex_type *mutex){
 	cno_u8_type _return;
-#if CNO_THREAD_ENGINE == CNO_THREAD_ENGINE_SDL2
+#if CNO_ALLOW_THREADS && CNO_HAVE_SDL2
 	if(SDL_UnlockMutex(*mutex) == 0) _return = 1;
 	else{
 		_return = 0;
@@ -47,18 +47,18 @@ cno_u8_type CNO_Mutex_Unlock(cno_mutex_type *mutex){
 	}
 #else
 	_return = 0;
-#endif //CNO_THREAD_ENGINE == CNO_THREAD_ENGINE_SDL2
+#endif //CNO_ALLOW_THREADS && CNO_HAVE_SDL2
 	return _return;
 }
-cno_u8_type CNO_Mutex_Destroy(cno_mutex_type *mutex){
+cno_u8_type CNO_Mutex_Destroy(CNO_Mutex_type *mutex){
 	cno_u8_type _return;
-#if CNO_THREAD_ENGINE == CNO_THREAD_ENGINE_SDL2
+#if CNO_ALLOW_THREADS && CNO_HAVE_SDL2
 	if(CNO_Mutex_Unlock(*mutex) == 1){
 		SDL_DestroyMutex(*mutex);
 		_return = 1;
 	} else _return = 0;
 #else
 	_return = 0;
-#endif //CNO_THREAD_ENGINE == CNO_THREAD_ENGINE_SDL2
+#endif //CNO_ALLOW_THREADS && CNO_HAVE_SDL2
 	return _return;
 }

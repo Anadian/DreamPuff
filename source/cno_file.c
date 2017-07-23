@@ -2,19 +2,19 @@
 
 #include "cno_file.h"
 
-#if C\H\STDIO
+#if CNO_HAVE_STDIO
 #include <stdio.h> //f*
-#endif //C\H\STDIO
-#if C\H\ERRNO
+#endif //CNO_HAVE_STDIO
+#if CNO_HAVE_ERRNO
 #include <errno.h> //errno
-#if C\H\STRING
+#if CNO_HAVE_STRING
 #include <string.h> //strerror
-#endif //C\H\STRING
-#endif //C\H\ERRNO
+#endif //CNO_HAVE_STRING
+#endif //CNO_HAVE_ERRNO
 
-c\u8\ty C\File_Open(c\file\ty *file, c\cstring\ty mode, c\cstring\ty filename){
-	c\u8\ty _return;
-#if C\H\STDIO
+cno_u8_type CNO_File_Open(cno_file_type *file, cno_cstring_type mode, cno_cstring_type filename){
+	cno_u8_type _return;
+#if CNO_HAVE_STDIO
 	FILE* filehandle;
 	filehandle = fopen(filename, mode);
 	if(filehandle != NULL){
@@ -22,23 +22,23 @@ c\u8\ty C\File_Open(c\file\ty *file, c\cstring\ty mode, c\cstring\ty filename){
 		*file = filehandle;
 	} else{
 		_return = 0;
-		//c\u8\ty message_buffer[CNO_BUFFER_MAXSIZE];
-#if C\H\ERRNO && C\H\STRING
+		//cno_u8_type message_buffer[CNO_BUFFER_MAXSIZE];
+#if CNO_HAVE_ERRNO && CNO_HAVE_STRING
 		fprintf(stderr, "Couldn't open file '%s': (mode: '%s' errno: %d description: '%s')\n", filename, mode, errno, strerror(errno));
-#elif C\H\ERRNO
+#elif CNO_HAVE_ERRNO
 		fprintf(stderr, "Couldn't open file '%s': (mode '%s' errno: %d)\n", filename, mode, errno);
 #else
 		fprintf(stderr, "Couldn't open file '%s': (mode: '%s')\n", filename, mode);
-#endif //C\H\ERRNO && C\H\STRING
+#endif //CNO_HAVE_ERRNO && CNO_HAVE_STRING
 	}
 #else
 	_return = 0;
-#endif //C\H\STDIO
+#endif //CNO_HAVE_STDIO
 	return _return;
 }
-c\u8\ty C\File_Sync(c\file\ty *file){
-	c\u8\ty _return;
-#if C\H\STDIO
+cno_u8_type CNO_File_Sync(cno_file_type *file){
+	cno_u8_type _return;
+#if CNO_HAVE_STDIO
 	int fflsuh_return;
 	fflush_return = fflush(*file);
 	if(fflush_return == 0){
@@ -48,12 +48,12 @@ c\u8\ty C\File_Sync(c\file\ty *file){
 	}
 #else
 	_return = 0;
-#endif //C\H\STDIO
+#endif //CNO_HAVE_STDIO
 	return _return;
 }		
-c\u8\ty C\File_Close(c\file\ty *file){
-	c\u8\ty _return;
-#if C\H\STDIO
+cno_u8_type CNO_File_Close(cno_file_type *file){
+	cno_u8_type _return;
+#if CNO_HAVE_STDIO
 	int fclose_return;
 	fclose_return = fclose(*file);
 	if(fclose_return == 0){
@@ -63,7 +63,7 @@ c\u8\ty C\File_Close(c\file\ty *file){
 	}
 #else
 	_return = 0;
-#endif //C\H\STDIO
+#endif //CNO_HAVE_STDIO
 	return _return;
 }
 	

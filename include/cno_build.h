@@ -62,9 +62,9 @@
 #endif //!defined(CNO_BUFFER_MAXSIZE)
 
 #if !defined(CNO_TYPEDEFS_SET)
+typedef size_t cno_size_type;
 typedef unsigned char cno_u8_type;
 typedef signed char cno_s8_type;
-typedef size_t cno_size_type;
 typedef unsigned short cno_u16_type;
 typedef signed short cno_s16_type;
 typedef unsigned long cno_u32_type;
@@ -91,29 +91,19 @@ typedef void* cno_utf8_type;
 #define CNO_HAVE_ERRNO 1
 #define CNO_HAVE_ASSERT 1
 
+//if unix
 #define CNO_HAVE_UNISTD 1
-#define CNO_HAVE_REGEX 1
-#define CNO_HAVE_PCRE 0
+#define CNO_HAVE_PCRE 1
 #define CNO_HAVE_UUID 1
+
 #define CNO_HAVE_WHEREAMI 1
-#define CNO_HAVE_GLOB 0
-#define CNO_HAVE_DIRENT 0
 #define CNO_HAVE_TINYFILES 1
 #define CNO_HAVE_TINYFILEDIALOGS 1
 #define CNO_HAVE_STRETCHYBUFFER 1
 #define CNO_HAVE_SDS 0
 #define CNO_HAVE_UTF8 1
-#define CNO_HAVE_UTEST 0
-#define CNO_HAVE_MINCTEST 0
-#define CNO_HAVE_MUNIT 0
-#define CNO_HAVE_LOGH 0
-#define CNO_HAVE_CLOGGED 0
-#define CNO_HAVE_INIH 0
 #define CNO_HAVE_PARSON 1
 #define CNO_HAVE_ARCHIVE 1
-#define CNO_HAVE_GETOPT 0
-#define CNO_HAVE_ARGP 0
-#define CNO_HAVE_COMMANDER 0
 #define CNO_HAVE_GOPT 1
 #define CNO_HAVE_PTHREAD 0
 #define CNO_HAVE_SDL2 1
@@ -243,19 +233,7 @@ typedef void* cno_utf8_type;
 #endif //!defined(CNO_JSON_ENGINE)
 
 //cno_settings: no options on msvc
-#define CNO_OPTIONS_ENGINE_NONE 0
-#define CNO_OPTIONS_ENGINE_OTHER 1
-#define CNO_OPTIONS_ENGINE_GETOPT 2
-#define CNO_OPTIONS_ENGINE_ARGP 3
-#define CNO_OPTIONS_ENGINE_COMMANDER 4
-#define CNO_OPTIONS_ENGINE_GOPT 5
-#if !defined(CNO_OPTIONS_ENGINE)
-#if CNO_HAVE_GOPT
-#define CNO_OPTIONS_ENGINE CNO_OPTIONS_ENGINE_GOPT
-#else
-#define CNO_OPTIONS_ENGINE CNO_OPTIONS_ENGINE_NONE
-#endif //CNO_HAVE_ARGP
-#endif //!defined(CNO_SETTINGS_OPTIONS_ENGINE)
+#define CNO_ALLOW_OPTIONS 1
 
 //cno_settings
 #define CNO_CONFIG_ENGINE_NONE 0
@@ -297,17 +275,7 @@ typedef void* cno_utf8_type;
 #endif //CNO_HAVE_SDL2
 #endif //!defined(CNO_MIDDLEWARE_ENGINE)
 
-#define CNO_THREAD_ENGINE_NONE 0
-#define CNO_THREAD_ENGINE_OTHER 1
-#define CNO_THREAD_ENGINE_PTHREAD 2
-#define CNO_THREAD_ENGINE_SDL2 3
-#if !defined(CNO_THREAD_ENGINE)
-#if CNO_HAVE_SDL2
-#define CNO_THREAD_ENGINE CNO_THREAD_ENGINE_SDL2
-#else
-#define CNO_THREAD_ENGINE CNO_THREAD_ENGINE_NONE
-#endif //CNO_HAVE_SDL2
-#endif //!defined(CNO_THREAD_ENGINE)
+//#define C\A\THREADS
 
 #if CNO_HAVE_STDIO
 #define CNO_ALLOW_PRINTF 1
