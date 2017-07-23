@@ -14,6 +14,10 @@
 #define CNO_BUILD_TIME __TIME__
 #endif //!defined(CNO_BUILD_TIME)
 
+#if !defined(CNO_BUILD_COMMIT)
+#define CNO_BUILD_COMMIT GIT_COMMIT
+#endif //!defined(CNO_BUILD_COMMIT)
+
 #include "c_predefined.h"
 
 #if !defined(CNO_IS_C99) 
@@ -27,11 +31,27 @@
 #endif //__STDC_VERSION__
 #endif //!defined(CNO_IS_C99) 
 
-#define CNO_BUILD_GOAL_BINARY 1
-#define CNO_BUILD_GOAL_LIBRARY 2
 #if !defined(CNO_BUILD_GOAL)
-#define CNO_BUILD_GOAL CNO_BUILD_GOAL_BINARY
+#if defined(CNO_BUILD_FOR_BINARY)
+#define CNO_BUILD_GOAL "binary"
+#elif defined(CNO_BUILD_FOR_LIBRARY)
+#define CNO_BUILD_GOAL "library"
+#else
+#define CNO_BUILD_GOAL "binary"
+#endif //defined(CNO_BUILD_FOR_BINARY)
 #endif //!defined(CNO_BUILD_GOAL)
+
+#if !defined(CNO_BUILD_ARCHITECTURE)
+#define CNO_BUILD_ARCHITECTURE C_ARCHITECTURE
+#endif //!defined(CNO_BUILD_ARCHITECTURE)
+
+#if !defined(CNO_BUILD_SYSTEM)
+#define CNO_BUILD_SYSTEM C_SYSTEM
+#endif //!defined(CNO_BUILD_SYSTEM)
+
+#if !defined(CNO_BUILD_COMPILER)
+#define CNO_BUILD_COMPILER C_COMPILER
+#endif //!defined(CNO_BUILD_COMPILER)
 
 #if !defined(CNO_DEBUG)
 #if defined(NDEBUG)

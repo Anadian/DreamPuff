@@ -123,7 +123,7 @@ FLAGS=$(FLAG_INCLUDE_SEARCH_DIRECTORIES) $(FLAG_STATIC_LIBRARY_SEARCH_DIRECTORIE
 endif #($(origin FLAGS),undefined)
 $(info FLAGS:$(FLAGS))
 
-.PHONY: build-binary install-binary build-library install-library run execute test commit push clean update freshen fresh-install upgrade build-all install-all uninstall-all build all install uninstall debug config help
+.PHONY: build-binary install-binary build-library install-library run execute test clean update freshen fresh-install upgrade build-all install-all uninstall-all build all install uninstall debug config help
 %.o:
 	$(COMPILER) $(INCLUDES) -c $(SOURCE_DIR)/$(subst .o,.c,$(notdir $@)) -o $@
 build-binary: $(OBJECTS)
@@ -146,14 +146,6 @@ run: build-binary
 execute: run
 test: build-binary
 	$(BIN) -t
-add:
-	git add --all .
-commit: add
-	git commit -m 'Lazy build message.'
-push: commit
-	git push origin master
-pull:
-	git pull origin
 clean: 
 	rm -rf $(OBJECTSDIR)
 	mkdir $(OBJECTSDIR)
@@ -184,10 +176,6 @@ help:
 	$(info uninstall-library: Uninstall the library only.)
 	$(info run,execute: Run the binary.)
 	$(info test: Run the binary in test mode.)
-	$(info add: Add changes and new files to the git repository.)
-	$(info commit: Commit to the git repository with a default message.)
-	$(info push: Push commits to remote origin.)
-	$(info pull: Pull changes from remote origin.)
 	$(info clean: Remove objects and temporary file or directories.)
 	$(info update: Get the latest changes to the code.)
 	$(info freshen: Get the latest changes to the code and rebuild binary.)
