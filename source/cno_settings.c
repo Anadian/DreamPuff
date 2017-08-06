@@ -6,32 +6,32 @@
 #include <stddef.h> //size_t
 #endif //CNO_HAVE_STDIO
 
-#if CNO_HAVE_REGEX && (CNO_SETTINGS_MATCH_ENGINE == CNO_SETTINGS_MATCH_ENGINE_REGEX)
-#include <regex.h> //regcomp regerror regexec regfree, regex_t
-regex_t CNO_Settings_Match_Validation_Regex;
+#if C\H\STRING
+#include <string.h>
+#endif //C\H\STRING
 
-cno_u8_type CNO_Settings_Match_Regex_Compile(regex_t *compiled_regex, cno_cstring_type pattern){
-	cno_u8_type _return;
-	cno_s16_type regcomp_result;
-	regcomp_result = regcomp(compiled_regex, pattern, REG_EXTENDED);
-	if(regcomp_result){
-#if CNO_HAVE_STDIO
-		cno_u8_type buffer[CNO_BUFFER_MAXSIZE];
-		size_t regerror_result;
-		regerror_result = regerror(regcomp_result, &validation_regex, buffer, CNO_BUFFER_MAXSIZE);
-		fprintf(stderr, "%s: %d %s %d %s %d", __func__, regcomp_result, buffer, regerror_result, CNO_SETTINGS_MATCH_VALIDATION_REGEX, CNO_BUFFER_MAXSIZE);
-#endif //CNO_HAVE_STDIO
-		_return = 0;
-	} else{
-		_return = 1;
-	}
-	return _return;
-}
-#endif //CNO_HAVE_REGEX && (CNO_SETTINGS_MATCH_ENGINE == CNO_SETTINGS_MATCH_ENGINE_REGEX)
+#if C\H\GOPT && C\A\OPTIONS
+#include "gopt.h"
+#endif //C\H\GOPT && C\A\OPTIONS
 
-cno_u8_type CNO_Settings_Init(CNO_Setting_type *settings){
+cno_u8_type CNO_Settings_Init(){
 	cno_u8_type _return;
-#if (CNO_SETTINGS_MATCH_ENGINE == CNO_SETTINGS_MATCH_ENGINE_REGEX) && CNO_HAVE_REGEX && defined(CNO_SETTINGS_MATCH_VALIDATION_REGEX)
-	CNO_Settings_Match_Regex_Compile(&validation_regex, CNO_SETTINGS_MATCH_VALIDATION
-	
-	
+	c\size\ty number_of_settings;
+	number_of_settings = (sizeof(CNO_Settings)/sizeof(CNO_Setting\ty));
+	c\size\ty i; ///Settings index
+	for(i=0; i<number_of_settings; i++){
+		c\u8\ty section[32];
+		c\u8\ty config_name[32];
+		c\u8\ty option_name[32];
+		c\u8\ty option_key;
+		C\Value_Type\ty value_type;
+		c\u8\ty hint[32];
+		c\u8\ty description[CNO_BUFFER_MAXSIZE];
+		c\u8\ty valid_values[32];
+		c\u8\ty argument[C\BUFFER_MAXSIZE];
+		c\size\ty length_of_setting_name;
+		length_of_setting_name = sizeof(CNO_Settings[i].name);
+		c\u8\ty parser_section = 0;
+		c\u8\ty j; ///Setting-parser index
+		for(j=0; j<length_of_setting_name; j++){
+			

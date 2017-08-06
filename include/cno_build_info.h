@@ -95,15 +95,18 @@ scale-to-any-resolution, scale-to-nearest-aspect, no-scaling
 [viewport scale if any or nearest-aspect]
 
 Sound: (unless -A)
+audio device
 master volume
 gameplay volume
-cutscene volume
+cutscene/media volume
 menu volume
 Event music
 diagestic music
 ui music
 ambience
 ui sound effects
+weapon sound effects
+player sound effects
 diagestic sound effects
 miscellaneous sound effects
 [categorical muting]
@@ -112,6 +115,7 @@ dialog voice
 barks and gameplay-relevant voice
 chitchat voice
 players voice
+other players voice for mic chat
 game menu volume reduction
 channels
 samplerate
@@ -168,6 +172,10 @@ ADS (aim-down-site): x/y-invert, sensitivity, speed, correction,
 //view point
 //rot point
 
+LT: Aim(FPS)/Target(TPS)	RT: Shoot(Ranged weapon)/Block(Melees weapon)
+LB: Low Profile Mod (Sneak)	RB: High Profile Mod (Force/Command)
+Dpad (Weapons/Inventory/Stance/(hold) menus)
+
 Network:
 Online
 Account
@@ -176,7 +184,20 @@ Encrypt save data
 Graphics:
 Gamma correction
 Effects
-Quality
+Quality:
+	Blood off/mild/maximum
+	Gameplay/Cutscene Model/Texture quality for Player/Actor/Object/Environment/Shrubbery Very-Low/Low/Medium/High/Very-High
+	Texture Effects duration short/medium/forever
+	Shadow Quality
+	Lighting Quality
+	Reflection off/Quality
+	Transparency Quality
+	Post Effects //bloom, colour adjustments
+	Despawn fade delay short/long/forever
+	Particle effects low/med/high
+	Draw Distance radius small/medium/large/infinite
+	Draw-Distance quality-drop-off scale none/linear/exponential
+	Texture scaling none/linear/bilinear/...
 Content
 HUD
 
