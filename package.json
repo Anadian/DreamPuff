@@ -1,0 +1,28 @@
+{
+	"name": "DreamPuff",
+	"version": "0.2.1",
+	"Description": "A Kirby fan-game engine.",
+	"keywords": "kirby game engine c sdl2 dreampuff dream puff nintendo platformer action adventure open source libre free",
+	"homepage": "https://canosw.com/software/DreamPuff",
+	"license": "(MIT OR Apache)",
+	"author": {
+		"name": "Anadian",
+		"email": "willanad@yandex.com",
+		"github": "https://github.com/Anadian"
+	},
+	"main": "source/main.c",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Anadian/DreamPuff.git"
+	},
+	"dependencies": [
+		"sdl2",
+		"libarchive"
+	],
+	"devDependencies": [
+		"gnu_make"
+	],
+	"optionalDependencies": [
+		"pcre2"
+	]
+}

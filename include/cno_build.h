@@ -198,13 +198,7 @@ typedef void* cno_utf8_type;
 #endif //!defined(CNO_ASSERTION_ENGINE)
 
 //cno_regular_expressions: no regex on msvc
-#define CNO_REGULAR_EXPRESSIONS_ENGINE_NONE 0
-#define CNO_REGULAR_EXPRESSIONS_ENGINE_OTHER 1
-#define CNO_REGULAR_EXPRESSIONS_ENGINE_PCRE 3
-#if !defined(CNO_REGULAR_EXPRESSIONS_ENGINE)
-#define CNO_REGULAR_EXPRESSIONS_ENGINE CNO_REGULAR_EXPRESSIONS_ENGINE_NONE
-#endif //CNO_HAVE_REGEX
-#endif //!defined(CNO_SETTINGS_MATCH_ENGINE)
+//CDM(
 
 //cno_directories
 #define CNO_DIRECTORY_ENGINE_NONE 0
@@ -233,31 +227,19 @@ typedef void* cno_utf8_type;
 #endif //!defined(CNO_TEST_ENGINE)
 
 //cno_json
-#define CNO_JSON_ENGINE_NONE 0
-#define CNO_JSON_ENGINE_OTHER 1
-#define CNO_JSON_ENGINE_PARSON 2
-#if !defined(CNO_JSON_ENGINE)
-#if CNO_HAVE_PARSON
-#define CNO_JSON_ENGINE CNO_JSON_ENGINE_PARSON
-#else
-#define CNO_JSON_ENGINE CNO_JSON_ENGINE_NONE
-#endif //CNO_HAVE_PARSON
-#endif //!defined(CNO_JSON_ENGINE)
+//CDM(C\A\JSON,1)
 
 //cno_settings: no options on msvc
-#define CNO_ALLOW_OPTIONS 1
+//CDM(C\A\OPTIONS,1)
 
 //cno_settings
-#define CNO_CONFIG_ENGINE_NONE 0
-#define CNO_CONFIG_ENGINE_OTHER 1
-#define CNO_CONFIG_ENGINE_PARSON 3
-#if !defined(CNO_CONFIG_ENGINE)
-#if CNO_HAVE_PARSON
-#define CNO_CONFIG_ENGINE CNO_CONFIG_ENGINE_PARSON
+#if !defined(C\A\CONFIG)
+#if C\A\JSON == 1
+#define C\A\CONFIG 1
 #else
-#define CNO_CONFIG_ENGINE CNO_CONFIG_ENGINE_NONE
-#endif //CNO_HAVE_INIH
-#endif //!defined(CNO_SETTINGS_CONFIG_ENGINE)
+#define C\A\CONFIG 0
+#endif //C\A\JSON == 1
+#endif //!defined(C\A\CONFIG)
 
 //cno_log
 #if !defined(C\A\LOG)
