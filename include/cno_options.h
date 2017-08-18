@@ -21,7 +21,6 @@ CNO_Option_type CNO_Options = {
 	//{'B',"start-background",(GOPT_ARGUMENT_FORBIDDEN),0,NULL},//Start background process (daemon).
 	{'c',"configuration",(GOPT_ARGUMENT_FORBIDDEN),0,NULL},//Print configuration information and exit.
 	{'C',"configfile",(GOPT_ARGUMENT_REQUIRED|GOPT_ARGUMENT_NO_HYPHEN),0,NULL},//File: Use the given file for configuration.
-	//{'D',"dryrun",(GOPT_ARGUMENT_FORBIDDEN),0,NULL},//Describe what this software would do, and what files it would change, without actually doing or changing anything.
 	//{'f',"force",(GOPT_ARGUMENT_FORBIDDEN),0,NULL},//Harness an energy which flows through the universe in order to do things without asking the user for permission.
 	{'F',"fail",(GOPT_ARGUMENT_FORBIDDEN),0,NULL},//Don't take rejection so easily: exit at the first sign of something being wrong.
 	{'g',"gui",(GOPT_ARGUMENT_OPTIONAL),0,NULL},//Opens a window; good for letting the air out.
@@ -32,6 +31,7 @@ CNO_Option_type CNO_Options = {
 	//{'K',"kill-background",(GOPT_ARGUMENT_FORBIDDEN),0,NULL},//Forcefully terminate the background process (daemon); in essence: kill it!
 	//{'l',"long",(GOPT_ARGUMENT_FORBIDDEN),0,NULL},//
 	{'L',"link",(GOPT_ARGUMENT_REQUIRED|GOPT_ARGUMENT_NO_HYPHEN),0,NULL},//Link a dynamic (.so) library; continues even if linking is unsuccessful.
+	{'n',"dryrun",(GOPT_ARGUMENT_FORBIDDEN),0,NULL},//Describe what this software would do, and what files it would change, without actually doing or changing anything.
 	{'N',"newdefaults",(GOPT_ARGUMENT_FORBIDDEN),0,NULL},//Create new default files.
 	{'O',"output",(GOPT_ARGUMENT_REQUIRED|GOPT_ARGUMENT_NO_HYPHEN),0,NULL},//File: Tells the program to \'put out\' to the given file: whatever that means.
 	//{'p',"preprocess",(GOPTARGUMENT_FORBIDDEN),0,NULL},//But where's postprocess?
@@ -57,6 +57,7 @@ CNO_Option_type CNO_Options = {
 
 cno_u8_type CNO_Options_Init();
 cno_s8_type CNO_Options_Process(int argc, char *argv[]);
+cno\cstring_type CNO_Options_Query(cno_cstring_type key, cno_u32_type *count);
 cno_u8_type CNO_Options_Quit();
 
 #ifdef __cplusplus

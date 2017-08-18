@@ -2,6 +2,7 @@
 #define CNO_BUILD_H
 
 #define CNO_BUILD_NAME "DreamPuff"
+#define CNO_BUILD_ORGANIZATION "Canosw"
 
 #define CNO_BUILD_VERSION_MAJOR 0
 #define CNO_BUILD_VERSION_MINOR 2
@@ -227,24 +228,30 @@ typedef void* cno_utf8_type;
 #endif //!defined(CNO_TEST_ENGINE)
 
 //cno_json
-//CDM(C\A\JSON,1)
+//CDM(CNO_ALLOW_JSON,1)
+#if !defined(CNO_ALLOW_JSON) //p
+#define CNO_ALLOW_JSON 1 //p
+#endif //!defined(CNO_ALLOW_JSON) //p
 
 //cno_settings: no options on msvc
-//CDM(C\A\OPTIONS,1)
+//CDM(CNO_ALLOW_OPTIONS,1)
+#if !defined(CNO_ALLOW_OPTIONS) //p
+#define CNO_ALLOW_OPTIONS 1 //p
+#endif //!defined(CNO_ALLOW_OPTIONS) //p
 
 //cno_settings
-#if !defined(C\A\CONFIG)
-#if C\A\JSON == 1
-#define C\A\CONFIG 1
+#if !defined(CNO_ALLOW_CONFIG)
+#if CNO_ALLOW_JSON == 1
+#define CNO_ALLOW_CONFIG 1
 #else
-#define C\A\CONFIG 0
-#endif //C\A\JSON == 1
-#endif //!defined(C\A\CONFIG)
+#define CNO_ALLOW_CONFIG 0
+#endif //CNO_ALLOW_JSON == 1
+#endif //!defined(CNO_ALLOW_CONFIG)
 
 //cno_log
-#if !defined(C\A\LOG)
-#define CNO_A\LOG 1
-#endif //!defined(CNO_A\LOG)
+#if !defined(CNO_ALLOW_LOG)
+#define CNO_ALLOW_LOG 1
+#endif //!defined(CNO_ALLOW_LOG)
 
 #define CNO_MIDDLEWARE_ENGINE_NONE 0
 #define CNO_MIDDLEWARE_ENGINE_OTHER 1
@@ -257,7 +264,7 @@ typedef void* cno_utf8_type;
 #endif //CNO_HAVE_SDL2
 #endif //!defined(CNO_MIDDLEWARE_ENGINE)
 
-//#define C\A\THREADS
+//#define CNO_ALLOW_THREADS
 
 #if CNO_HAVE_STDIO
 #define CNO_ALLOW_PRINTF 1
@@ -304,9 +311,6 @@ typedef void* cno_utf8_type;
 #define CNO_sprintf(...) CNO_noop
 #endif //CNO_HAVE_STDIO
 #endif //CNO_sprintf
-#ifndef cno_file_type
-#define cno_file_type FILE* //cno_file_type is a macro not a typedef
-#endif //cno_file_type
 #ifndef CNO_fopen
 #if CNO_HAVE_STDIO
 #define CNO_fopen(...) fopen(__VA_ARGS__)

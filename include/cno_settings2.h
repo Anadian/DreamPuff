@@ -26,30 +26,30 @@ typedef enum CNO_Value_Type_enum{
 	CNO_Value_Discrete='D'
 } CNO_Value_Type\t;
 typedef struct CNO_Setting_struct {
-	c\cstring\ty section;
+	cno_cstring_type section;
 	cno_cstring_type config_name;
-	c\u8\ty option_key;
-	c\cstring\ty option_name;
-	C\Value_Type\ty value_type;
-	c\cstring\ty hint;
+	cno_u8_type option_key;
+	cno_cstring_type option_name;
+	CNO_Value_Type_type value_type;
+	cno_cstring_type hint;
 	cno_cstring_type description;
 	cno_cstring_type argument;
 	cno_u8_type hits;
 	union{
-		c\u8\ty value; //natural/boolean
-		c\s32\ty value; //integer
-		c\f32\ty value; //real
-		c\cstring\ty value; //word/ascii/file/discrete
-		c\utf8\ty value; //utf8
+		cno_u8_type value; //natural/boolean
+		cno_s32_type value; //integer
+		cno_f32_type value; //real
+		cno_cstring_type value; //word/ascii/file/discrete
+		cno_utf8_type value; //utf8
 	};
 	union{
-		c\u8\ty default_value; //natural/boolean
-		c\s32\ty default_value; //integer
-		c\f32\ty default_value; //real
-		c\cstring\ty default_value; //word/ascii/file/discrete
-		c\utf8\ty default_value; //utf8
+		cno_u8_type default_value; //natural/boolean
+		cno_s32_type default_value; //integer
+		cno_f32_type default_value; //real
+		cno_cstring_type default_value; //word/ascii/file/discrete
+		cno_utf8_type default_value; //utf8
 	};
-	c\cstring\ty valid_values;
+	cno_cstring_type valid_values;
 } CNO_Setting_type; //system defaults => user config => options => -C if specified
 	
 /*

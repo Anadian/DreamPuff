@@ -1,17 +1,12 @@
-//cno_settings.h
-
-#ifndef CNO_SETTINGS_H
-#define CNO_SETTINGS_H
-
-#ifdef __cplusplus
-extern "C"{
-#endif //__cplusplus
+## Regular Expressions
 
 #if (CNO_SETTINGS_MATCH_ENGINE == CNO_SETTINGS_MATCH_ENGINE_REGEX) && (!defined(CNO_SETTINGS_MATCH_VALIDATION_REGEX) || !defined(CNO_SETTINGS_MATCH_REGEX_NMATCH))
 #define CNO_SETTINGS_MATCH_VALIDATION_REGEX ":([-0-9A-Za-z_ ]*)?:([0-9A-Za-z_]+)?:(([-0-9A-Za-z]+)(=([0-9A-Za-z]))?)?:(0|(([NIRBWAUFDnirbwaufd])[^!?=;]*([!?])(=(((\|)|(([-0-9A-Za-z_.\/\\ ]+)([!?])?)))+)?));"
 #define CNO_SETTINGS_MATCH_REGEX_NMATCH 18
 #endif //(CNO_SETTINGS_MATCH_ENGINE == CNO_SETTINGS_MATCH_ENGINE_REGEX) && (!defined(CNO_SETTING_VALIDATION_REGEX) || !defined(CNO_SETTING_REGEX_NMATCH))
+// Conversion regex: /{":([^:]*):([^:]*):([^:=]*)(=([A-Za-z]))?:([0NIRBWAUFD][!?]?)(=([^;]*))?;","(.*)"},/{CNO_Setting_Type_,"\1","\2",'\5',"\3",'\6',NULL,"\9",NULL,0,0,0,"\8"},/
 
+## Tiers
 /*tier 1 ;
 tier 2 :
 tier 3 =
@@ -22,58 +17,27 @@ true,on,enabled,yes=1
 false,off,disabled,no=0
 file/directory
 string,subset,ascii,utf8,discrete,fd
-input:controller engine:D!=none|sdl-joystick!|sdl-controller|xinput|libusb|libgamepad||Engine:Define which backend API (engine), if any, to use for reading joystick/gamepad/controller input.|sdl-joystick:
-debug:verbosity|verbose=v:N?=3!|5?|0-5*/
+:input:controller engine::D!=none|sdl-joystick!|sdl-controller|xinput|libusb|libgamepad||Engine:Define which backend API (engine), if any, to use for reading joystick/gamepad/controller input.|sdl-joystick:
+:debug:verbosity:verbose=v:N?=3!|5?|0-5;*/
 
-typedef struct CNO_Setting_struct {
-	cno_cstring_type name;
-	cno_cstring_type help;
-	cno_cstring_type argument;
-	cno_u8_type hits;
-} CNO_Setting_type; //system defaults => user config => options => -C if specified
-
+## Types
 typedef enum CNO_Value_Type_enum{
-	CNO_Setting_Flag='0',
-	CNO_Setting_Natural='N',
-	CNO_Setting_Integer='I',
-	CNO_Setting_Real='R',
-	CNO_Setting_Boolean='B',
-	CNO_Setting_Word='W', //[A-Za-z0-9_]
-	CNO_Setting_ASCII='A',
-	CNO_Setting_UTF8='U',
-	CNO_Setting_File='F', //file/directory/url
-	CNO_Setting_Discrete='D'
-} CNO_Value_Type_type;
+	CNO_Value_Flag='0',
+	CNO_Value_Natural='N',
+	CNO_Value_Integer='I',
+	CNO_Value_Real='R',
+	CNO_Value_Boolean='B',
+	CNO_Value_Word='W', //[A-Za-z0-9_]
+	CNO_Value_ASCII='A',
+	CNO_Value_UTF8='U',
+	CNO_Value_File='F', //file/directory/url
+	CNO_Value_Discrete='D'
+} CNO_Value_Type\t;
 
-typedef struct CNO_CompiledSetting_struct {
-	cno_cstring_type section;
-	cno_cstring_type config_name;
-	cno_cstring_type option_name;
-	cno_u8_type option_key;
-	CNO_Value_Type_type value_type;
-	cno_cstring_type hint;
-	cno_cstring_type description;
-	cno_cstring_type valid_values;
-	cno_cstring_type argument;
-	union{
-		cno_u8_type default_value; //natural/boolean
-		cno_s32_type default_value; //integer
-		cno_f32_type default_value; //real
-		cno_cstring_type default_value; //word/ascii/file/discrete
-		cno_utf8_type default_value; //utf8
-	};
-	cno_u8_type hits;
-	union{
-		cno_u8_type value; //natural/boolean
-		cno_s32_type value; //integer
-		cno_f32_type value; //real
-		cno_cstring_type value; //word/ascii/file/discrete
-		cno_utf8_type value; //utf8
-	};
-} CNO_CompiledSetting_type;
+## Format
+:[SECTION]:[CONFIG NAME]:[OPTION NAME](=<OPTION CHARACTER>):<TYPE>([! or ?](=<DEFAULT VALUE>!(|<DEFAULT ARGUMENT>?)(|<RANGE or a|list|of|values>))); [DESCRIPTION]<\n or \r>
 
-CNO_Setting_type CNO_Settings[] = {
-	{":::version=V:0;","Display version information."},
+{":::version=V:0;","Display version information."},
 	{":::help=h:0;","Display this help text."},
 	{":::all=a:0;","Acknowledge invisible files"},
 	{":::about-background=b:0;","Display information about background process."},
@@ -129,7 +93,7 @@ CNO_Setting_type CNO_Settings[] = {
 	{":input:joystick_axis_deadzone::N!=800!|0-32_767;","Number: Sets the dead zone for all joysticks' axes; in essence, it's the minimum, absolute value an axis must possess (read) in to be used as an event."},
 	{":input:joystick_axis_peak::N!=32_000!|0-32_767;","Number: Sets the peak for joysticks' axes; in essence, the value that should be considered max when reading an axis event."},
 	{":input:touch_mode::D!=mouse!|touch;","String: Sets whether touch events should be interpreted has mouse clicks/motion or handled separately."}, //mouse, touch
-	{":::net:B!=true!|false;","Boolean: Enable networking functionality."},
+	{"::net::B!=true!|false;","Boolean: Enable networking functionality."},
 	{":sdl2:sdl2_enabled::B!=true!|false;","Boolean: Allow the use of SDL2 for video/threads/input-backend API."},
 	{":sdl2:sdl2_ttf_enabled::B!=true!|false;","Boolean: Use, SDL2-extension, SDL2_TTF for font rendering."},
 	{":sdl2:sdl2_gfx_enabled::B!=true|false!;","Boolean: Allow the use, SDL2-extension, SDL2_GFX for software rendering of primitives and graphical effects."},
@@ -169,18 +133,3 @@ CNO_Setting_type CNO_Settings[] = {
 	{":directories:portable::B!=true!|false;","Boolean: Only use directory containing this executable/binary for storing and retrieving data: portable-style ./; as opposed to unix-style: /usr/local/* and ~/*."},
 	{":directories:engine_data::F!=./engine!;","Directory: The directory, in which, the engine data can be found."},
 	{":directories:user_data::F!=./data!;","Directory: The directory, in which, user data should be saved."}
-};
-
-cno_u8_type CNO_Settings_Init();
-cno_u8_type CNO_Settings_Default(CNO_Settings_type *settings);
-cno_u8_type CNO_Settings_GetOpt(CNO_Settings_type *settings, int argc, char *argv[]);
-cno_u8_type CNO_Settings_Save(CNO_Settings_type *settings, cno_cstring_type filename);
-cno_u8_type CNO_Settings_Load(CNO_Settings_type *settings, cno_cstring_type filename);
-cno_u8_type CNO_Settings_Quit();
-
-
-#ifdef __cplusplus
-}
-#endif //__cplusplus
-
-#endif //CNO_SETTINGS_H

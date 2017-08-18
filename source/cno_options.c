@@ -4,7 +4,7 @@
 #include "cno_build_info.h"
 
 #if CNO_HAVE_STRING
-#include <string.h> //strcpy
+#include <string.h> //strcpy, strcmp
 #endif //CNO_HAVE_STRING
 #if CNO_HAVE_STDIO
 #include <stdio.h> //printf
@@ -38,3 +38,8 @@ cno_u8_type CNO_Options_Process(int argc, char *argv[]){
 #endif //CNO_ALLOW_OPTIONS
 	return _return;
 }
+cno_cstring_type CNO_Options_Query(cno_cstring_type key, cno_u32_type *count){
+	cno_size_type i;
+	cno_size_type number_of_options = (sizeof(CNO_Options)/sizeof(CNO_Option_type));
+	for(i = 0; i < number_of_options; i++){
+		

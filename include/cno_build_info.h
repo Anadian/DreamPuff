@@ -9,8 +9,32 @@ extern "C" {
 
 #include "cno_build.h"
 
-cno_u8_type CNO_Build_String[CNO_BUFFER_MAXSIZE];
-
+typedef struct CNO_Build_Info_struct{
+	cno_u8_type build_string[CNO_BUFFER_MAXSIZE];
+	cno_u8_type sdl_version_compiled_major;
+	cno_u8_type sdl_version_compiled_minor;
+	cno_u8_type sdl_version_compiled_patch;
+	cno_u8_type sdl_version_linked_major;
+	cno_u8_type sdl_version_linked_minor;
+	cno_u8_type sdl_version_linked_patch;
+	cno_u8_type sdl_image_compiled_major;
+	cno_u8_type sdl_image_compiled_minor;
+	cno_u8_type sdl_image_compiled_patch;
+	cno_u8_type sdl_image_linked_major;
+	cno_u8_type sdl_image_linked_minor;
+	cno_u8_type sdl_image_linked_patch;
+	cno_u8_type sdl_mixer_compiled_major;
+	cno_u8_type sdl_mixer_compiled_minor;
+	cno_u8_type sdl_mixer_compiled_patch;
+	cno_u8_type sdl_mixer_linked_major;
+	cno_u8_type sdl_mixer_linked_minor;
+	cno_u8_type sdl_mixer_linked_patch;
+	cno_u8_type sdl_ttf_compiled_major;
+	cno_u8_type sdl_ttf_compiled_minor;
+	cno_u8_type sdl_ttf_compiled_patch;
+	cno_u8_type sdl_ttf_linked_major;
+	cno_u8_type sdl_ttf_linked_minor;
+	cno_u8_type sdl_ttf_linked_patch;
 /*
 
 HUD placement:
@@ -27,11 +51,12 @@ GP, gold, current
 scaleable radius
 12 slots
 fade for HUD: auto, toggle, off
-fade for elemant: fast, medium, slow.
+HUD: all always on, essentials on and fade rest, all fade, toggle, off
+fade speed for elemant: fast, medium, slow.
 Status (TL), game time/location/direction/weather (TC), Navigation/Alert (TR) connectivity and wall time
 Mission info (tutorial hints),  (beacon), controller state
 count, reticle, timers/splits
-hotkey, subtitles, weapon info/equipment mapping
+hotkey (ally info), subtitles, weapon info/equipment mapping
 Inventory/Command (BL), Contextual (BC), Enemy Info (BR)/picture-in-picture
 [OSC]???
 
@@ -173,7 +198,7 @@ ADS (aim-down-site): x/y-invert, sensitivity, speed, correction,
 //rot point
 
 LT: Aim(FPS)/Target(TPS)	RT: Shoot(Ranged weapon)/Block(Melees weapon)
-LB: Low Profile Mod (Sneak)	RB: High Profile Mod (Force/Command)
+LB: Low Profile Mod (Sneak)	RB: High Profile Mod (Force/Command)/Binoculars
 Dpad (Weapons/Inventory/Stance/(hold) menus)
 
 Network:
@@ -236,6 +261,9 @@ penetrate v. bash
 speed v. power
 
 actions:
+run,
+jump,
+swim,
 swing,
 stab,
 block,
@@ -245,8 +273,16 @@ evade,
 climb,
 grab,
 sneak,
-cast,
+cast/shoot,
 hack (mechanical skill)
+converse,
+tinker,
+sense,
+react,
+flex,
+endure,
+persuade,
+bluff,
 
 stats:
 strength (swing, stab, block, throw, climb, grab) v. dexterity
@@ -280,6 +316,21 @@ syphon
 freeze
 poison
 
+Statistics:
+Starts (spawns, state, shoot),
+Successes (kill, completed uninterrupted, hit)
+Time,
+Sum (if applicable; distance per character, damage per attack)
+Failures (crashes, defeats, counters)
+Players have statistics: not characters.
+All-Time Total: //Actually saved.
+	mode:
+		stage
+	character:
+		state:
+			attack
+This session:
+This stage (for scoring)
 
 attack, element1 element2, DMG, stun, speed, super cost, super DMG, super stun, range (long medium short)
 medium and long are weaker against heavy enemies; short range weapons deal less damage to far away targets

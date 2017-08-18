@@ -6,32 +6,32 @@
 #include <stddef.h> //size_t
 #endif //CNO_HAVE_STDIO
 
-#if C\H\STRING
+#if CNO_HAVE_STRING
 #include <string.h>
-#endif //C\H\STRING
+#endif //CNO_HAVE_STRING
 
-#if C\H\GOPT && C\A\OPTIONS
+#if CNO_HAVE_GOPT && CNO_ALLOW_OPTIONS
 #include "gopt.h"
-#endif //C\H\GOPT && C\A\OPTIONS
+#endif //CNO_HAVE_GOPT && CNO_ALLOW_OPTIONS
 
 cno_u8_type CNO_Settings_Init(){
 	cno_u8_type _return;
-	c\size\ty number_of_settings;
-	number_of_settings = (sizeof(CNO_Settings)/sizeof(CNO_Setting\ty));
-	c\size\ty i; ///Settings index
+	cno_size_type number_of_settings;
+	number_of_settings = (sizeof(CNO_Settings)/sizeof(CNO_Setting_type));
+	cno_size_type i; ///Settings index
 	for(i=0; i<number_of_settings; i++){
-		c\u8\ty section[32];
-		c\u8\ty config_name[32];
-		c\u8\ty option_name[32];
-		c\u8\ty option_key;
-		C\Value_Type\ty value_type;
-		c\u8\ty hint[32];
-		c\u8\ty description[CNO_BUFFER_MAXSIZE];
-		c\u8\ty valid_values[32];
-		c\u8\ty argument[C\BUFFER_MAXSIZE];
-		c\size\ty length_of_setting_name;
+		cno_u8_type section[32];
+		cno_u8_type config_name[32];
+		cno_u8_type option_name[32];
+		cno_u8_type option_key;
+		CNO_Value_Type_type value_type;
+		cno_u8_type hint[32];
+		cno_u8_type description[CNO_BUFFER_MAXSIZE];
+		cno_u8_type valid_values[32];
+		cno_u8_type argument[CNO_BUFFER_MAXSIZE];
+		cno_size_type length_of_setting_name;
 		length_of_setting_name = sizeof(CNO_Settings[i].name);
-		c\u8\ty parser_section = 0;
-		c\u8\ty j; ///Setting-parser index
+		cno_u8_type parser_section = 0;
+		cno_u8_type j; ///Setting-parser index
 		for(j=0; j<length_of_setting_name; j++){
 			

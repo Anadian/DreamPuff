@@ -14,7 +14,10 @@ typedef struct CNO_Environment_struct {
 	cno_u8_type hostname[256];
 	cno_u8_type pwd[256];
 	cno_u8_type home[256];
-	cno_u8_type whereami[256];
+	cno_u8_type whereami_executable_path[256];
+	cno_u8_type whereami_module_path[256];
+	cno_u8_type sdl2_base_path[256];
+	cno_u8_type sdl2_pref_path[256];
 	cno_u8_type ipaddress[256];
 } CNO_Environment_type;
 CNO_Environment_type CNO_Environment;

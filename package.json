@@ -3,6 +3,7 @@
 	"version": "0.3.2",
 	"description": "A Kirby fan-game engine.",
 	"keywords": "kirby game engine c sdl2 dreampuff dream puff nintendo platformer action adventure open source libre free",
+	"organization": "Canosw",
 	"homepage": "https://canosw.com/software/DreamPuff",
 	"license": "(MIT OR Apache)",
 	"language": "c",
