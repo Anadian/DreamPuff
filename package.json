@@ -19,6 +19,8 @@
 	},
 	"main": "source/main.c",
 	"scripts": {
+		"version": "make version",
+		"prepare": "prepare",
 		"build": "make build",
 		"install": "make install",
 		"test": "make test"
@@ -32,7 +34,8 @@
 		"libarchive"
 	],
 	"devDependencies": [
-		"gnu_make"
+		"gnu_make",
+		"vim"
 	],
 	"optionalDependencies": [
 		"pcre2"
