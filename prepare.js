@@ -20,9 +20,10 @@ if(Options.verbose == true) console.log('Options: ', Options);
 
 function SetVersion(major, minor, patch){
 	var version_string = major + '.' + minor + '.' + patch;
-	var PackageBuffer = FileSystem.readFileSync('./package.json');
-	var PackageText = PackageBuffer.toString('utf8');
+	var PackageText = FileSystem.readFileSync('./package.json').toString('utf8');
+	if(Options.verbose) Console.log('Package: ', PackageText);
 	PackageText.replace(/"version": "[^"]",/, ('\"version\": \"' + version_string + '\",'));
+	
 
 if(Options.setversion != null){
 	var strings = Options.setversion.split(/\./);

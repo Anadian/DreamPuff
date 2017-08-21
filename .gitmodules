@@ -1,0 +1,15 @@
+[submodule "deps/utf8.h"]
+	path = deps/utf8.h
+	url = https://github.com/sheredom/utf8.h
+[submodule "deps/tinyheaders"]
+	path = deps/tinyheaders
+	url = https://github.com/RandyGaul/tinyheaders
+[submodule "deps/parson"]
+	path = deps/parson
+	url = https://github.com/kgabis/parson
+[submodule "deps/whereami"]
+	path = deps/whereami
+	url = https://github.com/gpakosz/whereami
+[submodule "deps/stb"]
+	path = deps/stb
+	url = https://github.com/nothings/stb
