@@ -1,6 +1,6 @@
 #!/usr/local/bin/node
 /**
-*	@file prepare.js
+*	@file configure.js
 *	@brief A script for automating various task pertaining to preparing a release.
 *	@author Anadian
 *	@copyright MIT License
