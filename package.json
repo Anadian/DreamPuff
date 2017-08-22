@@ -19,7 +19,8 @@
 	},
 	"main": "source/main.c",
 	"scripts": {
-		"configure": "configure",
+		"version": "make version",
+		"prepare": "prepare",
 		"build": "make build",
 		"install": "make install",
 		"test": "make test"
