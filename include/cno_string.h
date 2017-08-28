@@ -13,7 +13,9 @@ extern "C"{
 
 #include "cno_build.h"
 
-#if C\H\STRING
+#if C\H\UTF8
+#include "utf8.h"
+#elif C\H\STRING
 #include <string.h>
 #endif //C\H\STRING
 

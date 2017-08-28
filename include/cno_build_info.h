@@ -331,6 +331,28 @@ All-Time Total: //Actually saved.
 			attack
 This session:
 This stage (for scoring)
+Medals:
+Perfect: Take no damage.
+Pacifist: Cause no harm.
+Moral: No kills.
+Psycho: Kill everyone.
+Stealth: No alarms.
+Speedy: Beat par-time.
+Combo: High combo.
+Killer: Sustaining a long kill streak.
+Sharp: Never miss.
+Collector: Find all hidden collectibles.
+Methodical: Collect all items.
+Conversational: Talk to a lot of people.
+Introvert: Talk to no one.
+Foresight: Complete an objective before having it assigned.
+Completionist: Clear all objectives.
+Ascetic: Minimize collectibles and powerups.
+Minimal: Use 'minimal' selected equipment.
+Zeroest: Complete stage while depraved of any equipment or items.
+Utility: Meet the requirements for several medals in one play through.
+Clever: Do something exceptional clever.
+
 
 attack, element1 element2, DMG, stun, speed, super cost, super DMG, super stun, range (long medium short)
 medium and long are weaker against heavy enemies; short range weapons deal less damage to far away targets
