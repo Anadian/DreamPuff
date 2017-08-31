@@ -1,6 +1,6 @@
 #!/usr/local/bin/node
 /**
-*	@file prepare.js
+*	@file configure.js
 *	@brief A script for automating various task pertaining to preparing a release.
 *	@author Anadian
 *	@copyright MIT License
@@ -20,10 +20,9 @@ if(Options.verbose == true) console.log('Options: ', Options);
 
 function SetVersion(major, minor, patch){
 	var version_string = major + '.' + minor + '.' + patch;
-	var PackageText = FileSystem.readFileSync('./package.json').toString('utf8');
-	if(Options.verbose) Console.log('Package: ', PackageText);
+	var PackageBuffer = FileSystem.readFileSync('./package.json');
+	var PackageText = PackageBuffer.toString('utf8');
 	PackageText.replace(/"version": "[^"]",/, ('\"version\": \"' + version_string + '\",'));
-	
 
 if(Options.setversion != null){
 	var strings = Options.setversion.split(/\./);
