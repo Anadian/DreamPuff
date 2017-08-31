@@ -285,11 +285,44 @@ persuade,
 bluff,
 
 stats:
+Character:
 strength (swing, stab, block, throw, climb, grab) v. dexterity
 constitution (HP, resistance, knockback) v. agility
 intelligence (MP, magic, block, stab?, sneak, cast)
-agility (EP, swing, throw, evade, climb, grab, sneak)
-dexterity (skill (SP), aim, hack, grab, block, climb, sneak)
+agility (EP, swing, throw, evade, climb, grab, sneak) //speed
+dexterity (skill (SP), aim, hack, grab, block, climb, sneak) //reduction
+Four-wheel vehicle:
+Acceleration (strength)
+Durability (constitution)
+Boost (intelligence)
+Top speed (agility)
+Handling (dexerity)
+Ship:
+Attack power
+Durability
+Boost
+Speed
+Handling/aiming? //maybe
+Projectile weapon:
+Dammage
+Penetration
+Ammo
+Speed/Rate of fire
+Range
+Melee weapon:
+Damage
+Penetration
+Area
+Speed
+Duration/Technique //movement while swinging, cancelling, et cetera.
+
+or
+
+attack
+defence
+magic
+mobility
+reduction
 
 strength/dexterity
 constitution/agility
@@ -305,6 +338,10 @@ rational/altruistic
 secular/spiritual
 competitive/cooperative
 
+Next Level XP Requirement = floor(8*(1.225^CurrentLevel))
+5 stats each with 10 skill levels.
+Get 64 skill points per level.
+Cost of obtaining a given skill level 2^SkillLevel
 
 resources (social favours)
 knowledge,
@@ -337,9 +374,10 @@ Pacifist: Cause no harm.
 Moral: No kills.
 Psycho: Kill everyone.
 Stealth: No alarms.
+Ghost: No one even noticed you were there.
 Speedy: Beat par-time.
-Combo: High combo.
-Killer: Sustaining a long kill streak.
+Combo: High combo. //Can combo corpse offset streak
+Streak: Sustaining a long kill streak.
 Sharp: Never miss.
 Collector: Find all hidden collectibles.
 Methodical: Collect all items.
@@ -351,7 +389,7 @@ Ascetic: Minimize collectibles and powerups.
 Minimal: Use 'minimal' selected equipment.
 Zeroest: Complete stage while depraved of any equipment or items.
 Utility: Meet the requirements for several medals in one play through.
-Clever: Do something exceptional clever.
+Clever: Do something exceptionally clever.
 
 
 attack, element1 element2, DMG, stun, speed, super cost, super DMG, super stun, range (long medium short)
@@ -361,9 +399,16 @@ knockback is derived from damage
 speed and stun are related
 
 enemy, element1 element2, HP, class, EXP, gold
+
+Difficulty:
+Easy: Recommended for novice players or content tourist. Base attack is doubled and defence is quadrupled. Strong regen is available early in the game. Miracles, criticals, item drops all in effect. Resource management is trivial.
+Normal: Recommended for modern players. Criticals and item drops are in effect. Modest regen is available about halfway through the game. Resource management is recommend but not strictly necessary.
+Hard: Recommended for action-RPG veterans accustom to old-school difficulty or people who have played the game before. Enemies are more plentiful and more aggressive. Bosses have more attacks. Weak regen is available late in the game. Only items are still in effect. Resource management is required.
+Very Hard: Recommended for masters of the game. Like Hard mode except attack and defence are both halved, items cost more and there is no regen at all. Neither miracles, criticals, nor item drops are in effect. Optimal resource management is required. Not recommend for first playthroughs.
+Impossible: A gimmick difficulty, this mode is like Very Hard except you die in one hit. Optimal resource management probably still won't be enough.
 */
 
-//DreamPuff-Competitive/Open-Server/Client-Deamon/NativeExecutable/Embedded-Console/Electron/etc binary-x86_64-macOS-clang-date-commit
+//DreamPuff-thing-major-minor-patch binary-x86_64-macOS-clang-branch-commit
 
 cno_u8_type CNO_Build_Info_Init();
 

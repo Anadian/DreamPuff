@@ -1,12 +1,18 @@
+/**
+*	@file Pacter/master.jsonic javascript-object notation including comments
+*	@brief 
+*	@author Anadian
+*	@copyright MIT License
+*/
 {
-	"name": "DreamPuff",
-	"version": "0.3.3",
-	"description": "A Kirby fan-game engine.",
-	"keywords": "kirby game engine c sdl2 dreampuff dream puff nintendo platformer action adventure open source libre free",
+	"name": "Pacter",
+	"version": "0.0.1",
+	"description": "Universal meta-data interpreter/generator/converter for modern code-sharing conventions.",
+	"keywords": "pacter universal meta data parser interpreter analyzer generator format converter package json manifest xml travis appveyor circle yaml yml toml makefile specification jsonic language system environment neutral agnostic modular portable extensible conventions code sharing management productivity manager standard abstraction open source libre free",
 	"organization": "Canosw",
-	"homepage": "https://canosw.com/software/DreamPuff",
+	"homepage": "https://citablesoftware.com/Pacter",
 	"license": "(MIT OR Apache-2.0)",
-	"language": "c",
+	"language": "javascript",
 	"author": {
 		"name": "Anadian",
 		"email": "willanad@yandex.com",
@@ -16,7 +22,7 @@
 	"contributors": [
 		{}
 	],
-	"main": "source/main.c",
+	"main": "source/main.js",
 	"meta": {
 		"readme": "README.md",
 		"makefile": "Makefile",
@@ -39,49 +45,32 @@
 	},
 	"repository": {
 		"type": "git",
-		"name": "Anadian/DreamPuff",
-		"url": "https://github.com/Anadian/DreamPuff.git"
-	},
-	"c": {
-		"architectures": [
-			"x86_64"
-		],
-		"systems": [
-			"windows",
-			"macos",
-			"linux"
-		],
-		"compilers": [
-			"clang",
-			"gcc",
-			"msvc"
-		],
-		"dependencies": [
-			"sdl2",
-			"libarchive"
-		],
-		"devDependencies": [
-			"gnu_make",
-			"vim"
-		],
-		"optionalDependencies": [
-			"pcre2"
-		],
-		"clib": {
-			"package_json": null,
-			"src": [],
-			"repo": "github-name/git-repo"
-		}
+		"name": "Anadian/Pacter",
+		"url": "https://github.com/Anadian/Pacter.git"
 	},
 	"node": {
-		"package_json": null,
-		"name": null,
+		"package_json": "node/package.json",
+		"name": "pacter",
 		"bugs": null,
 		"config": null,
-		"engines": [],
-		"dependencies": {},
-		"devDependencies": {},
-		"optionalDependencies": {},
+		"engines": [
+			"node",
+			"iojs"
+		],
+		"dependencies": {
+			"command-line-args": "^4.0.7",
+			"command-line-commands": "^2.0.1",
+			"command-line-usage": "^4.0.1",
+			"directory-tree": "^2.0.0",
+			"log4js": "^2.3.3",
+			"request": "^2.81.0"
+		},
+		"devDependencies": {
+			"pkg": "^4.2.4"
+		},
+		"optionalDependencies": {
+			"browserify": "^14.4.0"
+		},
 		"bundledDependencies": [],
 		"pkg": {
 			"scripts": [],
@@ -91,7 +80,7 @@
 	"travis": {
 		"travis_yml": ".travis.yml",
 		"language": [
-			"c"
+			"node_js"
 		],
 		"branches": {
 			"only": [],
@@ -108,7 +97,11 @@
 				"gcc",
 				"clang"
 			],
-			"node_js": [],
+			"node_js": [
+				"node",
+				"iojs",
+				"lts/*s"
+			],
 			"perl": [],
 			"include": {},
 			"exclude": {}
@@ -117,7 +110,7 @@
 			"before_install": [],
 			"install": [],
 			"before_script": [],
-			"script": [],
+			"script": []
 			"after_success": [],
 			"after_failure": [],
 			"before_deploy": [],
@@ -155,39 +148,29 @@
 			"on_finish": []
 		}
 	},
-	"circle": {
-		"config_yml": ".circleci/config.yml",
-		"version": null,
-		"jobs": [
-			{
-				"build": {
-					"machine": null,
-					"docker": {
-						"image": {
-							"command": null,
-							"environment": null
-						}
-					},
-					"environment": null,
-					"working_directory": null,
-					"branches": {
-						"ignore": null
-					},
-					"steps": {
-						"checkout": null,
-						"run": null,
-						"artifacts": null,
-						"deploy": null,
-						"environment": null,
-						"command": null,
-						"store": null
-					}
-				}
-			},
-			{}
-		]
-	},
 	"testcases": [
 		{"buldstring": null, "runtime": null, "result": null, "user": null}
 	]
 }
+/*MasterPackage subcommands:
+h, help
+v, verbose
+n, noop
+f, force
+i, interactive
+d, debug
+update: package-master
+validate: master.jsonic
+learn: directory structure
+teach: instruct on how to improve directory structure
+check: checks whether master-package.json reflects currrent directory structure
+generate: a file of a specific type
+absorb: a file of a specific type
+install: install interpreter
+uninstall: uninstall interpreter
+list: list (un)installed interpreter
+config: list config variables and their current settings
+
+//cross com
+//usetting
+//udocu*/
