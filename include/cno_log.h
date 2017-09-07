@@ -51,9 +51,9 @@ extern "C" {
 #include "cno_time.h"
 #include "cno_mutex.h"
 
-//\033[[STYLE];[COLOUR]m	Start format
+//\033[<STYLE>;<COLOUR>m	Start format
 //\x1B[0m 	Reset to plain/normal.
-//[STYLE]:
+//<STYLE>:
 //0 normal
 //1 bold
 //2 dim
@@ -63,7 +63,7 @@ extern "C" {
 //6 ???
 //7 White on colour background
 //8 Invisible
-//[COLOUR]:
+//<COLOUR>:
 //30 black
 //31 red
 //32 green

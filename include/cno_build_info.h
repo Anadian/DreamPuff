@@ -90,6 +90,19 @@ water cyan
 lava red/pink
 buildings brown/grey
 
+Objectives symbols:
+Notes screen [flowchart]
+Diamond [horizontal line]: Required objective.
+Square [Diagonal line]: Alternative objective; mutually exclusive branching paths.
+Circle [vertical line]: Optional objective.
+The fill of the icon indicates progress:
+Solid: objective completed.
+Half-full: objective pending.
+Empty: objective failed.
+Completed/failed objective are greyed out.
+First time through a mission, objectives will be invisible until assigned by a quest giver.
+When replaying a completed mission, all objectives will be shown regardless.
+
 Display
 Sound
 Text
@@ -187,8 +200,10 @@ devices
 
 Camera:
 disable mouse camera when controller connected
+SOP (Side-on Perspective): sensitivity, speed.
+TDP (Top-down Perspective): sensitivity, speed, distance?
 TPS: x/y-invert, sensitivity, speed, correction (off, minimal, modest, zealous), wall clipping, targeting, distance?
-gallery: x/y-invert, sensitivity, speed, no-move-box width/height, move-box width/height
+Gallery: x/y-invert, sensitivity, speed, no-move-box width/height, move-box width/height
 OTS (over-the-shoulder): x/y-invert, sensitivity, speed
 FPS: x/y-invert, sensitivity, speed, correction, FOV
 ADS (aim-down-site): x/y-invert, sensitivity, speed, correction,
@@ -197,9 +212,18 @@ ADS (aim-down-site): x/y-invert, sensitivity, speed, correction,
 //view point
 //rot point
 
-LT: Aim(FPS)/Target(TPS)	RT: Shoot(Ranged weapon)/Block(Melees weapon)
-LB: Low Profile Mod (Sneak)	RB: High Profile Mod (Force/Command)/Binoculars
+LT: Aim(FPS)/Target(TPS)/Strafe-GunLock(2D ranged weapon)/Block(2D melee weapon)	RT: Shoot(Ranged weapon)/Block(Melees weapon)/Stationary-PositionLock(2D ranged weapon)/Block(2D Melee weapon)(or item?)
+LB: Low Profile Mod (Sneak/Crouch)	RB: High Profile Mod (Force/Command)/Scanner-Binoculars/AuxilaryAction
 Dpad (Weapons/Inventory/Stance/(hold) menus)
+	Inventory		Select: GameMenu	Start: SystemMenu		Special
+Status		Notes										Normal		ContextualAction
+	Map															Jump
+				L3: Run						R3: ChangeCamera
+
+Three-column, two-column, one-column with description, one-column no description
+At most two columns of menu options: hold right to select all.
+GameMenu: Half volume: greyed transparent)
+SystemMenu: Muted: Blacked out at least 90%.
 
 Network:
 Online
@@ -285,30 +309,35 @@ persuade,
 bluff,
 
 stats:
+
 Character:
 strength (swing, stab, block, throw, climb, grab) v. dexterity
 constitution (HP, resistance, knockback) v. agility
 intelligence (MP, magic, block, stab?, sneak, cast)
 agility (EP, swing, throw, evade, climb, grab, sneak) //speed
 dexterity (skill (SP), aim, hack, grab, block, climb, sneak) //reduction
+
 Four-wheel vehicle:
 Acceleration (strength)
 Durability (constitution)
 Boost (intelligence)
 Top speed (agility)
 Handling (dexerity)
+
 Ship:
 Attack power
 Durability
 Boost
 Speed
 Handling/aiming? //maybe
+
 Projectile weapon:
 Dammage
 Penetration
 Ammo
 Speed/Rate of fire
 Range
+
 Melee weapon:
 Damage
 Penetration

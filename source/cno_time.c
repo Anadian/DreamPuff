@@ -2,56 +2,33 @@
 
 #include "cno_time.h"
 
-#include "cno_build.h"
-
-#if CNO_HAVE_STRING
-#include <string.h> //strcpy, strcat
-#endif //CNO_HAVE_STRING
-
-
 #if CNO_HAVE_TIME
 #include <time.h> //time, gmtime, strftime
 #endif //CNO_HAVE_TIME
 
 cno_unixtime_type CNO_Time_Unix(){
 #if CNO_HAVE_TIME
-	return CNO_time(NULL);
+	return time(NULL);
 #endif //CNO_HAVE_TIME
 	return 0;
 }
-
-cno_u8_type CNO_Time_Calendar(cno_u8_type *buffer){
+cno_clocktime_type CNO_Time_Clock(){
 #if CNO_HAVE_TIME
-	return strftime(buffer, sizeof(buffer), "%H%M%S", gmtime(CNO_Time_Unix()));
+	return clock(NULL);
 #endif //CNO_HAVE_TIME
 	return 0;
 }
-
-cno_u8_type CNO_Time_Concise(cno_u8_type *buffer){
+cno_calendartime_type CNO_Time_CalendarFromUnix(cno_unixtime_type unix_time){
 #if CNO_HAVE_TIME
-	return strftime(buffer, sizeof(buffer), "%Y%m%dT%H%M%S", gmtime(CNO_Time_Unix()));
+	return gmtime(unix_time);
 #endif //CNO_HAVE_TIME
 	return 0;
 }
-
-cno_u8_type CNO_Time_Full(cno_cstring_type buffer){
-#if CNO_HAVE_TIME && CNO_HAVE_STRING
-	cno_unixtime_type unixtime = CNO_time(NULL);
-	cno_calendartime_type *calendartime = CNO_gmtime(&unixtime);
-	cno_u8_type datebuffer[16];
-	cno_u8_type timebuffer[16];
-	cno_u8_type finalbuffer[32];
-	CNO_strftime(datebuffer, sizeof(datebuffer), "%Y-%m-%d", calendartime);
-	//CNO_printf("%s\n", datebuffer);
-	CNO_strftime(timebuffer, sizeof(timebuffer), "%H:%M:%S", calendartime);
-	//CNO_printf("%s\n", timebuffer);
-	CNO_strcpy(finalbuffer, datebuffer);
-	CNO_strcat(finalbuffer, "T");
-	CNO_strcat(finalbuffer, timebuffer);
-	CNO_strcat(finalbuffer, "Z");
-	CNO_printf("%s\n", finalbuffer);
-	CNO_strcpy(buffer, finalbuffer);
-	return 1;
-#endif //CNO_HAVE_TIME && CNO_HAVE_STRING
+cno_string_type CNO_Time_StringFromCalendar(cno_calendartime_type calendar_time){
+#if CNO_HAVE_TIME
+	cno_u8_type buffer[64];
+	strftime(buffer, sizeof(buffer), "%Y-%m-%dT%H:%M:%SZ", calendar_time);
+	return buffer;
+#endif //CNO_HAVE_TIME
 	return 0;
 }
