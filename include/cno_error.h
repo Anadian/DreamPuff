@@ -29,6 +29,9 @@ extern "C"{
 
 #include "cno_build.h"
 
+//(Time/colour) Project(dim):Module(dim):File:Function(underline):Level(bold): message
+//Rule format: (!)Project*:Module*:File*:Function*:Level*
+
 c\u8\ty CNO_Error_Get(c\buffer\ty *buffer);
 c\u8\ty CNO_Error_Add(c\buffer\ty *buffer);
 c\u8\ty CNO_Error_Clear();
