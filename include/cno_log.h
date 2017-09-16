@@ -74,11 +74,10 @@ extern "C" {
 //37 white
 
 typedef enum CNO_Log_Priority_enum{
-	CNO_Log_Priority_Critical=0,
-	CNO_Log_Priority_Error=1, //Red
-	CNO_Log_Priority_Warn=2, //Yellow
-	CNO_Log_Priority_Info=3, //Blue
-	CNO_Log_Priority_Special=4, //Magenta
+	CNO_Log_Priority_Error=0, //Red
+	CNO_Log_Priority_Warn=1, //Yellow
+	CNO_Log_Priority_Note=3, //Magenta
+	CNO_Log_Priority_Info=4, //Blue
 	CNO_Log_Priority_Debug=5 //Green
 } CNO_Log_Priority_type; //cyan?
 
