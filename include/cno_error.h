@@ -29,7 +29,7 @@ extern "C"{
 
 #include "cno_build.h"
 
-//(Time/colour) Project(dim):Module(dim):File:Function(underline):Level(bold): message
+//(Time/colour) Project(file only):Module(dim):File (file only):Function(underline):Level(bold): message
 //Rule format: (!)Project*:Module*:File*:Function*:Level*
 
 c\u8\ty CNO_Error_Get(c\buffer\ty *buffer);

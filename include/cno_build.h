@@ -266,7 +266,7 @@ typedef void* cno_utf8_type;
 #endif //CNO_HAVE_SDL2
 #endif //!defined(CNO_MIDDLEWARE_ENGINE)
 
-//#define CNO_ALLOW_THREADS
+#define CNO_ALLOW_THREADS 1
 
 #if CNO_HAVE_STDIO
 #define CNO_ALLOW_PRINTF 1
