@@ -24,11 +24,11 @@ cno_u8_type CNO_FileStream_Open(cno_filestream_type *file, cno_cstring_type mode
 		_return = 0;
 		//cno_u8_type message_buffer[CNO_BUFFER_MAXSIZE];
 #if CNO_HAVE_ERRNO && CNO_HAVE_STRING
-		fprintf(stderr, "Couldn't open file '%s': (mode: '%s' errno: %d description: '%s')\n", filename, mode, errno, strerror(errno));
+		fprintf(stderr, "Error: Couldn't open file '%s': (mode: '%s' errno: %d description: '%s')\n", filename, mode, errno, strerror(errno));
 #elif CNO_HAVE_ERRNO
-		fprintf(stderr, "Couldn't open file '%s': (mode '%s' errno: %d)\n", filename, mode, errno);
+		fprintf(stderr, "Error: Couldn't open file '%s': (mode: '%s' errno: %d)\n", filename, mode, errno);
 #else
-		fprintf(stderr, "Couldn't open file '%s': (mode: '%s')\n", filename, mode);
+		fprintf(stderr, "Error: Couldn't open file '%s': (mode: '%s')\n", filename, mode);
 #endif //CNO_HAVE_ERRNO && CNO_HAVE_STRING
 	}
 #else

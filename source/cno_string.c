@@ -28,49 +28,70 @@ OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #endif //CNO_HAVE_UTF8
 
 cno_u8_type CNO_String_Concatenate(cno_string_type *destination, cno_string_type source){
+	c\u8\ty _return = 0;
 #if CNO_HAVE_UTF8
 	utf8cat((*destination), source);
-	return 1;
+	_return = 1;
 #elif CNO_HAVE_STRING
 	strcat((*destination), source);
-	return 1;
+	_return = 1;
 #else
-	return 0;
+	_return = 0;
 #endif //CNO_HAVE_UTF8
+	return _return;
 }
 cno_u8_type CNO_String_Copy(cno_string_type *destination, cno_string_type source){
+	c\u8\ty _return = 0;
 #if CNO_HAVE_UTF8
 	utf8cpy((*destination), source);
-	return 1;
+	_return = 1;
 #elif CNO_HAVE_STRING
 	strcpy((*destination), source);
-	return 1;
+	_return = 1;
 #else
-	return 0;
+	_return = 0;
 #endif //CNO_HAVE_UTF8
+	return _return;
 }
-cno_size_type CNO_String_Length(cno_string_type string){
+cno_u8_type CNO_String_Length(c\size\ty *length, cno_string_type string){
+	c\u8\ty _return = 0;
 #if CNO_HAVE_UTF8
-	return utf8len(string);
+	*length = utf8len(string);
+	_return = 1;
 #elif CNO_HAVE_STRING
-	return strlen(string);
+	*length = strlen(string);
+	_return = 1;
 #else
-	return 0;
+	*length = 0;
+	_return = 0;
 #endif //CNO_HAVE_UTF8
+	return _return;
 }
-cno_u8_type CNO_String_Match(cno_string_type string1, cno_string_type string2){
-	cno_u8_type _return;
-	cno_s32_type cmp_return;
+cno_u8_type CNO_String_Compare(c\s32\ty *result, cno_string_type string1, cno_string_type string2){
+	cno_u8_type _return = 0;
 #if CNO_HAVE_UTF8
-	cmp_return = utf8cmp(string1, string2);
+	*result = utf8cmp(string1, string2);
+	_return = 1;
 #elif CNO_HAVE_STRING
-	cmp_return = strcmp(string1, string2);
+	*result = strcmp(string1, string2);
+	_return = 1;
 #else
-	cmp_return = -1;
+	*result = 0
+	_return = 0;
 #endif //CNO_HAVE_UTF8
-	if(cmp_return == 0){
-		_return = 1;
+	return _return;
+}
+c\u8\ty CNO_String_Match(c\string\ty string1, c\string\ty string2){
+	c\u8\ty _return = 0;
+	c\s32\ty compare_result = 0;
+	if(CNO_String_Compare(&compare_result, string1, string2)){
+		if(compare_result == 0){
+			_return = 1;
+		} else{
+			_return = 0;
+		}
 	} else{
+		fprintf(CNO_STDERR, "Error: Couldn't compare strings '%s' and '%s'. (HAVE_STRING: %d HAVE_UTF8: %d)\n", string1, string2, CNO_HAVE_STRING, C\H\UTF8);
 		_return = 0;
 	}
 	return _return;
