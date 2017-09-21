@@ -35,6 +35,7 @@ typedef struct CNO_Build_Info_struct{
 	cno_u8_type sdl_ttf_linked_major;
 	cno_u8_type sdl_ttf_linked_minor;
 	cno_u8_type sdl_ttf_linked_patch;
+}
 /*
 
 HUD placement:

@@ -97,22 +97,7 @@ CNO_Log_type CNO_GlobalLog;
 
 //[bold] Error: [dim] file (line): [normal] function (time unix/clock): message (errno: strerror | other error messages)
 cno_u8_type CNO_Log_Init();
-cno_u8_type CNO_Log_Set(CNO_Log_type *log, CNO_Log_type value);
-/*cno_u8_type CNO_Log_verbosity_Get(CNO_Log_type *log, CNO_Log_Priority_type *verbosity);
-cno_u8_type CNO_Log_verbosity_Set(CNO_Log_type *log, CNO_Log_Priority_type verbosity);
-cno_u8_type CNO_Log_colour_Get(CNO_Log_type *log, cno_u8_type *colour);
-cno_u8_type CNO_Log_colour_Set(CNO_Log_type *log, cno_u8_type colour);
-cno_u8_type CNO_Log_stream_Get(CNO_Log_type *log, cno_u8_type *stream);
-cno_u8_type CNO_Log_stream_Set(CNO_Log_type *log, cno_u8_type stream);
-cno_u8_type CNO_Log_file_Get(CNO_Log_type *log, cno_cstring_type *file);
-cno_u8_type CNO_Log_file_Set(CNO_Log_type *log, cno_cstring_type file);
-cno_u8_type CNO_Log_persist_Get(CNO_Log_type *log, cno_u8_type *persist);
-cno_u8_type CNO_Log_persist_Set(CNO_Log_type *log, cno_u8_type persist);
-cno_u8_type CNO_Log_overwrite_Get(CNO_Log_type *log, cno_u8_type *overwrite);
-cno_u8_type CNO_Log_overwrite_Set(CNO_Log_type *log, cno_u8_type overwrite);*/
-cno_u8_type CNO_Log(CNO_Log_type *log, CNO_Log_Priority_type priority, cno_cstring_type file, cno_cstring_type line, cno_cstring_type function, cno_unixtime_type unix_time, cno_clocktime_type clock_time, cno_cstring_type format, ...);
-#define CNO_Log_Global(...) CNO_Log(&CNO_GlobalLog, __VA_ARGS__);
-cno_u8_type CNO_Log_Unset(CNO_Log_type *Log);
+cno_u8_type CNO_Log(CNO_Log_type *log, cno_cstring_type file, cno_cstring_type line, cno_cstring_type function, CNO_Log_Priority_type priority, cno_cstring_type format, ...);
 cno_u8_type CNO_Log_Test();
 cno_u8_type CNO_Log_Quit();
 

@@ -1,8 +1,8 @@
 /**
-*	@file include/cno_error.h
-*	@brief Global error macros and declarations.
+*	@file include/cno_application.h
+*	@brief Globals pertaining to the application's state.
 *	@author Anadian
-*	@copyright MIT License:
+*	@license MIT License:
 	Copyright 2017 Canosw
 	Permission is hereby granted, free of charge, to any person obtaining a copy of this 
 software and associated documentation files (the "Software"), to deal in the Software 
@@ -20,24 +20,28 @@ CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFT
 OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef CNO_ERROR_H
-#define CNO_ERROR_H
+#ifndef CNO_APPLICATION_H
+#define CNO_APPLICATION_H
 
 #ifdef __cplusplus
 extern "C"{
 #endif //__cplusplus
 
-#include "cno_build.h"
-
-//(Time/colour) Project(file only):Module(dim):File (file only):Function(underline):Level(bold): message
-//Rule format: (!)Project*:Module*:File*:Function*:Level*
-
-cno_u8_type CNO_Error_Get(cno_buffer_type *buffer);
-cno_u8_type CNO_Error_Add(cno_buffer_type *buffer);
-cno_u8_type CNO_Error_Clear();
+typedef struct CNO_Application_struct{
+	cno_u8_type running;
+	cno_u8_type awake;
+	cno_u8_type focused;
+	cno_u8_type initialized;
+	cno_u8_type quit;
+	cno_u32_type loops;
+	cno_unixtime_type start_time;
+	cno_cstring_type process_name;
+	CNO_BuildInfo_type
+	CNO_Evironment_type evironment;
+}
 
 #ifdef __cplusplus
 }
 #endif //__cplusplus
 
-#endif //CNO_ERROR_H
+#endif //CNO_APPLICATION_H

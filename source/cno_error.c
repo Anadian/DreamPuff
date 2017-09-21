@@ -23,23 +23,23 @@ OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include "cno_error.h"
 #include "cno_time.h"
 
-#if C\H\STDIO
+#if CNO_HAVE_STDIO
 #include <stdio.h> //fprintf
-#endif //C\H\STDIO
-#if C\H\ERRNO
+#endif //CNO_HAVE_STDIO
+#if CNO_HAVE_ERRNO
 #include <errno.h> //errno
-#endif //C\H\ERRNO
-#if C\H\STRING
+#endif //CNO_HAVE_ERRNO
+#if CNO_HAVE_STRING
 #include <string.h> //strerror
-#endif //C\H\STRING
+#endif //CNO_HAVE_STRING
 
-c\u8\ty C\Error(c\cstring\ty function, c\cstring\ty message){
-	c\u8\ty _return;
-#if C\H\STRING && C\H\ERRNO && C\H\STDIO
-	fprintf(stderr, "Error: %s(%d): %s (errno: %d description: %s)\n", function, C\Time_Unix(), message, errno, strerror(errno));
-#elif C\H\ERRNO && C\H\STDIO
-	fprintf(stderr, "Error: %s(%d): %s (errno: %d)\n", function, C\Time_Unix(), message, errno);
-#elif C\H\STDIO
-	fprintf(stderr, "Error: %s(%d): %s\n", function, C\Time_Unix(), message);
-#endif //C\H\STRING && C\H\ERRNO && C\H\STDIO
+cno_u8_type CNO_Error(cno_cstring_type function, cno_cstring_type message){
+	cno_u8_type _return;
+#if CNO_HAVE_STRING && CNO_HAVE_ERRNO && CNO_HAVE_STDIO
+	fprintf(stderr, "Error: %s(%d): %s (errno: %d description: %s)\n", function, CNO_Time_Unix(), message, errno, strerror(errno));
+#elif CNO_HAVE_ERRNO && CNO_HAVE_STDIO
+	fprintf(stderr, "Error: %s(%d): %s (errno: %d)\n", function, CNO_Time_Unix(), message, errno);
+#elif CNO_HAVE_STDIO
+	fprintf(stderr, "Error: %s(%d): %s\n", function, CNO_Time_Unix(), message);
+#endif //CNO_HAVE_STRING && CNO_HAVE_ERRNO && CNO_HAVE_STDIO
 	

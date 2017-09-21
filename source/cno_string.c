@@ -28,7 +28,7 @@ OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #endif //CNO_HAVE_UTF8
 
 cno_u8_type CNO_String_Concatenate(cno_string_type *destination, cno_string_type source){
-	c\u8\ty _return = 0;
+	cno_u8_type _return = 0;
 #if CNO_HAVE_UTF8
 	utf8cat((*destination), source);
 	_return = 1;
@@ -41,7 +41,7 @@ cno_u8_type CNO_String_Concatenate(cno_string_type *destination, cno_string_type
 	return _return;
 }
 cno_u8_type CNO_String_Copy(cno_string_type *destination, cno_string_type source){
-	c\u8\ty _return = 0;
+	cno_u8_type _return = 0;
 #if CNO_HAVE_UTF8
 	utf8cpy((*destination), source);
 	_return = 1;
@@ -53,8 +53,8 @@ cno_u8_type CNO_String_Copy(cno_string_type *destination, cno_string_type source
 #endif //CNO_HAVE_UTF8
 	return _return;
 }
-cno_u8_type CNO_String_Length(c\size\ty *length, cno_string_type string){
-	c\u8\ty _return = 0;
+cno_u8_type CNO_String_Length(cno_size_type *length, cno_string_type string){
+	cno_u8_type _return = 0;
 #if CNO_HAVE_UTF8
 	*length = utf8len(string);
 	_return = 1;
@@ -67,7 +67,7 @@ cno_u8_type CNO_String_Length(c\size\ty *length, cno_string_type string){
 #endif //CNO_HAVE_UTF8
 	return _return;
 }
-cno_u8_type CNO_String_Compare(c\s32\ty *result, cno_string_type string1, cno_string_type string2){
+cno_u8_type CNO_String_Compare(cno_s32_type *result, cno_string_type string1, cno_string_type string2){
 	cno_u8_type _return = 0;
 #if CNO_HAVE_UTF8
 	*result = utf8cmp(string1, string2);
@@ -81,9 +81,9 @@ cno_u8_type CNO_String_Compare(c\s32\ty *result, cno_string_type string1, cno_st
 #endif //CNO_HAVE_UTF8
 	return _return;
 }
-c\u8\ty CNO_String_Match(c\string\ty string1, c\string\ty string2){
-	c\u8\ty _return = 0;
-	c\s32\ty compare_result = 0;
+cno_u8_type CNO_String_Match(cno_string_type string1, cno_string_type string2){
+	cno_u8_type _return = 0;
+	cno_s32_type compare_result = 0;
 	if(CNO_String_Compare(&compare_result, string1, string2)){
 		if(compare_result == 0){
 			_return = 1;
@@ -91,7 +91,7 @@ c\u8\ty CNO_String_Match(c\string\ty string1, c\string\ty string2){
 			_return = 0;
 		}
 	} else{
-		fprintf(CNO_STDERR, "Error: Couldn't compare strings '%s' and '%s'. (HAVE_STRING: %d HAVE_UTF8: %d)\n", string1, string2, CNO_HAVE_STRING, C\H\UTF8);
+		fprintf(CNO_STDERR, "Error: Couldn't compare strings '%s' and '%s'. (HAVE_STRING: %d HAVE_UTF8: %d)\n", string1, string2, CNO_HAVE_STRING, CNO_HAVE_UTF8);
 		_return = 0;
 	}
 	return _return;

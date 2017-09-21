@@ -18,9 +18,9 @@ cno_u8_type CNO_Log_Init(/*CNO_Log_type *log, CNO_Log_Priority_type verbosity, c
 	cno_u8_type _return;
 #if CNO_LOG_ENGINE == CNO_LOG_ENGINE_STDIO && !defined(CNO_NO_GLOBAL_STATE)
 	CNO_Mutex_Lock(&CNO_Log_Mutex);
-#endif //CNO_THREAD_ENGINE != CNO_THREAD_ENGINE_NONE
-	c\string\ty 
-	CNO_GlobalLog = {verbosity = 5, colour = 1, stream = 2, file = , persist = 0,  overwrite = 0};
+	cno_string_type time_string = CNO_Time_StringFromCurrent();
+	CNO_String_Concatenate(&time_string, ".log");
+	CNO_GlobalLog = {verbosity = 5, colour = 1, stream = 2, file = time_string, persist = 0,  overwrite = 0};
 	
 #else
 	_return = 0;

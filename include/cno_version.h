@@ -1,8 +1,8 @@
 /**
-*	@file include/cno_error.h
-*	@brief Global error macros and declarations.
+*	@file include/cno_version.h
+*	@brief 
 *	@author Anadian
-*	@copyright MIT License:
+*	@license MIT License:
 	Copyright 2017 Canosw
 	Permission is hereby granted, free of charge, to any person obtaining a copy of this 
 software and associated documentation files (the "Software"), to deal in the Software 
@@ -19,25 +19,3 @@ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTIO
 CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
 OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-
-#ifndef CNO_ERROR_H
-#define CNO_ERROR_H
-
-#ifdef __cplusplus
-extern "C"{
-#endif //__cplusplus
-
-#include "cno_build.h"
-
-//(Time/colour) Project(file only):Module(dim):File (file only):Function(underline):Level(bold): message
-//Rule format: (!)Project*:Module*:File*:Function*:Level*
-
-cno_u8_type CNO_Error_Get(cno_buffer_type *buffer);
-cno_u8_type CNO_Error_Add(cno_buffer_type *buffer);
-cno_u8_type CNO_Error_Clear();
-
-#ifdef __cplusplus
-}
-#endif //__cplusplus
-
-#endif //CNO_ERROR_H
