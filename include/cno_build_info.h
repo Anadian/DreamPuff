@@ -56,7 +56,7 @@ HUD: all always on, essentials on and fade rest, all fade, toggle, off
 fade speed for elemant: fast, medium, slow.
 Status (TL), game time/location/direction/weather (TC), Navigation/Alert (TR) connectivity and wall time
 Mission info (tutorial hints),  (beacon), controller state
-count, reticle, timers/splits
+count, reticle (multi-colour/monochrome/invisible), timers/splits
 hotkey (ally info), subtitles, weapon info/equipment mapping
 Inventory/Command (BL), Contextual (BC), Enemy Info (BR)/picture-in-picture
 [OSC]???
@@ -227,11 +227,12 @@ Camera:
 disable mouse camera when controller connected
 SOP (Side-on Perspective): sensitivity, speed.
 TDP (Top-down Perspective): sensitivity, speed, distance?
-TPS: x/y-invert, sensitivity, speed, correction (off, minimal, modest, zealous), wall clipping, targeting, distance?
-Gallery: x/y-invert, sensitivity, speed, no-move-box width/height, move-box width/height
-OTS (over-the-shoulder): x/y-invert, sensitivity, speed
-FPS: x/y-invert, sensitivity, speed, correction, FOV
-ADS (aim-down-site): x/y-invert, sensitivity, speed, correction,
+Orbit (for melee): x/y-invert, sensitivity, speed, correction (off, minimal, modest, zealous), wall clipping, targeting
+TPS (for projectile-weapons): x/y-invert, sensitivity, speed, wall clipping, targeting, aim-assist, distance?
+Gallery: x/y-invert, sensitivity, speed, no-move-box width/height, move-box width/height, aim-assist
+OTS (over-the-shoulder): x/y-invert, sensitivity, speed, aim-assist
+FPS: x/y-invert, sensitivity, speed, aim-assist, FOV
+ADS (aim-down-site): x/y-invert, sensitivity, speed, snap
 
 //aim point
 //view point
@@ -278,6 +279,7 @@ Quality:
 	Draw Distance radius small/medium/large/infinite
 	Draw-Distance quality-drop-off scale none/linear/exponential
 	Texture scaling none/linear/bilinear/...
+	Sprite flashes for spawn/damage/stat-effect off/monochromatic/transparency/coloured
 Content
 HUD
 
