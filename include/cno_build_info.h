@@ -104,6 +104,30 @@ Completed/failed objective are greyed out.
 First time through a mission, objectives will be invisible until assigned by a quest giver.
 When replaying a completed mission, all objectives will be shown regardless.
 
+Game Menu:
+Map
+Inventory
+Status
+Notes
+
+System Menu:
+Resume
+Retry from checkpoint
+Load game
+Save game
+Options
+//Screenshot
+Restart mission
+Quit to desktop
+Quit to title screen
+
+Game Over screen:
+Retry from checkpoint
+Load game
+Restart Mission
+Quit to Mission Select
+
+Options:
 Display
 Sound
 Text
@@ -225,6 +249,12 @@ Three-column, two-column, one-column with description, one-column no description
 At most two columns of menu options: hold right to select all.
 GameMenu: Half volume: greyed transparent)
 SystemMenu: Muted: Blacked out at least 90%.
+
+Binoculars:
+x10 optical zoom
+two views: augmented and transparent
+scanning and info
+camera
 
 Network:
 Online
