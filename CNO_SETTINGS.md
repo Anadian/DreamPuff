@@ -54,7 +54,6 @@ typedef enum CNO_Value_Type_enum{
 {":::input=I:F!;","File: Uses the given file instead of stdin."},
 {":::stop-background=k:0;","Politely stop the background process (daemon)."},
 {":::kill-background=K:0;","Forcefully terminate the background process (daemon); in essence: kill it!"},
-{":::log=l:F!;", "File: Name of the file to be used for logging."},
 {":::link=L:F!;", "Link a dynamic (.so) library; continues even if linking is unsuccessful."},
 {":::dryrun=n:0;","Describe what this software would do, and what files it would change, without actually doing or changing anything."},
 {":::newdefaults=N:0;","Create new default files."},
@@ -79,8 +78,8 @@ typedef enum CNO_Value_Type_enum{
 {":debug:verbosity:verbose=v:N?=3!|5?|0-5;""Number: Sets debug verbosity to the given unsigned integer: 0 being silent; 5 being maximum logging. Defaults to 3, if omitted, and 5, if specified without an argument."},
 {":debug:standard_output:stdout=o:F!=stdout!;","Stream: stdout, stderr, FILE, or /dev/null: oh, so many choices."},
 {":debug:standard_error:error=e:F!=stderr!;","Stream: Redirect stderr to the given stream; exempli gratia, STDOUT or a the name of a file."},
-{":debug:file::B!=true!|false;","Boolean: Enable logging to a file."},
-{":debug:filename::F!=cno.log!;","File name: The name of the file to log to."},
+//{":debug:file::B!=true!|false;","Boolean: Enable logging to a file."},
+{":debug:log_filename:log=l:F!=cno.log!;","File: Name of the file to be used for logging."},
 {"::dialogs::B!=true!|false;","Boolean: Sets whether to allow using external file dialogs."},
 {"::environment::B!=true!|false;","Boolean: Sets whether to look for environment variables while initialising."},
 {":input:keyboard_mode::D!=scancode!|keycode|text;","String: Sets the keyboard mode; in essence, how this software interprets keyboard input."}, //scancode, keycode, text
