@@ -1,6 +1,6 @@
 /**
-*	@file include/cno_application.h
-*	@brief Globals pertaining to the application's state.
+*	@file source/cno_version.h
+*	@brief 
 *	@author Anadian
 *	@license MIT License:
 	Copyright 2017 Canosw
@@ -20,28 +20,6 @@ CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFT
 OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef CNO_APPLICATION_H
-#define CNO_APPLICATION_H
+#include "cno_version.h"
 
-#ifdef __cplusplus
-extern "C"{
-#endif //__cplusplus
-
-typedef struct CNO_Application_struct{
-	cno_u8_type running;
-	cno_u8_type awake;
-	cno_u8_type focused;
-	cno_u8_type initialized;
-	cno_u8_type quit;
-	cno_u32_type loops;
-	cno_unixtime_type start_time;
-	cno_cstring_type process_name;
-	CNO_BuildInfo_type;
-	CNO_Evironment_type evironment;
-}
-
-#ifdef __cplusplus
-}
-#endif //__cplusplus
-
-#endif //CNO_APPLICATION_H
+c\u8\ty C\Version_Set(C\Version\ty *version, c\u8\ty major, c\u8\ty minor, c\u8\ty patch

@@ -23,3 +23,27 @@ OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 /*Build stages:
 prepare compile assemble test document package link distribute report clean
 */
+
+#ifndef CNO_VERSION_H
+#define CNO_VERSION_H
+
+#ifdef __cplusplus
+extern "C"{
+#endif //__cplusplus
+
+#include "cno_build.h"
+
+/*typedef struct CNO_Version_struct{
+	cno_u8_type major;
+	cno_u8_type minor;
+	cno_u8_type patch;
+} CNO_Version_type;*/
+
+cno_u8_type CNO_Version_Read(cno_u8_type *major, cno_u8_type *minor, cno_u8_type *patch, c\string\ty string);
+cno_u8_type CNO_Version_Write(cno_string_type *string, c\u8\ty major, c\u8\ty minor, c\u8\ty patch);
+
+#ifdef __cplusplus
+}
+#endif //__cplusplus
+
+#endif //CNO_VERSION_H
