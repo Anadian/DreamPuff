@@ -1,4 +1,5 @@
 //cno_build_info.h: Runtime readable build information
+filecommenttm(include/cno_build_info.h,Runtime readable build information)
 
 #ifndef CNO_BUILD_INFO_H
 #define CNO_BUILD_INFO_H
@@ -11,31 +12,19 @@ extern "C" {
 
 typedef struct CNO_Build_Info_struct{
 	cno_u8_type build_string[CNO_BUFFER_MAXSIZE];
-	cno_u8_type sdl_version_compiled_major;
-	cno_u8_type sdl_version_compiled_minor;
-	cno_u8_type sdl_version_compiled_patch;
-	cno_u8_type sdl_version_linked_major;
-	cno_u8_type sdl_version_linked_minor;
-	cno_u8_type sdl_version_linked_patch;
-	cno_u8_type sdl_image_compiled_major;
-	cno_u8_type sdl_image_compiled_minor;
-	cno_u8_type sdl_image_compiled_patch;
-	cno_u8_type sdl_image_linked_major;
-	cno_u8_type sdl_image_linked_minor;
-	cno_u8_type sdl_image_linked_patch;
-	cno_u8_type sdl_mixer_compiled_major;
-	cno_u8_type sdl_mixer_compiled_minor;
-	cno_u8_type sdl_mixer_compiled_patch;
-	cno_u8_type sdl_mixer_linked_major;
-	cno_u8_type sdl_mixer_linked_minor;
-	cno_u8_type sdl_mixer_linked_patch;
-	cno_u8_type sdl_ttf_compiled_major;
-	cno_u8_type sdl_ttf_compiled_minor;
-	cno_u8_type sdl_ttf_compiled_patch;
-	cno_u8_type sdl_ttf_linked_major;
-	cno_u8_type sdl_ttf_linked_minor;
-	cno_u8_type sdl_ttf_linked_patch;
-}
+	cno_u8_type sdl_compiled[32];
+	c\u8\ty sdl_linked[32];
+	c\u8\ty sdl_image_compiled[32];
+	c\u8\ty sdl_image_linked[32];
+	c\u8\ty sdl_ttf_compiled[32];
+	c\u8\ty sdl_ttf_linked[32];
+	c\u8\ty sdl_mixer_compiled[32];
+	c\u8\ty sdl_mixer_linked[32];
+	c\u8\ty pcre_compiled[32];
+	c\u8\ty pcre_linked[32];
+	c\u8\ty archive_compiled[32];
+	c\u8\ty archive_linked[32];
+} C\Build_Info\ty;
 /*
 
 HUD placement:

@@ -27,6 +27,12 @@ OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 extern "C"{
 #endif //__cplusplus
 
+#include "cno_build.h"
+#include "cno_time.h"
+#include "cno_build_info.h"
+#include "cno_environment.h"
+#include "cno_filestream.h"
+
 typedef struct CNO_Application_struct{
 	cno_u8_type running;
 	cno_u8_type awake;
@@ -34,11 +40,14 @@ typedef struct CNO_Application_struct{
 	cno_u8_type initialized;
 	cno_u8_type quit;
 	cno_u32_type loops;
+	c\u8\ty threads;
 	cno_unixtime_type start_time;
-	cno_cstring_type process_name;
-	CNO_BuildInfo_type;
+	cno_u8_type process_name[64];
+	CNO_Build_Info_type build_info;
 	CNO_Evironment_type evironment;
-}
+	c\filestream\ty stdout;
+	c\filestream\ty stderr;
+} C\Application\ty;
 
 #ifdef __cplusplus
 }
