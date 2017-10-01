@@ -32,12 +32,7 @@ extern "C"{
 #endif //__cplusplus
 
 #include "cno_build.h"
-
-/*typedef struct CNO_Version_struct{
-	cno_u8_type major;
-	cno_u8_type minor;
-	cno_u8_type patch;
-} CNO_Version_type;*/
+#include "cno_string.h"
 
 cno_u8_type CNO_Version_Read(cno_u8_type *major, cno_u8_type *minor, cno_u8_type *patch, c\string\ty string);
 cno_u8_type CNO_Version_Write(cno_string_type *string, c\u8\ty major, c\u8\ty minor, c\u8\ty patch);
