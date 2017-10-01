@@ -21,5 +21,19 @@ OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 #include "cno_version.h"
+#include "semver.h"
 
-c\u8\ty C\Version_Set(C\Version\ty *version, c\u8\ty major, c\u8\ty minor, c\u8\ty patch
+c\u8\ty C\Version_Read(c\u8\ty *major, c\u8\ty *minor, c\u8\ty *patch, c\string\ty string){
+	c\u8\ty _return = 0;
+	semver_t version = {};
+	if(semver_parse(string, &version) == 0){
+		*major = (c\u8\ty)version.major;
+		*minor = (c\u8\ty)version.minor;
+		*patch = (c\u8\ty)version.patch;
+		_return = 1;
+	} else{
+		_return = 0;
+	}
+	return _return;
+}
+c\u8\ty C\Version_Write(c\string\ty *string, c\u8\ty major, c\u8\ty minor, c\u8\ty patch);
