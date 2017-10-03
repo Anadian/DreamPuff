@@ -32,6 +32,7 @@ status:
 name, level/lives, state
 hp, bar-red, curent/max ±delta
 /mp, bar-green, current/max ±delta //not Kirby
+//ap acton-points?
 //ep, bar-blue, current/max ±delta //not Kirby
 
 EXP, purple-bar
@@ -389,7 +390,7 @@ rational/altruistic
 secular/spiritual
 competitive/cooperative
 
-Next Level XP Requirement = floor(8*(1.225^CurrentLevel))
+Next Level XP Requirement = ceiling(8*(1.225^CurrentLevel))
 5 stats each with 10 skill levels.
 Get 64 skill points per level.
 Cost of obtaining a given skill level 2^SkillLevel
