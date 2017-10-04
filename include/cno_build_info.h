@@ -426,28 +426,43 @@ All-Time Total: //Actually saved.
 This session:
 This stage (for scoring)
 Medals:
-Perfect: Take no damage.
-Pacifist: Cause no harm.
-Moral: No kills.
-Psycho: Kill everyone.
-Stealth: No alarms.
-Ghost: No one even noticed you were there.
-Speedy: Beat par-time.
-Combo: High combo. //Can combo corpse offset streak
-Streak: Sustaining a long kill streak.
-Sharp: Never miss.
-Collector: Find all hidden collectibles.
-Methodical: Collect all items.
-Conversational: Talk to a lot of people.
-Introvert: Talk to no one.
-Foresight: Complete an objective before having it assigned.
-Completionist: Clear all objectives.
-Ascetic: Minimize collectibles and powerups.
-Minimal: Use 'minimal' selected equipment.
-Zeroest: Complete stage while depraved of any equipment or items.
-Utility: Meet the requirements for several medals in one play through.
-Clever: Do something exceptionally clever.
 
+Perfect: Take no damage. 4
+Durable: Never heal. 1
+
+Minimal: Use 'minimal' selected equipment. 1
+Zeroest: Complete stage while depraved of any equipment or items. 3
+
+Pacifist: Cause no harm. 4
+Moral: No kills. 2
+Psycho: Kill everyone. 3
+
+Stealth: No alarms. 1
+Ghost: No one even noticed you were there. 3
+
+Speedy: Beat par-time. 1
+Combo: High combo. //Can combo corpse offset streak 1
+Streak: Sustaining a long kill streak. 1
+Efficiency: Kill multiple targets at once. 1
+
+Sharp: Never miss. 1
+Ascetic: Minimize collectibles and powerups. 1
+
+Collector: Find all hidden collectibles. 1
+Methodical: Collect all items. 3
+
+Conversational: Talk to a lot of people. 2
+Introvert: Talk to no one. 1
+
+Foresight: Complete an objective before having it assigned. 1
+Hardcore: No saves or checkpoints. 2
+Completionist: Clear all objectives. 2
+
+Utility: Meet the requirements for several medals in one play through. 1
+Clever: Do something exceptionally clever. 1
+
+Factor/four * base score.
+4+3+4+3+4+2+3+2+5+2=32
 
 attack, element1 element2, DMG, stun, speed, super cost, super DMG, super stun, range (long medium short)
 medium and long are weaker against heavy enemies; short range weapons deal less damage to far away targets
