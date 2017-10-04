@@ -103,8 +103,8 @@ Notes
 System Menu:
 Resume
 Retry from checkpoint
-Load game
 Save game
+Load game
 Options
 //Screenshot
 Restart mission
@@ -230,7 +230,7 @@ ADS (aim-down-site): x/y-invert, sensitivity, speed, snap
 
 LT: Aim(FPS)/Target(TPS)/Strafe-GunLock(2D ranged weapon)/Block(2D melee weapon)	RT: Shoot(Ranged weapon)/Block(Melees weapon)/Stationary-PositionLock(2D ranged weapon)/Block(2D Melee weapon)(or item?)
 LB: Low Profile Mod (Sneak/Crouch)	RB: High Profile Mod (Force/Command)/Scanner-Binoculars/AuxilaryAction
-Dpad (Weapons/Inventory/Stance/(hold) menus)
+Dpad (Weapons(Up/Down)/Inventory(Left/Right)/Stance/(hold) menus)
 	Inventory		Select: GameMenu	Start: SystemMenu		Special
 Status		Notes										Normal		ContextualAction
 	Map															Jump
@@ -246,6 +246,10 @@ x10 optical zoom
 two views: augmented and transparent
 scanning and info
 camera
+controls:
+	ZoomIn
+AugmentedView	TransparentView
+	ZoomOut
 
 Network:
 Online
@@ -275,6 +279,7 @@ HUD
 
 System:
 autosave 
+Save screenshot with each save game.
 softpause on focus lost
 Loading-and-freeing/memory usage, preload-everything, preload everything and free as needed, load as needed but don't free until quit, high/medium/low memory usage
 Decompress game data
@@ -458,6 +463,9 @@ Normal: Recommended for modern players. Criticals and item drops are in effect. 
 Hard: Recommended for action-RPG veterans accustom to old-school difficulty or people who have played the game before. Enemies are more plentiful and more aggressive. Bosses have more attacks. Weak regen is available late in the game. Only items are still in effect. Resource management is required.
 Very Hard: Recommended for masters of the game. Like Hard mode except attack and defence are both halved, items cost more and there is no regen at all. Neither miracles, criticals, nor item drops are in effect. Optimal resource management is required. Not recommend for first playthroughs.
 Impossible: A gimmick difficulty, this mode is like Very Hard except you die in one hit. Optimal resource management probably still won't be enough.
+
+Save game must show in-game time, real-world save time, and preferably screenshot.
+Three auto save slots, three quick save slots, at least five hard save slots, one suspension save slot. per profile
 */
 
 //DreamPuff-thing-major-minor-patch binary-x86_64-macOS-clang-branch-commit
