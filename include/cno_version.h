@@ -21,7 +21,7 @@ OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 /*Build stages:
-prepare compile assemble test document package link distribute report clean
+expand prepare configure compile assemble test document package link distribute report clean
 */
 
 #ifndef CNO_VERSION_H
