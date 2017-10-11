@@ -62,6 +62,9 @@ Strategy methodical, statistical, oddball
 Attention precise, general
 Caution risky, safe	//stealth v aggression
 
+NPC states: Neutral, Concerned, Aggressive, Friendly.
+//Scared (not in kirby)
+
 Map colours:
 player green
 allies blue
@@ -207,6 +210,7 @@ xinput
 joystick
 [joystick deadzone]
 [joystick peak]
+[joystick rumble]
 game-controller
 libusb
 libgamepad
@@ -234,12 +238,16 @@ Dpad (Weapons(Up/Down)/Inventory(Left/Right)/Stance/(hold) menus)
 	Inventory		Select: GameMenu	Start: SystemMenu		Special
 Status		Notes										Normal		ContextualAction
 	Map															Jump
-				L3: Run						R3: ChangeCamera
+				L3: Run						R3: ChangeCamera (Scope/Scanner)
 
 Three-column, two-column, one-column with description, one-column no description
 At most two columns of menu options: hold right to select all.
 GameMenu: Half volume: greyed transparent)
 SystemMenu: Muted: Blacked out at least 90%.
+
+Hold normal: stronger (heavy) melee
+Hold special: buff/change ammo
+
 
 Binoculars:
 x10 optical zoom
@@ -247,9 +255,9 @@ two views: augmented and transparent
 scanning and info
 camera
 controls:
-	ZoomIn
-AugmentedView	TransparentView
-	ZoomOut
+			ZoomIn
+TransparentView		AugmentedView
+			ZoomOut
 
 Network:
 Online
@@ -400,6 +408,10 @@ Next Level XP Requirement = ceiling(8*(1.225^CurrentLevel))
 Get 64 skill points per level.
 Cost of obtaining a given skill level 2^SkillLevel
 
+Player can customize, unequip, and equip everything including jump.
+(Only at start of stage or at specific locations in an openworld setting.)
+Customiziable to the input style: single press, double tap, hold
+
 resources (social favours)
 knowledge,
 
@@ -461,7 +473,7 @@ Completionist: Clear all objectives. 2
 Utility: Meet the requirements for several medals in one play through. 1
 Clever: Do something exceptionally clever. 1
 
-Factor/four * base score.
+<Factor>/four * base score.
 4+3+4+3+4+2+3+2+5+2=32
 
 attack, element1 element2, DMG, stun, speed, super cost, super DMG, super stun, range (long medium short)
