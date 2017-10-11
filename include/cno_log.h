@@ -51,7 +51,8 @@ extern "C" {
 #include "cno_time.h"
 #include "cno_mutex.h"
 
-//\033[<STYLE>;<COLOUR>m	Start format
+//\033[<STYLE>;<COLOUR>m	Start foreground format
+//\033[<BACKGROUND>m		Start background format
 //\x1B[0m 	Reset to plain/normal.
 //<STYLE>:
 //0 normal
@@ -72,6 +73,15 @@ extern "C" {
 //35 magenta
 //36 cyan
 //37 white
+//<BACKGROUND>:
+//40 white background
+//41 red bg
+//42 green bg
+//43 yellow bg
+//44 blue bg
+//45 magenta bg
+//46 cyan bg
+//47 white bg
 
 typedef enum CNO_Log_Priority_enum{
 	CNO_Log_Priority_Error=0, //Red
