@@ -27,9 +27,9 @@ c\u8\ty C\Version_Read(c\u16\ty *major, c\u16\ty *minor, c\u16\ty *patch, c\stri
 	c\u8\ty _return = 0;
 	semver_t version = {};
 	if(semver_parse(string, &version) == 0){
-		*major = (c\u8\ty)version.major;
-		*minor = (c\u8\ty)version.minor;
-		*patch = (c\u8\ty)version.patch;
+		*major = (c\u16\ty)version.major;
+		*minor = (c\u16\ty)version.minor;
+		*patch = (c\u16\ty)version.patch;
 		_return = 1;
 	} else{
 		_return = 0;
@@ -41,3 +41,8 @@ c\u8\ty C\Version_Write(c\string\ty *string, c\u16\ty major, c\u16\ty minor, c\u
 	semver_t version = {(int)major, (int)minor, (int)patch};
 	if(semver_render(&version, string) == 0){
 		
+	} else{
+		_return 0;
+	}
+	return _return;
+}
