@@ -32,6 +32,7 @@ extern "C"{
 #include "cno_build_info.h"
 #include "cno_environment.h"
 #include "cno_filestream.h"
+#include "cno_mutex.h"
 
 typedef struct CNO_Application_struct{
 	cno_u8_type running;
@@ -47,7 +48,10 @@ typedef struct CNO_Application_struct{
 	CNO_Evironment_type evironment;
 	cno_filestream_type stdout;
 	cno_filestream_type stderr;
+	CNO_Mutex_type mutex;
 } CNO_Application_type;
+
+C\Application\ty C\Application;
 
 cno_u8_type CNO_Application_Init();
 cno_u8_type CNO_Application_Quit();
