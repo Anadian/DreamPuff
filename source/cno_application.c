@@ -1,5 +1,5 @@
 /**
-*	@file source/cno_version.h
+*	@file source/cno_application.c
 *	@brief 
 *	@author Anadian
 *	@license MIT License:
@@ -19,30 +19,3 @@ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTIO
 CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
 OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-
-#include "cno_version.h"
-#include "semver.h"
-
-cno_u8_type CNO_Version_Read(cno_u16_type *major, cno_u16_type *minor, cno_u16_type *patch, cno_string_type string){
-	cno_u8_type _return = 0;
-	semver_t version = {};
-	if(semver_parse(string, &version) == 0){
-		*major = (cno_u16_type)version.major;
-		*minor = (cno_u16_type)version.minor;
-		*patch = (cno_u16_type)version.patch;
-		_return = 1;
-	} else{
-		_return = 0;
-	}
-	return _return;
-}
-cno_u8_type CNO_Version_Write(cno_string_type *string, cno_u16_type major, cno_u16_type minor, cno_u16_type patch){
-	cno_u8_type _return = 0;
-	semver_t version = {(int)major, (int)minor, (int)patch};
-	if(semver_render(&version, string) == 0){
-		
-	} else{
-		_return 0;
-	}
-	return _return;
-}

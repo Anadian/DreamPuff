@@ -109,9 +109,9 @@ CNO_Log_type CNO_GlobalLog;
 
 //[bold] Error: [dim] file (line): [normal] function (time unix/clock): message (errno: strerror | other error messages)
 cno_u8_type CNO_Log_Init();
-c\u8\ty C\Log_Create(C\Log\ty *log, C\Log\ty log_value);
+cno_u8_type CNO_Log_Create(CNO_Log_type *log, CNO_Log_type log_value);
 cno_u8_type CNO_Log(CNO_Log_type *log, cno_cstring_type file, cno_cstring_type line, cno_cstring_type function, CNO_Log_Priority_type priority, cno_cstring_type format, ...);
-c\u8\ty C\Log_Destroy(C\Log\ty *log);
+cno_u8_type CNO_Log_Destroy(CNO_Log_type *log);
 cno_u8_type CNO_Log_Test();
 cno_u8_type CNO_Log_Quit();
 

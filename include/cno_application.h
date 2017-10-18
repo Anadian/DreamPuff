@@ -40,14 +40,17 @@ typedef struct CNO_Application_struct{
 	cno_u8_type initialized;
 	cno_u8_type quit;
 	cno_u32_type loops;
-	c\u8\ty threads;
+	cno_u8_type threads;
 	cno_unixtime_type start_time;
 	cno_u8_type process_name[64];
 	CNO_Build_Info_type build_info;
 	CNO_Evironment_type evironment;
-	c\filestream\ty stdout;
-	c\filestream\ty stderr;
-} C\Application\ty;
+	cno_filestream_type stdout;
+	cno_filestream_type stderr;
+} CNO_Application_type;
+
+cno_u8_type CNO_Application_Init();
+cno_u8_type CNO_Application_Quit();
 
 #ifdef __cplusplus
 }

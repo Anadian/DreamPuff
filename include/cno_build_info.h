@@ -1,5 +1,25 @@
 //cno_build_info.h: Runtime readable build information
-filecommenttm(include/cno_build_info.h,Runtime readable build information)
+/**
+*	@file include/cno_build_info.h
+*	@brief Runtime readable build information
+*	@author Anadian
+*	@license MIT License:
+	Copyright 2017 Canosw
+	Permission is hereby granted, free of charge, to any person obtaining a copy of this 
+software and associated documentation files (the "Software"), to deal in the Software 
+without restriction, including without limitation the rights to use, copy, modify, 
+merge, publish, distribute, sublicense, and/or sell copies of the Software, and to 
+permit persons to whom the Software is furnished to do so, subject to the following 
+conditions:
+	The above copyright notice and this permission notice shall be included in all copies 
+or substantial portions of the Software.
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A 
+PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT 
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
+CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
+OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
 
 #ifndef CNO_BUILD_INFO_H
 #define CNO_BUILD_INFO_H
@@ -13,18 +33,18 @@ extern "C" {
 typedef struct CNO_Build_Info_struct{
 	cno_u8_type build_string[CNO_BUFFER_MAXSIZE];
 	cno_u8_type sdl_compiled[32];
-	c\u8\ty sdl_linked[32];
-	c\u8\ty sdl_image_compiled[32];
-	c\u8\ty sdl_image_linked[32];
-	c\u8\ty sdl_ttf_compiled[32];
-	c\u8\ty sdl_ttf_linked[32];
-	c\u8\ty sdl_mixer_compiled[32];
-	c\u8\ty sdl_mixer_linked[32];
-	c\u8\ty pcre_compiled[32];
-	c\u8\ty pcre_linked[32];
-	c\u8\ty archive_compiled[32];
-	c\u8\ty archive_linked[32];
-} C\Build_Info\ty;
+	cno_u8_type sdl_linked[32];
+	cno_u8_type sdl_image_compiled[32];
+	cno_u8_type sdl_image_linked[32];
+	cno_u8_type sdl_ttf_compiled[32];
+	cno_u8_type sdl_ttf_linked[32];
+	cno_u8_type sdl_mixer_compiled[32];
+	cno_u8_type sdl_mixer_linked[32];
+	cno_u8_type pcre_compiled[32];
+	cno_u8_type pcre_linked[32];
+	cno_u8_type archive_compiled[32];
+	cno_u8_type archive_linked[32];
+} CNO_Build_Info_type;
 /*
 
 HUD placement:
