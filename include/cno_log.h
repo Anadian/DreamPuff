@@ -83,6 +83,8 @@ extern "C" {
 //46 cyan bg
 //47 white bg
 
+#include "cno_string.h"
+
 typedef enum CNO_Log_Priority_enum{
 	CNO_Log_Priority_Error=0, //Red
 	CNO_Log_Priority_Warn=1, //Yellow
@@ -94,10 +96,10 @@ typedef enum CNO_Log_Priority_enum{
 typedef struct CNO_Log_struct{
 	CNO_Log_Priority_type verbosity;
 	cno_u8_type colour;
-	cno_u8_type stream; //stream: 1 (stdout), 2 (stderr), 3 (stdout and stderr), any other number (no streams)
-	cno_cstring_type filename;
+	cno_string_type filename;
 	cno_u8_type persist; //Keep file open
 	cno_u8_type overwrite; //Overwrite file if it already exist, otherwise append
+	cno_filestream_type stream;
 } CNO_Log_type;
 
 #if !defined(CNO_NO_GLOBAL_STATE)
@@ -107,7 +109,9 @@ CNO_Log_type CNO_GlobalLog;
 
 //[bold] Error: [dim] file (line): [normal] function (time unix/clock): message (errno: strerror | other error messages)
 cno_u8_type CNO_Log_Init();
+c\u8\ty C\Log_Create(C\Log\ty *log, C\Log\ty log_value);
 cno_u8_type CNO_Log(CNO_Log_type *log, cno_cstring_type file, cno_cstring_type line, cno_cstring_type function, CNO_Log_Priority_type priority, cno_cstring_type format, ...);
+c\u8\ty C\Log_Destroy(C\Log\ty *log);
 cno_u8_type CNO_Log_Test();
 cno_u8_type CNO_Log_Quit();
 
