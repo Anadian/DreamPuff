@@ -103,6 +103,12 @@ Inventory
 Status
 Notes
 
+Inventory:
+Consumables
+Equipment
+Key Items
+Materials
+
 System Menu:
 Resume
 Retry from checkpoint
@@ -231,7 +237,7 @@ ADS (aim-down-site): x/y-invert, sensitivity, speed, snap
 //aim point
 //view point
 //rot point
-
+Gameplay Controls:
 LT: Aim(FPS)/Target(TPS)/Strafe-GunLock(2D ranged weapon)/Block(2D melee weapon)	RT: Shoot(Ranged weapon)/Block(Melees weapon)/Stationary-PositionLock(2D ranged weapon)/Block(2D Melee weapon)(or item?)
 LB: Low Profile Mod (Sneak/Crouch)	RB: High Profile Mod (Force/Command)/Scanner-Binoculars/AuxilaryAction
 Dpad (Weapons(Up/Down)/Inventory(Left/Right)/Stance/(hold) menus)
@@ -239,9 +245,20 @@ Dpad (Weapons(Up/Down)/Inventory(Left/Right)/Stance/(hold) menus)
 Status		Notes										Normal		ContextualAction
 	Map															Jump
 				L3: Run						R3: ChangeCamera (Scope/Scanner)
-
+Menu Controls:
+LT: Scroll Modifier		RT: Sort/Filter/View
+LB: Pane Left			RB: Pane Right
+																	Select
+	DPAD: Change Selection		Drop/Default (Negative action/Quick Action)		Confirm (Positive action/(Hold) Menu)
+																	Back/Cancel
+														RSTICK: Free move?
+													RUP: Quick Scroll up
+		LSTICK: Change Selection			RLEFT: Subscreen left	RRIGHT: Subscreen Right
+													RDOWN: Quick Scroll down
 Three-column, two-column, one-column with description, one-column no description
 At most two columns of menu options: hold right to select all.
+//Grid view?
+Menu inputs along the button and top modal overlay.
 GameMenu: Half volume: greyed transparent)
 SystemMenu: Muted: Blacked out at least 90%.
 
