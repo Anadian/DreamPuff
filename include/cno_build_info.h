@@ -45,6 +45,7 @@ typedef struct CNO_Build_Info_struct{
 	cno_u8_type archive_compiled[32];
 	cno_u8_type archive_linked[32];
 } CNO_Build_Info_type;
+
 /*
 
 HUD placement:
@@ -534,7 +535,7 @@ Three auto save slots, three quick save slots, at least five hard save slots, on
 
 //DreamPuff-thing-major-minor-patch binary-x86_64-macOS-clang-branch-commit
 
-cno_u8_type CNO_Build_Info_Init();
+cno_u8_type CNO_Build_Info_Init(C\Build_Info\ty *build_info);
 
 #ifdef __cplusplus
 }
