@@ -511,7 +511,7 @@ Completionist: Clear all objectives. 2
 Utility: Meet the requirements for several medals in one play through. 1
 Clever: Do something exceptionally clever. 1
 
-<Factor>/four * base score.
+FinalScore = sum(BaseScore,(BaseScore * (<FactorN>/4)) ...)
 4+3+4+3+4+2+3+2+5+2=32
 
 attack, element1 element2, DMG, stun, speed, super cost, super DMG, super stun, range (long medium short)
@@ -531,6 +531,12 @@ Impossible: A gimmick difficulty, this mode is like Very Hard except you die in 
 
 Save game must show in-game time, real-world save time, and preferably screenshot.
 Three auto save slots, three quick save slots, at least five hard save slots, one suspension save slot. per profile
+
+Leaderboards for 
+Completion time (single loop),
+High score (single loop),
+High score (multi loop),
+Stages cleared (multi loop)
 */
 
 //DreamPuff-thing-major-minor-patch binary-x86_64-macOS-clang-branch-commit
