@@ -531,6 +531,8 @@ Impossible: A gimmick difficulty, this mode is like Very Hard except you die in 
 
 Save game must show in-game time, real-world save time, and preferably screenshot.
 Three auto save slots, three quick save slots, at least five hard save slots, one suspension save slot. per profile
+Only host and official servers can record replays.
+Host can only record offline games, up to four players.
 
 Leaderboards for 
 Completion time (single loop),
