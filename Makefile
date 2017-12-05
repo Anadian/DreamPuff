@@ -146,6 +146,7 @@ install-binary: build-binary
 	sudo ln -f $(BIN) ./$(NAME)
 uninstall-binary:
 	sudo rm -f /usr/local/bin/$(notdir $(BIN)) /usr/local/bin/$(NAME)
+test-binary:
 build-library: $(OBJECTS)
 	$(COMPILER) $^ -o lib$(NAME).o
 	ar -r lib$(NAME).a lib$(NAME).o
@@ -153,6 +154,7 @@ install-library: build-library
 	sudo cp lib$(NAME).a /usr/local/lib/lib$(NAME).a
 uninstall-library:
 	sudo rm -f /usr/local/lib/lib$(NAME).a
+test-library
 run: build-binary
 	$(BIN)
 execute: run
